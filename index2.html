@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>City-Wide Dashboard</title>
+        <style type="text/css" media="screen">
+        #svg-container {
+          
+        }
+        </style>
+        <script src="js/vendor/jquery-ui-1.10.4/js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/Snap.svg-0.3.0/dist/snap.svg.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        // window.timeout(function() {
+        //   var draw = SVG($("svg").get(0));
+        //   console.log(draw);
+        //   var ship = draw.get("ship");
+        //   console.log(ship);
+        // });
+        
+        // window.onload = function () {
+        //   var s = Snap("#svg");
+        //   
+        //   var ship = s.select("#ship");
+        //   var shipAnimate = function() {
+        //     ship.attr({x: 0, y: 0});
+        //     ship.animate({x:1350, y:-50}, 16000, null, shipAnimate);
+        //   }
+        //   shipAnimate();
+        //   
+        //   var blades = s.select("#blades");
+        //   var bladesPos = blades.transform().localMatrix;
+        //   var bladesAnimate = function() {
+        //     // bladesPos.rotate(0);
+        //     // blades.transform(bladesPos.toTransformString());
+        //     // bladesPos.rotate(360);
+        //     // console.log(bladesPos);
+        //     blades.animate({transform: "r180,0,0"}, 4000, null, bladesAnimate);
+        //   }
+        //   bladesAnimate();
+        //   
+        //   var pipes = s.select("#ship");
+        //   var pipeOut = function() {
+        //     
+        //   }
+        // };
+        </script>
+    </head>
+    <body>
+      <div id="svg-container">
+        <object type="image/svg+xml" data="img/dashboard.svg" width="100%" height="100%" id="svg"></object>
+      </div>
+    </body>
+</html>
