@@ -16,7 +16,7 @@
           var draw = SVG('svg-container').size(1584, 893);
           draw.svg(jqXHR.responseText);
           
-          SVG.get("ship").animate(16000, '-').dmove(1350, -50).loop();
+          SVG.get("ship").animate(40000, '-').dmove(1350, -50).loop();
           SVG.get("blades").transform({cx: 19, cy: 25}).animate(2000, '-').transform({rotation: 360}).loop();
           
           var pipes = $("#svg-container #pipes > image");
