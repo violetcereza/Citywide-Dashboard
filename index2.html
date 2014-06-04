@@ -8,14 +8,43 @@
         </style>
         <script src="js/vendor/jquery-ui-1.10.4/js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.parser.js-master/svg.parser.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.import.js-master/svg.import.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/Snap.svg-0.3.0/dist/snap.svg.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
-        // window.timeout(function() {
-        //   var draw = SVG($("svg").get(0));
-        //   console.log(draw);
-        //   var ship = draw.get("ship");
-        //   console.log(ship);
-        // });
+        $.get('dashboard.svg', function(data, textStatus, jqXHR) {
+          var draw = SVG('svg-container').size(1584, 893);
+          draw.svg(jqXHR.responseText);
+          
+          SVG.get("ship").animate(16000, '-').dmove(1350, -50).loop();
+          SVG.get("blades").transform({cx: 19, cy: 25}).animate(2000, '-').transform({rotation: 360}).loop();
+          
+          var pipes = $("#svg-container #pipes > image");
+          var smoke = SVG.get('smoke');
+          var pipesOut = function() {
+            pipes.each(function() {
+              this.instance.attr("href", "img/smokestack/smokestack1.png");
+            });
+            
+            smoke.animate(1000, ">").scale(2,2).dmove(0,-300).attr('opacity', 0).after(function() {
+              this.attr('opacity', 1).translate(0,0).scale(1);
+            });
+            
+            window.setTimeout(pipesIn, 1000);
+          }
+          var pipesIn = function() {
+            pipes.each(function() {
+              this.instance.attr("href", "img/smokestack/smokestack2.png");
+            });
+            window.setTimeout(pipesOut, 1000);
+          }
+          pipesIn();
+          
+          var electricMode = function() {
+            SVG.get('powerlines').attr('href', "img/powerlines_lit.png");
+          }
+          electricMode();
+        });
         
         // window.onload = function () {
         //   var s = Snap("#svg");
@@ -34,7 +63,7 @@
         //     // blades.transform(bladesPos.toTransformString());
         //     // bladesPos.rotate(360);
         //     // console.log(bladesPos);
-        //     blades.animate({transform: "r180,0,0"}, 4000, null, bladesAnimate);
+        //     blades.animate({transform: "r360"}, 4000, null, bladesAnimate);
         //   }
         //   bladesAnimate();
         //   
@@ -47,7 +76,7 @@
     </head>
     <body>
       <div id="svg-container">
-        <object type="image/svg+xml" data="img/dashboard.svg" width="100%" height="100%" id="svg"></object>
+        <!-- <object type="image/svg+xml" data="img/dashboard.svg" width="100%" height="100%" id="svg"></object> -->
       </div>
     </body>
 </html>

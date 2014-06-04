@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="drawing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1584px" height="893px" viewBox="0 0 1584 893" enable-background="new 0 0 1584 893" xml:space="preserve">
+<image overflow="visible" enable-background="new    " width="1255" height="834" xlink:href="img/background.png"  transform="matrix(0.9999 0 0 0.9999 0 59.1035)">
+</image>
+<image overflow="visible" enable-background="new    " width="44" height="22" id="ship" xlink:href="img/ship.png"  transform="matrix(0.9999 0 0 0.9999 -46.9961 186.502)">
+</image>
+<image overflow="visible" enable-background="new    " width="376" height="221" xlink:href="img/watertreatment.png"  transform="matrix(1 0 0 1 80 621.9453)">
+</image>
+<image overflow="visible" enable-background="new    " width="123" height="65" xlink:href="img/agriculture.png"  transform="matrix(1 0 0 1 1116.9004 257.5059)">
+</image>
+<image overflow="visible" enable-background="new    " width="398" height="319" xlink:href="img/town.png"  transform="matrix(1 0 0 1 288.7812 214.502)">
+</image>
+<image overflow="visible" enable-background="new    " width="460" height="483" xlink:href="img/vegetation.png"  transform="matrix(1 0 0 1 0 410)">
+</image>
+<image overflow="visible" enable-background="new    " width="1584" height="893" xlink:href="img/water_lines.png" >
+</image>
+<image overflow="visible" enable-background="new    " width="130" height="162" xlink:href="img/water_tower.png"  transform="matrix(1 0 0 1 728.3223 159.5)">
+</image>
+<g>
+	
+		<image overflow="visible" enable-background="new    " width="67" height="84" xlink:href="img/wind_turbine_base.png"  transform="matrix(1 0 0 1 8.25 251.0059)">
+	</image>
+</g>
+<image overflow="visible" enable-background="new    " width="43" height="39" id="blades" xlink:href="img/wind_turbine_blades.png"  x="22" y="260" transform="matrix(0.9999 0 0 0.9999 22.2524 260.834)">
+    <animateTransform attributeType="xml"
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 41 285"
+                      to="360 41 285"
+                      dur="4s"
+                      repeatCount="indefinite"/>
+</image>
+<image overflow="visible" enable-background="new    " width="408" height="177" xlink:href="img/park.png"  transform="matrix(1 0 0 1 491.3223 431.002)">
+</image>
+<image overflow="visible" enable-background="new    " width="435" height="231" xlink:href="img/houses.png"  transform="matrix(1 0 0 1 519.3203 583.5)">
+</image>
+<image overflow="visible" enable-background="new    " width="321" height="272" xlink:href="img/college.png"  transform="matrix(1 0 0 1 876.3203 291.002)">
+</image>
+<image overflow="visible" enable-background="new    " width="152" height="50" xlink:href="img/reservoir.png"  transform="matrix(1 0 0 1 844.3223 226.5078)">
+</image>
+<image overflow="visible" enable-background="new    " width="1584" height="893" id="powerlines" xlink:href="img/powerlines.png"  transform="matrix(0.9999 0 0 0.9999 0 0)">
+</image>
+<g id="smoke">
+	
+		<image overflow="visible" enable-background="new    " width="25" height="21" xlink:href="img/smoke.png"  transform="matrix(0.9999 0 0 0.9999 107.0005 228.502)">
+	</image>
+	
+		<image overflow="visible" enable-background="new    " width="25" height="21" xlink:href="img/smoke.png"  transform="matrix(0.9999 0 0 0.9999 140.0005 228.502)">
+	</image>
+	
+		<image overflow="visible" enable-background="new    " width="25" height="21" xlink:href="img/smoke.png"  transform="matrix(0.9999 0 0 0.9999 175.2505 228.502)">
+	</image>
+</g>
+<image overflow="visible" enable-background="new    " width="228" height="90" xlink:href="img/power_plant.png"  transform="matrix(1 0 0 1 79.3945 292.5059)">
+</image>
+<g id="pipes">
+	
+		<image overflow="visible" enable-background="new    " width="164" height="156" xlink:href="img/smokestack/smokestack1.png"  transform="matrix(1 0 0 1 107 161)">
+	</image>
+	
+		<image overflow="visible" enable-background="new    " width="164" height="156" xlink:href="img/smokestack/smokestack1.png"  transform="matrix(1 0 0 1 140 161)">
+	</image>
+	
+		<image overflow="visible" enable-background="new    " width="164" height="156" xlink:href="img/smokestack/smokestack1.png"  transform="matrix(1 0 0 1 174 161)">
+	</image>
+</g>
+<image overflow="visible" enable-background="new    " width="144" height="68" xlink:href="img/city.png"  transform="matrix(1 0 0 1 1068.9277 145.502)">
+</image>
+
+<g id="sparkpaths">
+  <g id="AnimationPaths">
+    <path id="Zuerich_Geneva" stroke="orange" stroke-width="2000" fill="none"
+               d="M682500,53500 C632500,53500 549500,80000 499500,181000" />
+    <image id="AirplaneZurichGeneva" xlink:href="img/spark.png">
+      <animateMotion id="animMotionZurGen" dur="10s" repeatCount="indefinite" rotate="auto-reverse">
+        <mpath xlink:href="#Zuerich_Geneva"/>
+      </animateMotion>
+      <animateTransform attributeName="transform" 
+                type="scale" keyTimes="0;0.2;0.8;1" values="1.5;4;4;1.5"
+                dur="10s" additive="replace" fill="freeze"
+          repeatCount="indefinite"/>
+    </image>
+  </g>
+  
+  
+	<path fill="none" d="M567,274c12.413-11.079,34.658-37.771,35.5-55.5"/>
+	<path fill="none" d="M864.5,246c-7,23-20,42.979-40,64.5"/>
+	<path fill="none" d="M802.5,299c5.107,12.564,38.711,44.179,76.5,62.5c33.646,16.312,66.505,16.653,81,13"/>
+	<path fill="none" d="M821.5,697c0,0,35,13,79,10.064C929.453,705.133,998,681.5,1018,668"/>
+	<path fill="none" d="M401.5,719c-13.711,50.004-86.5,152.5-113,173.911"/>
+</g>
+</svg>
