@@ -24,7 +24,7 @@
 		<image overflow="visible" enable-background="new    " width="67" height="84" xlink:href="img/wind_turbine_base.png"  transform="matrix(1 0 0 1 8.25 251.0059)">
 	</image>
 </g>
-<image overflow="visible" enable-background="new    " width="43" height="39" id="blades" xlink:href="img/wind_turbine_blades.png" transform="matrix(0.9999 0 0 0.9999 22.2524 260.834)">
+<image overflow="visible" enable-background="new    " width="43" height="39" id="blades" xlink:href="img/wind_turbine_blades.png"  transform="matrix(0.9999 0 0 0.9999 22.2524 260.834)">
 </image>
 <image overflow="visible" enable-background="new    " width="408" height="177" xlink:href="img/park.png"  transform="matrix(1 0 0 1 491.3223 431.002)">
 </image>
@@ -62,5 +62,28 @@
 </g>
 <image overflow="visible" enable-background="new    " width="144" height="68" xlink:href="img/city.png"  transform="matrix(1 0 0 1 1068.9277 145.502)">
 </image>
-
+<g id="sparkpaths">
+	<path fill="none" d="M602.58,218.589c-3.413,17.745-23.08,43.078-35.5,55.5"/>
+	<path fill="none" d="M824.58,310.589c14.333-16.166,33-36.834,40-64.5"/>
+	<path fill="none" d="M802.58,299.089c5.107,12.564,38.711,44.179,76.5,62.5c33.646,16.312,66.505,16.653,81,13"/>
+	<path fill="none" d="M1018.08,668.09c-38.579,23.264-134.246,59.245-196.5,27.912"/>
+	<path fill="none" d="M288.545,892.979c52.598-48.266,105.798-140.228,112.07-173.865"/>
+</g>
+<image overflow="visible" width="1584" height="77" xlink:href="img/menu_top.png"  transform="matrix(0.9999 0 0 0.9999 0.0195 0)">
+</image>
+<image overflow="visible" width="326" height="835" xlink:href="img/infopane_bg.png"  transform="matrix(0.9999 0 0 0.9999 1258.04 58.6143)">
+</image>
+<g>
+	
+		<image overflow="visible" width="181" height="66" xlink:href="img/electricity_button.png"  transform="matrix(1 0 0 1 357.5889 2.4951)">
+	</image>
+	<image overflow="visible" width="176" height="72" xlink:href="img/stream_button.png"  transform="matrix(1 0 0 1 813.3037 0)">
+	</image>
+	
+		<image overflow="visible" width="195" height="71" xlink:href="img/water_button.png"  transform="matrix(1 0 0 1 577.1963 2.4951)">
+	</image>
+	
+		<image overflow="visible" width="197" height="59" xlink:href="img/weather_button.png"  transform="matrix(1 0 0 1 1029.4111 4.4951)">
+	</image>
+</g>
 </svg>

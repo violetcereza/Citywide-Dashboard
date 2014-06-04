@@ -1,36 +1,103 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>City-Wide Dashboard</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css" media="screen">
+        #svg-container {
+          
+        }
+        </style>
+        <script src="js/vendor/jquery-ui-1.10.4/js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.parser.js-master/svg.parser.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.import.js-master/svg.import.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/pathAnimator.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        $.get('dashboard.svg', function(data, textStatus, jqXHR) {
+          var draw = SVG('svg-container').size(1584, 893);
+          draw.svg(jqXHR.responseText);
+          
+          SVG.get("ship").animate(40000, '-').dmove(1350, -50).loop();
+          SVG.get("blades").transform({cx: 19, cy: 25}).animate(2000, '-').transform({rotation: 360}).loop();
+          
+          var pipes = $("#svg-container #pipes > image");
+          var smoke = SVG.get('smoke');
+          var pipesOut = function() {
+            pipes.each(function() {
+              this.instance.attr("href", "img/smokestack/smokestack1.png");
+            });
+            
+            smoke.animate(1000, ">").scale(2,2).dmove(0,-300).attr('opacity', 0).after(function() {
+              this.attr('opacity', 1).translate(0,0).scale(1);
+            });
+            
+            window.setTimeout(pipesIn, 1000);
+          }
+          var pipesIn = function() {
+            pipes.each(function() {
+              this.instance.attr("href", "img/smokestack/smokestack2.png");
+            });
+            window.setTimeout(pipesOut, 1000);
+          }
+          pipesIn();
+          
+          var electricMode = function() {
+            SVG.get('powerlines').attr('href', "img/powerlines_lit.png");
+            
+            $("#sparkpaths > path").each(function() {
+              var path = this.instance.attr("d");
+            	var pathAnimator = new PathAnimator( path );	// initiate a new pathAnimator object
+            	var objToAnimate = draw.image("img/spark.png").node;	// The object that will move along the path
+            	var speed = 2;	 		// seconds that will take going through the whole path
+            	var reverse = false;	// go back or forward along the path
+            	var startOffset = 0;		// between 0% to 100%
+	
+              pathAnimator.start( speed, step, reverse, startOffset, finish);
 
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
-		    <script src="js/vendor/prefixfree.min.js" type="text/javascript" charset="utf-8"></script>
+              function step( point, angle ){
+              	// do something every "frame" with: point.x, point.y & angle
+              	objToAnimate.instance.move(point.x-10, point.y-10);
+              }
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+              function finish(){
+              	pathAnimator.start( speed, step, reverse, startOffset, finish);
+              }
+              
+            });
+          }
+          electricMode();
+        });
+        
+        // window.onload = function () {
+        //   var s = Snap("#svg");
+        //   
+        //   var ship = s.select("#ship");
+        //   var shipAnimate = function() {
+        //     ship.attr({x: 0, y: 0});
+        //     ship.animate({x:1350, y:-50}, 16000, null, shipAnimate);
+        //   }
+        //   shipAnimate();
+        //   
+        //   var blades = s.select("#blades");
+        //   var bladesPos = blades.transform().localMatrix;
+        //   var bladesAnimate = function() {
+        //     // bladesPos.rotate(0);
+        //     // blades.transform(bladesPos.toTransformString());
+        //     // bladesPos.rotate(360);
+        //     // console.log(bladesPos);
+        //     blades.animate({transform: "r360"}, 4000, null, bladesAnimate);
+        //   }
+        //   bladesAnimate();
+        //   
+        //   var pipes = s.select("#ship");
+        //   var pipeOut = function() {
+        //     
+        //   }
+        // };
+        </script>
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-			
-    <!-- <div id="wrapper">
-          <img src="img/background.png" id="background"/>
-      <img src="img/ship.png" id="ship" />
-      <img src="img/agriculture.png" id="agriculture" />
-      <img src="img/city.png" width="144" id="city" />
-      <img src="img/watertreatment.png" id="watertreatment" />
-      <img src="img/vegetation.png" id="vegetation">
-    </div> -->
-    <div class="svg-container">
-      <object type="image/svg+xml" data="city-wide.svg" width="100%" height="100%" class="svg-content"></object>
-    </div>
+      <div id="svg-container">
+        <!-- <object type="image/svg+xml" data="img/dashboard.svg" width="100%" height="100%" id="svg"></object> -->
+      </div>
     </body>
 </html>
