@@ -268,4 +268,26 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     });
   });
   
+  var hoverFilter;
+  $("#clickables > *").each(function() {
+    that = this.instance;
+    
+    that.mouseover(function() {
+      if (!hoverFilter) {
+        this.filter(function(add) {
+          var blur = add.offset(10, 10).in(add.sourceAlpha).gaussianBlur(5).colorMatrix('matrix', [2, , 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
+          add.blend(add.source, blur);
+          this.size('200%','200%').move('-50%', '-50%');
+        });
+        hoverFilter = this.filterer;
+      } else {
+        this.filter(hoverFilter);
+      }
+    });
+  
+    that.mouseout(function() {
+      this.unfilter();
+    });
+    
+  });
 });
