@@ -71,7 +71,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       { name: 'toWeather', from: '*', to: 'weather' }],
     callbacks: {
       onelectricity:  function() {
-        SVG.get('powerlines').load("img/powerlines_lit.png");
+        SVG.get('powerlines_lit').attr("display", null);
         squirrel.attr("display", null);
         text.text("Welcome to the Bioregional Dashboard’s electricity use page! Here you can click on\ngauges and icons and learn more about energy in our community.")
     
@@ -106,7 +106,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleaveelectricity:  function() {
-        SVG.get('powerlines').load("img/powerlines.png");
+        SVG.get('powerlines_lit').attr("display", "none");
         squirrel.attr("display", "none");
         $(".spark").each(function() { this.instance.remove(); });
       },
@@ -233,9 +233,9 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       if (this.attr("id") == state.current) { return; }
       
       $("#buttons > .selected").each(function() {
-        that = this.instance;
-        that.attr('class', null);
-        that.load("img/"+that.attr("id")+"_button.png").loaded(function(loader) {
+        button = this.instance;
+        button.attr('class', null);
+        button.load("img/"+button.attr("id")+"_button.png").loaded(function(loader) {
           this.size(loader.width, loader.height);
           var coords = buttonCoords[this.attr("id")];
           this.dmove(-coords.x, -coords.y);
@@ -269,25 +269,102 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   });
   
   var hoverFilter;
+  var descriptions = {
+    park: {
+      text: "Whether you enjoy the many cultural or musical events, or just lying in the grass under trees with friends, this 13-acre square connects Oberlin residents to each other and our environment.",
+      title: "Town Square",
+      link: "http://oberlindashboard.org/wiki.php#1j"
+    },
+    town: {
+      text: "The City of Oberlin and Oberlin College were founded in 1833. Oberlin is building on its legacy as a leader on issues of civil rights and justice through commitments to environmental sustainability.",
+      title: "The Town of Oberlin",
+      link: "http://oberlindashboard.org/wiki.php#1h"
+    },
+    college: {
+      text: "Oberlin College was the first institution in the US to admit african americans, the first to admit women and is working closely with the city to build an ecologically, socially and economically sustainable model of a post-fossil fuel community.",
+      title: "Oberlin College",
+      link: "http://oberlindashboard.org/wiki.php#1i"
+    },
+    houses: {
+      text: "The decisions each of us make every day in our homes, schools and workplaces directly affect our community and the environment. We are all connected by these choices.",
+      title: "Your Home",
+      link: "http://oberlindashboard.org/wiki.php#1k"
+    },
+    water_treatment: {
+      text: "Dirty water from homes and businesses flows through underground pipes to Oberlin’s wastewater treatment plant where it is cleaned and released into the Plum Creek.",
+      title: "Wastewater Treatment Plant",
+      link: "http://oberlindashboard.org/wiki.php#1d"
+    },
+    agriculture: {
+      text: "Although farmland is rapidly turning into houses, agriculture is still the largest industry in Lorain County. While corn and soybeans cover the largest area, local fruits and vegetables are easily available and very tasty.",
+      title: "Agriculture",
+      link: "http://oberlindashboard.org/wiki.php#1f"
+    },
+    water_tower: {
+      text: "The water you use in Oberlin is collected from the West branch of the Black River, into a reservoir. It is then filtered, pumped, and stored in water towers until you turn on your tap.",
+      title: "Drinking Water",
+      link: "http://oberlindashboard.org/wiki.php#1b"
+    },
+    reservoir: {
+      text: "The water you use in Oberlin is collected from the West branch of the Black River, into a reservoir. It is then filtered, pumped, and stored in water towers until you turn on your tap.",
+      title: "Drinking Water",
+      link: "http://oberlindashboard.org/wiki.php#1b"
+    },
+    industry: {
+      text: "Oberlin Municipal Light and Power (OMLPS) manages the flow of electricity from power generation facilities (using landfill gas, hydroelectric, wind, solar, coal and nuclear) over the electrical “grid” to our homes and workplaces where we use it for lights, computers, toasters and more.",
+      title: "Electricity Production",
+      link: "http://oberlindashboard.org/wiki.php#1a"
+    },
+    city: {
+      text: "The bigger cities around Oberlin like Elyria, Lorain and Cleveland are part of the “rust belt” -- places where the steel industry has declined and politicians, residents and entrepreneurs are working to build the economy, clean the environment and celebrate culture.",
+      title: "Urbanization and Cleveland",
+      link: "http://oberlindashboard.org/wiki.php#1g"
+    },
+    river_click: {
+      text: "A watershed is an area of land that drains to a single body of water. Rain and snow that fall on Oberlin drain into the Plum Creek, which then flows into the Black River.",
+      title: "Watershed",
+      link: "http://oberlindashboard.org/wiki.php#1c"
+    }
+  };
   $("#clickables > *").each(function() {
-    that = this.instance;
+    clickable = this.instance;
     
-    that.mouseover(function() {
+    clickable.mouseover(function() {
+      clickable = this;
+      if (clickable.attr("id") == "river_click") clickable = SVG.get("river");
+      
       if (!hoverFilter) {
-        this.filter(function(add) {
-          var blur = add.offset(10, 10).in(add.sourceAlpha).gaussianBlur(5).colorMatrix('matrix', [2, , 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
-          add.blend(add.source, blur);
-          this.size('200%','200%').move('-50%', '-50%');
+        // this.filter(function(add) {
+        //   var blur = add.offset(10, 10).in(add.sourceAlpha).gaussianBlur(5).colorMatrix('matrix', [2, , 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
+        //   add.blend(add.source, blur);
+        //   this.size('200%','200%').move('-50%', '-50%');
+        // });
+        clickable.filter(function(add) {
+          add.componentTransfer({
+            rgb: { type: 'linear', slope: 1, intercept: 0.01 }
+          })
         });
-        hoverFilter = this.filterer;
+        hoverFilter = clickable.filterer;
       } else {
-        this.filter(hoverFilter);
+        clickable.filter(hoverFilter);
       }
     });
-  
-    that.mouseout(function() {
-      this.unfilter();
+    
+    clickable.mouseout(function() {
+      clickable = this;
+      if (clickable.attr("id") == "river_click") clickable = SVG.get("river");
+      
+      clickable.unfilter();
     });
     
+    clickable.click(function(e) {
+      var dscr = descriptions[this.attr('id')];
+      // draw.parent.rect(200, 100).radius(10).fill("white").stroke({color: "#555", width: 2}).move(e.x, e.y);
+      // draw.parent.text(description.text).move(e.x+10, e.y+10);
+      $(".popup").remove();
+      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a></p></div>');
+      popup.find(".close").click(function() { popup.remove() });
+      popup.appendTo(document.body).offset({top: e.y, left: e.x});
+    });
   });
 });
