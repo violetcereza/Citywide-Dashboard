@@ -34,24 +34,24 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   
   var squirrel = SVG.get("squirrel");
   squirrel.each(function() {
-    this.hide();
+    this.attr("display","none");
   });
-  var squirrelFrame = squirrel.first().show();
+  var squirrelFrame = squirrel.first().attr("display", null);
   
   var fish = SVG.get("fish");
   fish.each(function() {
-    this.hide();
+    this.attr("display","none");
   });
-  var fishFrame = fish.first().show();
+  var fishFrame = fish.first().attr("display", null);
   
   window.setInterval(function() {
-    squirrelFrame = squirrelFrame.hide().next();
+    squirrelFrame = squirrelFrame.attr("display","none").next();
     if (!squirrelFrame) squirrelFrame = squirrel.first();
-    squirrelFrame.show();
+    squirrelFrame.attr("display", null);
     
-    fishFrame = fishFrame.hide().next();
+    fishFrame = fishFrame.attr("display","none").next();
     if (!fishFrame) fishFrame = fish.first();
-    fishFrame.show();
+    fishFrame.attr("display", null);
   }, 1000/24);
   // 24fps
   
@@ -63,7 +63,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   text.move(210, 80).font({ family: 'Futura-Medium', size: 21 }).fill("#777");
   var intervalObjs = [];
   var state = StateMachine.create({
-    initial: 'none',
+    initial: window.location.hash? window.location.hash.substr(1) : 'none',
     events: [
       { name: 'toElectricity', from: '*', to: 'electricity' },
       { name: 'toWater', from: '*', to: 'water' },
@@ -71,8 +71,8 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       { name: 'toWeather', from: '*', to: 'weather' }],
     callbacks: {
       onelectricity:  function() {
-        SVG.get('powerlines_lit').attr("display", null);
-        squirrel.attr("display", null);
+        SVG.get('powerlines_lit').attr("display", null)
+        squirrel.attr("display", null)
         text.text("Welcome to the Bioregional Dashboard’s electricity use page! Here you can click on\ngauges and icons and learn more about energy in our community.")
     
         var startTime = new Date();
@@ -106,15 +106,15 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleaveelectricity:  function() {
-        SVG.get('powerlines_lit').attr("display", "none");
-        squirrel.attr("display", "none");
+        SVG.get('powerlines_lit').attr("display","none")
+        squirrel.attr("display","none")
         $(".spark").each(function() { this.instance.remove(); });
       },
       onwater: function() {
         var clip = draw.clip();
-        SVG.get('freshwater_highlighted').attr("display", null);
-        SVG.get('wastewater_highlighted').attr("display", null);
-        fish.attr("display", null);        
+        SVG.get('freshwater_highlighted').attr("display", null)
+        SVG.get('wastewater_highlighted').attr("display", null)
+        fish.attr("display", null)        
         SVG.get("waterlines_clip").attr("display", null).clipWith(clip);
         text.text("Welcome to the Bioregional Dashboard’s water page! Here you can click on\ngauges and icons and learn more about water in our community.")
         
@@ -144,16 +144,16 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleavewater: function() {
-        SVG.get('freshwater_highlighted').attr("display", "none");
-        SVG.get('wastewater_highlighted').attr("display", "none");
-        SVG.get("waterlines_clip").attr("display", "none");
-        fish.attr("display", "none");
+        SVG.get('freshwater_highlighted').attr("display","none")
+        SVG.get('wastewater_highlighted').attr("display","none")
+        SVG.get("waterlines_clip").attr("display","none")
+        fish.attr("display","none")
         $(".droplet").each(function() { this.instance.remove(); });
       },
       onstream: function() {
         var clip = draw.clip();
         SVG.get("flow_marks").attr("display", null).clipWith(clip);
-        fish.attr("display", null);
+        fish.attr("display", null)
         text.text("This view of the dashboard shows community-wide conditions of Plum Creek. \nAll water falling on Oberlin drains eventually flows down Plum Creek.")
         
         var startTime = new Date();
@@ -182,27 +182,66 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleavestream: function() {
-        SVG.get('flow_marks').attr("display", "none");
-        SVG.get('fish').attr("display", "none");
+        SVG.get('flow_marks').attr("display","none")
+        SVG.get('fish').attr("display","none")
         $(".flowshine").each(function() { this.instance.remove(); });
       },
       onweather: function() {
-        SVG.get("sunset").attr("display", null);
-        squirrel.attr("display", null);
+        SVG.get("sunset").attr("display", null)
+        squirrel.attr("display", null)
         text.text("Welcome to the Bioregional Dashboard’s weather page! \nLearn about Oberlin's climate and weather.")
       },
       onleaveweather: function() {
-        SVG.get('sunset').attr("display", "none");
-        squirrel.attr("display", "none");
+        SVG.get('sunset').attr("display","none")
+        squirrel.attr("display","none")
       },
       onleavenone: function() {
-        squirrel.attr("display", "none");
+        squirrel.attr("display","none")
       },
-      onleavestate: function() {
+      onstate: function(event, from, to) {
+        window.location.hash = to;
+        
+        // Blech. Keeps images aligned when they change size
+        // var buttonCoords = {
+        //   "electricity": {x: 53-68, y: 12-36},
+        //   "water": {x: 79-79, y: 15-41},
+        //   "stream": {x: 76-85, y: 14-37},
+        //   "weather": {x: 70-70, y: 12-38}
+        // }
+        // $("#buttons > .selected").each(function() {
+        //   button = this.instance;
+        //   button.attr('class', null);
+        //   button.load("img/"+button.attr("id")+"_button.png").loaded(function(loader) {
+        //     this.size(loader.width, loader.height);
+        //     var coords = buttonCoords[this.attr("id")];
+        //     this.dmove(-coords.x, -coords.y);
+        //     this.loaded(null);
+        //   });
+        // });
+      
+        SVG.get(to).attr("display","none");
+        SVG.get(to+"_hover").attr("display","none");
+        SVG.get(to+"_highlight").attr("display", null);
+        // button.attr('class', 'selected');
+        // button.load("img/"+button.attr("id")+"_button_highlighted.png").loaded(function(loader) {
+        //   console.log(loader);
+        //   this.size(loader.width, loader.height);
+        //   var coords = buttonCoords[this.attr("id")];
+        //   this.dmove(coords.x, coords.y);
+        //   this.loaded(null);
+        // });
+      },
+      onleavestate: function(event, from, to) {
         for (var i = intervalObjs.length - 1; i >= 0; i--) {
           window.clearInterval(intervalObjs[i]);
         }
         intervalObjs = [];
+        
+        if (SVG.get(from)) {
+          SVG.get(from).attr("display", null);
+          SVG.get(from+"_hover").attr("display", "none");
+          SVG.get(from+"_highlight").attr("display", "none");
+        }
       }
     }
   });
@@ -211,47 +250,26 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   ** Button Interaction **
   ***********************/
   
-  // Blech. Keeps images aligned when they change size
-  var buttonCoords = {
-    "electricity": {x: 53-68, y: 12-36},
-    "water": {x: 79-79, y: 15-41},
-    "stream": {x: 76-85, y: 14-37},
-    "weather": {x: 70-70, y: 12-38}
-  }
   $("#buttons > image").each(function() {
+    var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
+    var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
+    
     this.instance.mouseover(function() {
-      if (!state.is(this.attr("id"))) {
-        this.load("img/"+this.attr("id")+"_button_hover.png");
+      if (!state.is(thisState) && thisType!="hover") {
+        this.attr("display","none");
+        SVG.get(thisState+"_hover").attr("display", null);
       }
     });
     this.instance.mouseout(function() {
-      if (!state.is(this.attr("id"))) {
-        this.load("img/"+this.attr("id")+"_button.png");
+      if (!state.is(thisState) && thisType=="hover") {
+        this.attr("display","none");
+        SVG.get(thisState).attr("display", null);
       }
     });
     this.instance.click(function() {
-      if (this.attr("id") == state.current) { return; }
-      
-      $("#buttons > .selected").each(function() {
-        button = this.instance;
-        button.attr('class', null);
-        button.load("img/"+button.attr("id")+"_button.png").loaded(function(loader) {
-          this.size(loader.width, loader.height);
-          var coords = buttonCoords[this.attr("id")];
-          this.dmove(-coords.x, -coords.y);
-          this.loaded(null);
-        });
-      });
-      
-      this.attr('class', 'selected');
-      this.load("img/"+this.attr("id")+"_button_highlighted.png").loaded(function(loader) {
-        this.size(loader.width, loader.height);
-        var coords = buttonCoords[this.attr("id")];
-        this.dmove(coords.x, coords.y);
-        this.loaded(null);
-      });
-      
-      switch (this.attr("id")) {
+      if (thisState == state.current) { return; }
+            
+      switch (thisState) {
         case "electricity":
           state.toElectricity();
           break;
