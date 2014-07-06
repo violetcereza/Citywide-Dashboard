@@ -1,3 +1,18 @@
+// Because Illustrator modifies attr and not style, so showing does work unless we do too
+SVG.extend(SVG.Element, {
+  hide: function() {
+    return this.attr('display', 'none')
+  },
+  show: function() {
+    return this.attr('display', '')
+  }
+});
+
+var messages;
+$.get('resource_explanation.csv', function(data, textStatus, jqXHR) {
+  messages = $.parse(data);
+});
+
 $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   var draw = SVG('svg-container');
   draw.svg(jqXHR.responseText);
@@ -34,24 +49,24 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   
   var squirrel = SVG.get("squirrel");
   squirrel.each(function() {
-    this.attr("display","none");
+    this.hide();
   });
-  var squirrelFrame = squirrel.first().attr("display", null);
+  var squirrelFrame = squirrel.first().show();
   
   var fish = SVG.get("fish");
   fish.each(function() {
-    this.attr("display","none");
+    this.hide();
   });
-  var fishFrame = fish.first().attr("display", null);
+  var fishFrame = fish.first().show();
   
   window.setInterval(function() {
-    squirrelFrame = squirrelFrame.attr("display","none").next();
+    squirrelFrame = squirrelFrame.hide().next();
     if (!squirrelFrame) squirrelFrame = squirrel.first();
-    squirrelFrame.attr("display", null);
+    squirrelFrame.show();
     
-    fishFrame = fishFrame.attr("display","none").next();
+    fishFrame = fishFrame.hide().next();
     if (!fishFrame) fishFrame = fish.first();
-    fishFrame.attr("display", null);
+    fishFrame.show();
   }, 1000/24);
   // 24fps
   
@@ -59,8 +74,13 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   ** State-based animations **
   ***************************/
   
-  var text = draw.text("Welcome to Oberlin's Bioregional Dashboard!\nClick on the icons above to learn more out the existing environmental conditions at Oberlin.")
-  text.move(210, 80).font({ family: 'Futura-Medium', size: 21 }).fill("#777");
+  // var text = draw.text("Welcome to Oberlin's Bioregional Dashboard!\nClick on the icons above to learn more out the environmental conditions at Oberlin.")
+  // text.move(210, 80).font({ family: 'Futura-Medium', size: 21 }).fill("#777");
+  var fObj = draw.foreignObject(1000, 100).move(200, 80);
+  fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
+  var text = $(fObj.getChild(0));
+  text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
+  
   var intervalObjs = [];
   var state = StateMachine.create({
     initial: window.location.hash? window.location.hash.substr(1) : 'none',
@@ -71,9 +91,9 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       { name: 'toWeather', from: '*', to: 'weather' }],
     callbacks: {
       onelectricity:  function() {
-        SVG.get('powerlines_lit').attr("display", null)
-        squirrel.attr("display", null)
-        text.text("Welcome to the Bioregional Dashboard’s electricity use page! Here you can click on\ngauges and icons and learn more about energy in our community.")
+        SVG.get('powerlines_lit').show();
+        squirrel.show();
+        // text.text("Welcome to the Bioregional Dashboard’s electricity use page! Here you can click on\ngauges and icons and learn more about energy in our community.")
     
         var startTime = new Date();
         var duration = 2;
@@ -106,17 +126,17 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleaveelectricity:  function() {
-        SVG.get('powerlines_lit').attr("display","none")
-        squirrel.attr("display","none")
+        SVG.get('powerlines_lit').hide()
+        squirrel.hide()
         $(".spark").each(function() { this.instance.remove(); });
       },
       onwater: function() {
         var clip = draw.clip();
-        SVG.get('freshwater_highlighted').attr("display", null)
-        SVG.get('wastewater_highlighted').attr("display", null)
-        fish.attr("display", null)        
-        SVG.get("waterlines_clip").attr("display", null).clipWith(clip);
-        text.text("Welcome to the Bioregional Dashboard’s water page! Here you can click on\ngauges and icons and learn more about water in our community.")
+        SVG.get('freshwater_highlighted').show();
+        SVG.get('wastewater_highlighted').show();
+        fish.show();        
+        SVG.get("waterlines_clip").show().clipWith(clip);
+        // text.text("Welcome to the Bioregional Dashboard’s water page! Here you can click on\ngauges and icons and learn more about water in our community.")
         
         var startTime = new Date();
         var duration = 4;
@@ -144,17 +164,17 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleavewater: function() {
-        SVG.get('freshwater_highlighted').attr("display","none")
-        SVG.get('wastewater_highlighted').attr("display","none")
-        SVG.get("waterlines_clip").attr("display","none")
-        fish.attr("display","none")
+        SVG.get('freshwater_highlighted').hide()
+        SVG.get('wastewater_highlighted').hide()
+        SVG.get("waterlines_clip").hide()
+        fish.hide()
         $(".droplet").each(function() { this.instance.remove(); });
       },
       onstream: function() {
         var clip = draw.clip();
-        SVG.get("flow_marks").attr("display", null).clipWith(clip);
-        fish.attr("display", null)
-        text.text("This view of the dashboard shows community-wide conditions of Plum Creek. \nAll water falling on Oberlin drains eventually flows down Plum Creek.")
+        SVG.get("flow_marks").show().clipWith(clip);
+        fish.show();
+        // text.text("Hello. Welcome to the Bioregional Dashboard's watershed page. Here you can click on gauges and icons \nand learn more about water quality in the Plum Creek and in the Black River Watershed.");
         
         var startTime = new Date();
         var duration = 2;
@@ -182,54 +202,70 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         });                
       },
       onleavestream: function() {
-        SVG.get('flow_marks').attr("display","none")
-        SVG.get('fish').attr("display","none")
+        SVG.get('flow_marks').hide()
+        SVG.get('fish').hide()
         $(".flowshine").each(function() { this.instance.remove(); });
       },
       onweather: function() {
-        SVG.get("sunset").attr("display", null)
-        squirrel.attr("display", null)
-        text.text("Welcome to the Bioregional Dashboard’s weather page! \nLearn about Oberlin's climate and weather.")
+        SVG.get("sunset").show();
+        squirrel.show();
+        // text.text("Welcome to the Bioregional Dashboard’s weather page! \nLearn about Oberlin's climate and weather.")
       },
       onleaveweather: function() {
-        SVG.get('sunset').attr("display","none")
-        squirrel.attr("display","none")
+        SVG.get('sunset').hide()
+        squirrel.hide()
+      },
+      onnone: function() {
+        SVG.get('house_inside').hide();
       },
       onleavenone: function() {
-        squirrel.attr("display","none")
+        SVG.get('house_inside').show();
+        squirrel.hide()
       },
       onstate: function(event, from, to) {
         window.location.hash = to;
         
-        // Blech. Keeps images aligned when they change size
-        // var buttonCoords = {
-        //   "electricity": {x: 53-68, y: 12-36},
-        //   "water": {x: 79-79, y: 15-41},
-        //   "stream": {x: 76-85, y: 14-37},
-        //   "weather": {x: 70-70, y: 12-38}
-        // }
-        // $("#buttons > .selected").each(function() {
-        //   button = this.instance;
-        //   button.attr('class', null);
-        //   button.load("img/"+button.attr("id")+"_button.png").loaded(function(loader) {
-        //     this.size(loader.width, loader.height);
-        //     var coords = buttonCoords[this.attr("id")];
-        //     this.dmove(-coords.x, -coords.y);
-        //     this.loaded(null);
-        //   });
-        // });
-      
-        SVG.get(to).attr("display","none");
-        SVG.get(to+"_hover").attr("display","none");
-        SVG.get(to+"_highlight").attr("display", null);
-        // button.attr('class', 'selected');
-        // button.load("img/"+button.attr("id")+"_button_highlighted.png").loaded(function(loader) {
-        //   console.log(loader);
-        //   this.size(loader.width, loader.height);
-        //   var coords = buttonCoords[this.attr("id")];
-        //   this.dmove(coords.x, coords.y);
-        //   this.loaded(null);
-        // });
+        // top menu buttons
+        SVG.get(to).hide();
+        SVG.get(to+"_hover").hide();
+        SVG.get(to+"_highlight").show();
+        
+        // stick figures
+        SVG.get('stick_figures').each(function() {
+          this.hide();
+        });
+        console.log(SVG.get('stick_'+to));
+        if (SVG.get('stick_'+to)) SVG.get('stick_'+to).show();
+        
+        if (messages) {
+          var selectedMessages = [];
+          var selectedWeights = [];
+          for (var i = messages.results.rows.length - 1; i >= 0; i--) {
+            if (messages.results.rows[i].Category == to) {
+              selectedMessages.push(messages.results.rows[i].Text);
+              selectedWeights.push(messages.results.rows[i].Probability);
+            }
+          }
+          // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
+          var getRandomItem = function(list, weight) {
+              var total_weight = weight.reduce(function (prev, cur, i, arr) {
+                  return prev + cur;
+              });
+     
+              var random_num = Math.random() * total_weight;
+              var weight_sum = 0;
+     
+              for (var i = 0; i < list.length; i++) {
+                  weight_sum += weight[i];
+                  weight_sum = +weight_sum.toFixed(2);
+         
+                  if (random_num <= weight_sum) {
+                      return list[i];
+                  }
+              }
+          };
+          text.text(getRandomItem(selectedMessages, selectedWeights));
+        }
       },
       onleavestate: function(event, from, to) {
         for (var i = intervalObjs.length - 1; i >= 0; i--) {
@@ -238,9 +274,9 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         intervalObjs = [];
         
         if (SVG.get(from)) {
-          SVG.get(from).attr("display", null);
-          SVG.get(from+"_hover").attr("display", "none");
-          SVG.get(from+"_highlight").attr("display", "none");
+          SVG.get(from).show();
+          SVG.get(from+"_hover").hide();
+          SVG.get(from+"_highlight").hide();
         }
       }
     }
@@ -256,14 +292,14 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     
     this.instance.mouseover(function() {
       if (!state.is(thisState) && thisType!="hover") {
-        this.attr("display","none");
-        SVG.get(thisState+"_hover").attr("display", null);
+        this.hide();
+        SVG.get(thisState+"_hover").show();
       }
     });
     this.instance.mouseout(function() {
       if (!state.is(thisState) && thisType=="hover") {
-        this.attr("display","none");
-        SVG.get(thisState).attr("display", null);
+        this.hide();
+        SVG.get(thisState).show();
       }
     });
     this.instance.click(function() {
@@ -346,6 +382,8 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   };
   $("#clickables > *").each(function() {
     clickable = this.instance;
+    
+    clickable.node.style.cursor = "pointer";
     
     clickable.mouseover(function() {
       clickable = this;
