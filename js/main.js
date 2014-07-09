@@ -8,11 +8,6 @@ SVG.extend(SVG.Element, {
   }
 });
 
-var messages;
-$.get('resource_explanation.csv', function(data, textStatus, jqXHR) {
-  messages = $.parse(data);
-});
-
 $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   var draw = SVG('svg-container');
   draw.svg(jqXHR.responseText);
@@ -74,12 +69,51 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   ** State-based animations **
   ***************************/
   
-  // var text = draw.text("Welcome to Oberlin's Bioregional Dashboard!\nClick on the icons above to learn more out the environmental conditions at Oberlin.")
-  // text.move(210, 80).font({ family: 'Futura-Medium', size: 21 }).fill("#777");
+  // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
+  function htmlEncode( html ) {
+      return document.createElement( 'a' ).appendChild( 
+          document.createTextNode( html ) ).parentNode.innerHTML;
+  }
+  
   var fObj = draw.foreignObject(1000, 100).move(200, 80);
   fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
   var text = $(fObj.getChild(0));
   text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
+  function selectMessage(section) {
+    var sourceMessages = prefs.messageSections[section].messages;
+    
+    var selectedMessages = [];
+    var selectedWeights = [];
+    for (var i = sourceMessages.length - 1; i >= 0; i--) {
+      // if (messages.results.rows[i].Category == to) {
+        selectedMessages.push(sourceMessages[i].text);
+        selectedWeights.push(sourceMessages[i].probability);
+      // }
+    }
+    // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
+    var getRandomItem = function(list, weight) {
+        var total_weight = weight.reduce(function (prev, cur, i, arr) {
+            return prev + cur;
+        });
+
+        var random_num = Math.random() * total_weight;
+        var weight_sum = 0;
+
+        for (var i = 0; i < list.length; i++) {
+            weight_sum += weight[i];
+            weight_sum = +weight_sum.toFixed(2);
+   
+            if (random_num <= weight_sum) {
+                return list[i];
+            }
+        }
+    };
+    text.text(htmlEncode(getRandomItem(selectedMessages, selectedWeights)));
+  }
+  
+  var gauges = draw.foreignObject(286, 835).move(1278, 75);
+  gauges.appendChild("div");
+  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="http://buildingos.com/blocks/competition/1071/" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
   
   var intervalObjs = [];
   var state = StateMachine.create({
@@ -234,38 +268,10 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         SVG.get('stick_figures').each(function() {
           this.hide();
         });
-        console.log(SVG.get('stick_'+to));
         if (SVG.get('stick_'+to)) SVG.get('stick_'+to).show();
         
-        if (messages) {
-          var selectedMessages = [];
-          var selectedWeights = [];
-          for (var i = messages.results.rows.length - 1; i >= 0; i--) {
-            if (messages.results.rows[i].Category == to) {
-              selectedMessages.push(messages.results.rows[i].Text);
-              selectedWeights.push(messages.results.rows[i].Probability);
-            }
-          }
-          // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
-          var getRandomItem = function(list, weight) {
-              var total_weight = weight.reduce(function (prev, cur, i, arr) {
-                  return prev + cur;
-              });
-     
-              var random_num = Math.random() * total_weight;
-              var weight_sum = 0;
-     
-              for (var i = 0; i < list.length; i++) {
-                  weight_sum += weight[i];
-                  weight_sum = +weight_sum.toFixed(2);
-         
-                  if (random_num <= weight_sum) {
-                      return list[i];
-                  }
-              }
-          };
-          text.text(getRandomItem(selectedMessages, selectedWeights));
-        }
+        // message at top
+        selectMessage(0);
       },
       onleavestate: function(event, from, to) {
         for (var i = intervalObjs.length - 1; i >= 0; i--) {

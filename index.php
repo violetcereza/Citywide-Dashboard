@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>City-Wide Dashboard</title>
+        <style type="text/css" media="screen">
+        body {
+          margin: 0;
+          background: black;
+          overflow: hidden;
+        }
+        #buttons > image {
+          cursor: pointer;
+        }
+        .popup {
+          position: absolute;
+          background: white;
+          font-family: Helvetica;
+          max-width: 300px;
+          padding: 0.75em;
+          font-size: 0.75em;
+          border-radius: 5px;
+          border: 1px solid #aaa;
+          box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+        .popup h1 {
+          font-size: 1em;
+          margin: 0;
+        }
+        .popup p {
+          margin: 0.5em 0 0;
+        }
+        .close {
+          position: absolute;
+          right: -1px;
+          top: -1px;
+          width: 24px;
+          height: 19px;
+          cursor: pointer;
+          font-family: 'Futura-Medium', Futura;
+          font-weight: bold;
+          background: black;
+          color:white;
+          padding-top: 4px;
+          text-align: center;
+          border-radius: 0 5px;
+        }
+        </style>
+        <script type="text/javascript">
+          var prefs = <?php echo file_get_contents('prefs.json'); ?>;
+        </script>
+        <script src="js/vendor/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.parser.js-master/svg.parser.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.import.js-master/svg.import.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/javascript-state-machine-master/state-machine.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.filter.js-master/svg.filter.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/jquery.parse-master/jquery.parse.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/svg.foreignobject.js-master/svg.foreignobject.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+      <div id="svg-container">
+      </div>
+    </body>
+</html>
