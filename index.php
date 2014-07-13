@@ -55,6 +55,7 @@
         <script src="js/vendor/svg.filter.js-master/svg.filter.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/jquery.parse-master/jquery.parse.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.foreignobject.js-master/svg.foreignobject.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/moment.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>

@@ -85,10 +85,20 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     var selectedMessages = [];
     var selectedWeights = [];
     for (var i = sourceMessages.length - 1; i >= 0; i--) {
-      // if (messages.results.rows[i].Category == to) {
-        selectedMessages.push(sourceMessages[i].text);
+      if (sourceMessages[i].state && !state.is(sourceMessages[i].state)) continue;
+      if (sourceMessages[i].startDate && sourceMessages[i].endDate) {
+        if ( moment().isBefore(moment(sourceMessages[i].startDate, "ddd MMM DD YYYY")) ) continue;
+        if ( moment().isAfter(moment(sourceMessages[i].endDate, "ddd MMM DD YYYY")) ) continue;
+      }
+      
+      selectedMessages.push(sourceMessages[i].text);
+      if (typeof sourceMessages[i].probability == "number") {
         selectedWeights.push(sourceMessages[i].probability);
-      // }
+      } else {
+        // TODO; bins
+        var bin = 4;
+        selectedWeights.push(sourceMessages[i].probability[bin]);
+      }
     }
     // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
     var getRandomItem = function(list, weight) {
@@ -109,15 +119,17 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         }
     };
     text.text(htmlEncode(getRandomItem(selectedMessages, selectedWeights)));
+    // Force redraw
+    fObj.dmove(1,0);
+    fObj.dmove(-1,0);
   }
   
   var gauges = draw.foreignObject(286, 835).move(1278, 75);
   gauges.appendChild("div");
-  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="http://buildingos.com/blocks/competition/1071/" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
+  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="http://localhost:8888/dashboard/grape.html" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
   
   var intervalObjs = [];
   var state = StateMachine.create({
-    initial: window.location.hash? window.location.hash.substr(1) : 'none',
     events: [
       { name: 'toElectricity', from: '*', to: 'electricity' },
       { name: 'toWater', from: '*', to: 'water' },
@@ -127,7 +139,6 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       onelectricity:  function() {
         SVG.get('powerlines_lit').show();
         squirrel.show();
-        // text.text("Welcome to the Bioregional Dashboard’s electricity use page! Here you can click on\ngauges and icons and learn more about energy in our community.")
     
         var startTime = new Date();
         var duration = 2;
@@ -170,8 +181,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         SVG.get('wastewater_highlighted').show();
         fish.show();        
         SVG.get("waterlines_clip").show().clipWith(clip);
-        // text.text("Welcome to the Bioregional Dashboard’s water page! Here you can click on\ngauges and icons and learn more about water in our community.")
-        
+                
         var startTime = new Date();
         var duration = 4;
         $("#dropletpaths > path").each(function() {
@@ -208,7 +218,6 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         var clip = draw.clip();
         SVG.get("flow_marks").show().clipWith(clip);
         fish.show();
-        // text.text("Hello. Welcome to the Bioregional Dashboard's watershed page. Here you can click on gauges and icons \nand learn more about water quality in the Plum Creek and in the Black River Watershed.");
         
         var startTime = new Date();
         var duration = 2;
@@ -243,7 +252,6 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       onweather: function() {
         SVG.get("sunset").show();
         squirrel.show();
-        // text.text("Welcome to the Bioregional Dashboard’s weather page! \nLearn about Oberlin's climate and weather.")
       },
       onleaveweather: function() {
         SVG.get('sunset').hide()
@@ -271,7 +279,14 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         if (SVG.get('stick_'+to)) SVG.get('stick_'+to).show();
         
         // message at top
-        selectMessage(0);
+        if (to == "none") {
+          selectMessage(0);
+        } else {
+          selectMessage(1);
+          intervalObjs.push(window.setInterval(function() {
+            selectMessage(1);
+          }, 1000));
+        }
       },
       onleavestate: function(event, from, to) {
         for (var i = intervalObjs.length - 1; i >= 0; i--) {
@@ -287,7 +302,10 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       }
     }
   });
-  
+  if (window.location.hash) {
+    state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
+  }
+    
   /***********************
   ** Button Interaction **
   ***********************/
