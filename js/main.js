@@ -79,6 +79,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
   var text = $(fObj.getChild(0));
   text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
+  var messageSection;
   function selectMessage(section) {
     var sourceMessages = prefs.messageSections[section].messages;
     
@@ -134,9 +135,13 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       { name: 'toElectricity', from: '*', to: 'electricity' },
       { name: 'toWater', from: '*', to: 'water' },
       { name: 'toStream', from: '*', to: 'stream' },
-      { name: 'toWeather', from: '*', to: 'weather' }],
+      { name: 'toWeather', from: '*', to: 'weather' },
+      { name: 'next', from: 'weather', to: 'electricity' },
+      { name: 'next', from: 'electricity', to: 'water' },
+      { name: 'next', from: 'water', to: 'stream' },
+      { name: 'next', from: 'stream', to: 'weather' }],
     callbacks: {
-      onelectricity:  function() {
+      onelectricity: function() {
         SVG.get('powerlines_lit').show();
         squirrel.show();
     
@@ -282,10 +287,12 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         if (to == "none") {
           selectMessage(0);
         } else {
-          selectMessage(1);
+          messageSection = 0;
+          selectMessage(messageSection+1);
           intervalObjs.push(window.setInterval(function() {
-            selectMessage(1);
-          }, 1000));
+            messageSection = (messageSection+1) % (prefs.messageSections.length-1);
+            selectMessage(messageSection+1);
+          }, prefs.timing.delayBetweenMessages*1000));
         }
       },
       onleavestate: function(event, from, to) {
@@ -304,7 +311,54 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   });
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
+    state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
   }
+  
+  var playIntervalObj;
+  var playBarMask = draw.rect(0, 30).move(200, 160).fill('white');
+  SVG.get('darkplay').hide().maskWith(playBarMask);
+  var playState = StateMachine.create({
+    initial: "action",
+    events: [
+      { name: 'actioned', from: '*', to: 'action' },
+      { name: 'toWaiting', from: '*', to: 'waiting' },
+      { name: 'toPlaying', from: '*', to: 'playing' },
+      { name: 'toggle', from: 'waiting', to: 'playing' },
+      { name: 'toggle', from: 'playing', to: 'action' }],
+    callbacks: {
+      onaction: function() {
+        var playState = this;
+        playState.toWaiting();
+        playIntervalObj = window.setInterval(function() {
+          playState.toPlaying();
+        }, prefs.timing.delayBeforePlayMode*1000);
+      },
+      onplaying: function() {
+        SVG.get("playtext").hide();
+        SVG.get("pausetext").show();
+        SVG.get('darkplay').show();
+        
+        state.next();
+        playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
+        
+        playIntervalObj = window.setInterval(function() {
+          state.next();
+          playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
+        }, prefs.timing.delayWhenPlaying*1000);
+      },
+      onleaveplaying: function() {
+        SVG.get("playtext").show();
+        SVG.get("pausetext").hide();
+        SVG.get('darkplay').hide();        
+      },
+      onleavestate: function(event, from, to) {
+        if (playIntervalObj) {
+          window.clearInterval(playIntervalObj);
+        }
+        playIntervalObj = null;
+      }
+    }
+  });
     
   /***********************
   ** Button Interaction **
@@ -315,6 +369,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
     
     this.instance.mouseover(function() {
+      playState.actioned();
       if (!state.is(thisState) && thisType!="hover") {
         this.hide();
         SVG.get(thisState+"_hover").show();
@@ -328,7 +383,8 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     });
     this.instance.click(function() {
       if (thisState == state.current) { return; }
-            
+      
+      playState.actioned();
       switch (thisState) {
         case "electricity":
           state.toElectricity();
@@ -410,20 +466,16 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     clickable.node.style.cursor = "pointer";
     
     clickable.mouseover(function() {
+      playState.actioned();
       clickable = this;
       if (clickable.attr("id") == "river_click") clickable = SVG.get("river");
       
       if (!hoverFilter) {
-        // this.filter(function(add) {
-        //   var blur = add.offset(10, 10).in(add.sourceAlpha).gaussianBlur(5).colorMatrix('matrix', [2, , 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
-        //   add.blend(add.source, blur);
-        //   this.size('200%','200%').move('-50%', '-50%');
-        // });
         clickable.filter(function(add) {
-          add.componentTransfer({
-            rgb: { type: 'linear', slope: 1, intercept: 0.01 }
-          })
-        });
+        add.componentTransfer({
+          rgb: { type: 'linear', slope: 1, intercept: 0.2 }
+        })
+      })
         hoverFilter = clickable.filterer;
       } else {
         clickable.filter(hoverFilter);
@@ -438,13 +490,30 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     });
     
     clickable.click(function(e) {
+      playState.actioned();
       var dscr = descriptions[this.attr('id')];
-      // draw.parent.rect(200, 100).radius(10).fill("white").stroke({color: "#555", width: 2}).move(e.x, e.y);
-      // draw.parent.text(description.text).move(e.x+10, e.y+10);
       $(".popup").remove();
       var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a></p></div>');
       popup.find(".close").click(function() { popup.remove() });
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
+  });
+  $("#play").css('cursor', 'pointer').mouseover(function() {
+    clickable = this.instance;
+    if (!hoverFilter) {
+      clickable.filter(function(add) {
+      add.componentTransfer({
+        rgb: { type: 'linear', slope: 1, intercept: 0.2 }
+      })
+    })
+      hoverFilter = clickable.filterer;
+    } else {
+      clickable.filter(hoverFilter);
+    }
+  }).mouseout(function() {
+    clickable = this.instance;
+    clickable.unfilter();
+  }).click(function() {
+    playState.toggle();
   });
 });

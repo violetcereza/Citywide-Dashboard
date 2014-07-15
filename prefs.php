@@ -138,6 +138,18 @@
   ]
 };*/
             
+      // JSONEditor.defaults.resolvers.unshift(function(schema) {
+      //   if(schema.type === "object" && schema.format === "bins") {
+      //     return "bins";
+      //   }
+      // });
+      //
+      // JSONEditor.defaults.editors.bins = JSONEditor.AbstractEditor.extend({
+      //   build: function() {
+      //     console.log("hi");
+      //   }
+      // });
+      
       // Initialize the editor
       var editor = new JSONEditor(document.getElementById('editor_holder'), {        
         schema: {
@@ -148,6 +160,7 @@
               title: "Messages",
               type: "array",
               format: "tabs",
+              options: {disable_collapse: false},
               items: {
                 type: "object",
                 title: "Message Section",
@@ -158,6 +171,27 @@
                   { $ref: "#/definitions/messageSectionWithState", title: "Messages with Probabilities depending on State" },
                   { $ref: "#/definitions/messageSectionWithStateAndBin", title: "Messages with Probabilities depending on State and Bin" }
                 ]
+              }
+            },
+            timing: {
+              title: 'Timing',
+              options: {disable_collapse: false},
+              type: 'object',
+              format: 'grid',
+              properties: {
+                delayBetweenMessages: {
+                  type: "number",
+                  title: 'Seconds for each message section',                  
+                },
+                delayBeforePlayMode: {
+                  type: 'number',
+                  title: 'Seconds before play mode'
+                },
+                delayWhenPlaying: {
+                  type: "number",
+                  title: 'Seconds on each screen when playing',
+                  description: "Allow enough time for every message section to display!"
+                }
               }
             }
           },
@@ -236,7 +270,7 @@
                     type: "object",
                     properties: {
                       probability: {
-                        type: "object", title: "Probabilities", "format": "grid", properties: {
+                        type: "object", title: "Probabilities", options: {table_row:true}, properties: {
                           1: {type: "integer", default: 1},
                           2: {type: "integer", default: 1},
                           3: {type: "integer", default: 1},
@@ -255,13 +289,13 @@
         },
         
         startval: starting_value,
-        no_additional_properties: true,
+        // no_additional_properties: true,
         theme: "bootstrap3",
         iconlib: "bootstrap3",
         
-        disable_properties: true,
-        disable_edit_json: true,
-        disable_collapse: true
+        // disable_properties: true,
+        // disable_edit_json: true,
+        // disable_collapse: true
       });
       
       document.getElementById('submit').addEventListener('click',function() {
@@ -304,13 +338,7 @@
           indicator.style.color = 'green';
           indicator.textContent = "Valid";
         }
-        
-        // $('input[type="date"]').datepicker().on('changeDate', function(ev){
-        //   console.log(editor.getEditor($(ev.target).parent().parent().data('schemapath')));
-        //   console.log(ev.target.value);
-        //   editor.getEditor($(ev.target).parent().parent().data('schemapath')).setValue(ev.currentTarget.value);
-        // });
-        
+                
         $('input[type="date"]').pikaday();
       });
     </script>
