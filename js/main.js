@@ -101,6 +101,11 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         selectedWeights.push(sourceMessages[i].probability[bin]);
       }
     }
+    
+    if (selectedMessages.length == 0) {
+      return '';
+    }
+    
     // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
     var getRandomItem = function(list, weight) {
         var total_weight = weight.reduce(function (prev, cur, i, arr) {
@@ -320,7 +325,9 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   var playState = StateMachine.create({
     initial: "action",
     events: [
-      { name: 'actioned', from: '*', to: 'action' },
+      { name: 'actioned', from: 'waiting', to: 'action' },
+      { name: 'actioned', from: 'playing', to: 'playing' },
+      { name: 'toAction', from: '*', to: 'action' },
       { name: 'toWaiting', from: '*', to: 'waiting' },
       { name: 'toPlaying', from: '*', to: 'playing' },
       { name: 'toggle', from: 'waiting', to: 'playing' },
@@ -384,7 +391,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     this.instance.click(function() {
       if (thisState == state.current) { return; }
       
-      playState.actioned();
+      playState.toAction();
       switch (thisState) {
         case "electricity":
           state.toElectricity();

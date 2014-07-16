@@ -293,9 +293,9 @@
         theme: "bootstrap3",
         iconlib: "bootstrap3",
         
-        // disable_properties: true,
-        // disable_edit_json: true,
-        // disable_collapse: true
+        disable_properties: true,
+        disable_edit_json: true,
+        disable_collapse: true
       });
       
       document.getElementById('submit').addEventListener('click',function() {
