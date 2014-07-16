@@ -165,17 +165,45 @@
                 type: "object",
                 title: "Message Section",
                 headerTemplate: "{{ i }} - {{ self.name }}",
-                oneOf: [
-                  { $ref: "#/definitions/simpleMessageSection", title: "Simple Messages with Probabilities" },
-                  { $ref: "#/definitions/messageSectionWithDate", title: "Messages with Probabilities and Dates" },
-                  { $ref: "#/definitions/messageSectionWithState", title: "Messages with Probabilities depending on State" },
-                  { $ref: "#/definitions/messageSectionWithStateAndBin", title: "Messages with Probabilities depending on State and Bin" }
-                ]
+                properties: {
+                  name: { type: "string", title: "Section Name", default: "Message Section"},
+                  messages: {
+                    type: "array",
+                    title: "Messages",
+                    format: "tabl",
+                    options: {  disable_properties: false },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      options: {  disable_properties: false },
+                      properties: {
+                        probability: { title: "Probability", oneOf: [
+                          {
+                            type: "integer", title: "Constant", default: 1
+                          },
+                          {
+                            type: "object", title: "Bins", options: {table_row:true}, properties: {
+                              1: {type: "integer", default: 1},
+                              2: {type: "integer", default: 1},
+                              3: {type: "integer", default: 1},
+                              4: {type: "integer", default: 1},
+                              5: {type: "integer", default: 1},
+                            }
+                          }
+                        ]},
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        startDate: { type: "string", format: "date", title: "Start Date" },
+                        endDate: { type: "string", format: "date", title: "End Date" },
+                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                      }
+                    }
+                  }
+                }
               }
             },
             timing: {
               title: 'Timing',
-              options: {disable_collapse: false},
+              options: { disable_collapse: false },
               type: 'object',
               format: 'grid',
               properties: {
@@ -191,97 +219,6 @@
                   type: "number",
                   title: 'Seconds on each screen when playing',
                   description: "Allow enough time for every message section to display!"
-                }
-              }
-            }
-          },
-          definitions: {
-            selectState: { type: "string", "enum": ["electricity", "water", "stream", "weather"], title: "State" },
-            simpleMessageSection: {
-              type: "object",
-              properties: {
-                name: { type: "string", title: "Section Name", default: "Message Section"},
-                simpleMessageSection: { type: "boolean", "enum": [ true ], default: true, options: { hidden: true } },
-                messages: {
-                  type: "array",
-                  title: "Messages",
-                  format: "table",
-                  items: {
-                    type: "object",
-                    properties: {
-                      probability: { type: "integer", title: "Probability", default: 1 },
-                      text: { type: "string", title: "Text", format: "textarea" }
-                    }
-                  }
-                }
-              }
-            },
-            messageSectionWithDate: {
-              type: "object",
-              properties: {
-                name: { type: "string", title: "Section Name", default: "Message Section"},
-                messageSectionWithDate: { type: "boolean", "enum": [ true ], default: true, options: { hidden: true } },
-                messages: {
-                  type: "array",
-                  title: "Messages",
-                  format: "table",
-                  items: {
-                    type: "object",
-                    properties: {
-                      probability: { type: "integer", title: "Probability", default: 1 },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      startDate: { type: "string", format: "date", title: "Start Date" },
-                      endDate: { type: "string", format: "date", title: "End Date" }
-                    }
-                  }
-                }
-              }
-            },
-            messageSectionWithState: {
-              type: "object",
-              properties: {
-                name: { type: "string", title: "Section Name", default: "Message Section"},
-                messageSectionWithState: { type: "boolean", "enum": [ true ], default: true, options: { hidden: true } },
-                messages: {
-                  type: "array",
-                  title: "Messages",
-                  format: "table",
-                  items: {
-                    type: "object",
-                    properties: {
-                      probability: { type: "integer", title: "Probability", default: 1 },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { $ref: "#/definitions/selectState" }
-                    }
-                  }
-                }
-              }
-            },
-            messageSectionWithStateAndBin: {
-              type: "object",
-              properties: {
-                name: { type: "string", title: "Section Name", default: "Message Section"},
-                messageSectionWithStateAndBin: { type: "boolean", "enum": [ true ], default: true, options: { hidden: true } },
-                messages: {
-                  type: "array",
-                  title: "Messages",
-                  format: "table",
-                  items: {
-                    type: "object",
-                    properties: {
-                      probability: {
-                        type: "object", title: "Probabilities", options: {table_row:true}, properties: {
-                          1: {type: "integer", default: 1},
-                          2: {type: "integer", default: 1},
-                          3: {type: "integer", default: 1},
-                          4: {type: "integer", default: 1},
-                          5: {type: "integer", default: 1},
-                        }
-                      },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { $ref: "#/definitions/selectState" }
-                    }
-                  }
                 }
               }
             }

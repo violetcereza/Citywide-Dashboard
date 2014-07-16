@@ -132,7 +132,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   
   var gauges = draw.foreignObject(286, 835).move(1278, 75);
   gauges.appendChild("div");
-  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="http://localhost:8888/dashboard/grape.html" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
+  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="grape.html" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
   
   var intervalObjs = [];
   var state = StateMachine.create({
@@ -141,6 +141,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       { name: 'toWater', from: '*', to: 'water' },
       { name: 'toStream', from: '*', to: 'stream' },
       { name: 'toWeather', from: '*', to: 'weather' },
+      { name: 'next', from: 'none', to: 'electricity' },
       { name: 'next', from: 'weather', to: 'electricity' },
       { name: 'next', from: 'electricity', to: 'water' },
       { name: 'next', from: 'water', to: 'stream' },

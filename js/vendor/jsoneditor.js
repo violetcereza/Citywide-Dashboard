@@ -3081,7 +3081,14 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
     if(this.adding_property) this.refreshAddProperties();
   },
   refreshAddProperties: function() {
-    if(this.options.disable_properties || this.jsoneditor.options.disable_properties) {
+    if(this.schema.options && typeof this.schema.options.disable_edit_json !== "undefined") {
+      if(this.schema.options.disable_edit_json) this.editjson_button.style.display = 'none';
+    }
+    else if(this.jsoneditor.options.disable_edit_json) {
+      this.editjson_button.style.display = 'none';
+    }
+    
+    if (this.options.disable_properties == true || (this.jsoneditor.options.disable_properties == true && typeof this.options.disable_properties == "undefined")) {
       this.addproperty_controls.style.display = 'none';
       return;
     }
