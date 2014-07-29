@@ -158,47 +158,86 @@
           properties: {
             messageSections: {
               title: "Messages",
-              type: "array",
+              type: "object",
               format: "tabs",
               options: {disable_collapse: false},
-              items: {
-                type: "object",
-                title: "Message Section",
-                headerTemplate: "{{ i }} - {{ self.name }}",
-                properties: {
-                  name: { type: "string", title: "Section Name", default: "Message Section"},
-                  messages: {
-                    type: "array",
-                    title: "Messages",
-                    format: "tabl",
-                    options: {  disable_properties: false },
-                    items: {
-                      type: "object",
-                      title: "Message",
-                      options: {  disable_properties: false },
-                      properties: {
-                        probability: { title: "Probability", oneOf: [
-                          {
-                            type: "integer", title: "Constant", default: 1
-                          },
-                          {
-                            type: "object", title: "Bins", options: {table_row:true}, properties: {
-                              1: {type: "integer", default: 1},
-                              2: {type: "integer", default: 1},
-                              3: {type: "integer", default: 1},
-                              4: {type: "integer", default: 1},
-                              5: {type: "integer", default: 1},
-                            }
-                          }
-                        ]},
-                        text: { type: "string", title: "Text", format: "textarea" },
-                        startDate: { type: "string", format: "date", title: "Start Date" },
-                        endDate: { type: "string", format: "date", title: "End Date" },
-                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
-                      }
+              properties: {
+                0: {
+                  type: "array",
+                  title: "Introduction Narration",
+                  format: "table",
+                  options: {  disable_collapse: false, collapsed: true },
+                  items: {
+                    type: "object",
+                    title: "Message",
+                    properties: {
+                      probability: { "$ref": "#/definitions/probability" },
+                      text: { type: "string", title: "Text", format: "textarea" },
+                      startDate: { type: "string", format: "date", title: "Start Date" },
+                      endDate: { type: "string", format: "date", title: "End Date" },
                     }
                   }
-                }
+                },
+                1: {
+                  type: "array",
+                  title: "Resource Category",
+                  format: "table",
+                  options: {  disable_collapse: false, collapsed: true },
+                  items: {
+                    type: "object",
+                    title: "Message",
+                    properties: {
+                      probability: { "$ref": "#/definitions/probability" },
+                      text: { type: "string", title: "Text", format: "textarea" },
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                    }
+                  }
+                },
+                2: {
+                  type: "array",
+                  title: "Resource Explanation",
+                  format: "table",
+                  options: {  disable_collapse: false, collapsed: true },
+                  items: {
+                    type: "object",
+                    title: "Message",
+                    properties: {
+                      probability: { "$ref": "#/definitions/probability" },
+                      text: { type: "string", title: "Text", format: "textarea" },
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                    }
+                  }
+                },
+                3: {
+                  type: "array",
+                  title: "Level Narration",
+                  format: "table",
+                  options: {  disable_collapse: false, collapsed: true },
+                  items: {
+                    type: "object",
+                    title: "Message",
+                    properties: {
+                      probability: { "$ref": "#/definitions/probability" },
+                      text: { type: "string", title: "Text", format: "textarea" },
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                    }
+                  }
+                },
+                4: {
+                  type: "array",
+                  title: "Conservation Suggestion",
+                  format: "table",
+                  options: {  disable_collapse: false, collapsed: true },
+                  items: {
+                    type: "object",
+                    title: "Message",
+                    properties: {
+                      probability: { "$ref": "#/definitions/probability" },
+                      text: { type: "string", title: "Text", format: "textarea" },
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                    }
+                  }
+                },
               }
             },
             timing: {
@@ -221,12 +260,48 @@
                   description: "Allow enough time for every message section to display!"
                 }
               }
+            },
+            landscape: {
+              title: 'Landscape Components',
+              options: {
+                disable_collapse: false,
+                collapsed: true,
+                no_additional_properties: false,
+                disable_properties: false
+              },
+              type: 'object',
+              format: 'grid',
+              additionalProperties: {
+                type: 'object',
+                format: 'grid',
+                properties: {
+                  title: {type: "string", title: "Title"},
+                  text: {type: "string", title: "Text", format: "textarea"},
+                  link: {type: "string", title: "Link"}
+                }
+              }
             }
+          },
+          definitions: {
+            probability: { title: "Probability", oneOf: [
+              {
+                type: "integer", title: "Constant", default: 1
+              },
+              {
+                type: "object", title: "Bins", options: {table_row:true}, properties: {
+                  1: {type: "integer", default: 1},
+                  2: {type: "integer", default: 1},
+                  3: {type: "integer", default: 1},
+                  4: {type: "integer", default: 1},
+                  5: {type: "integer", default: 1},
+                }
+              }
+            ]},
           }
         },
         
         startval: starting_value,
-        // no_additional_properties: true,
+        //no_additional_properties: true,
         theme: "bootstrap3",
         iconlib: "bootstrap3",
         

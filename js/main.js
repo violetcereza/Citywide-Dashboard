@@ -81,7 +81,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
   var messageSection;
   function selectMessage(section) {
-    var sourceMessages = prefs.messageSections[section].messages;
+    var sourceMessages = prefs.messageSections[section.toString()];
     
     var selectedMessages = [];
     var selectedWeights = [];
@@ -296,7 +296,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
           messageSection = 0;
           selectMessage(messageSection+1);
           intervalObjs.push(window.setInterval(function() {
-            messageSection = (messageSection+1) % (prefs.messageSections.length-1);
+            messageSection = (messageSection+1) % 4//(prefs.messageSections.length-1);
             selectMessage(messageSection+1);
           }, prefs.timing.delayBetweenMessages*1000));
         }
@@ -319,7 +319,13 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
   }
-  
+  if (window.location.search == "?noplay") {
+    SVG.get('play').hide()
+  }
+  if (window.location.search == "?autoplay") {
+    prefs.timing.delayBeforePlayMode = 0;
+  }
+    
   var playIntervalObj;
   var playBarMask = draw.rect(0, 30).move(200, 160).fill('white');
   SVG.get('darkplay').hide().maskWith(playBarMask);
@@ -337,18 +343,22 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       onaction: function() {
         var playState = this;
         playState.toWaiting();
-        playIntervalObj = window.setInterval(function() {
-          playState.toPlaying();
-        }, prefs.timing.delayBeforePlayMode*1000);
+        if (window.location.search != "?noplay") {
+          playIntervalObj = window.setInterval(function() {
+            playState.toPlaying();
+          }, prefs.timing.delayBeforePlayMode*1000);
+        }
       },
       onplaying: function() {
         SVG.get("playtext").hide();
         SVG.get("pausetext").show();
         SVG.get('darkplay').show();
-        
-        state.next();
+      
+        if (window.location.search != "?autoplay") {
+          state.next();
+        }
         playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
-        
+      
         playIntervalObj = window.setInterval(function() {
           state.next();
           playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
@@ -367,7 +377,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       }
     }
   });
-    
+      
   /***********************
   ** Button Interaction **
   ***********************/
@@ -411,63 +421,6 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   });
   
   var hoverFilter;
-  var descriptions = {
-    park: {
-      text: "Whether you enjoy the many cultural or musical events, or just lying in the grass under trees with friends, this 13-acre square connects Oberlin residents to each other and our environment.",
-      title: "Town Square",
-      link: "http://oberlindashboard.org/wiki.php#1j"
-    },
-    town: {
-      text: "The City of Oberlin and Oberlin College were founded in 1833. Oberlin is building on its legacy as a leader on issues of civil rights and justice through commitments to environmental sustainability.",
-      title: "The Town of Oberlin",
-      link: "http://oberlindashboard.org/wiki.php#1h"
-    },
-    college: {
-      text: "Oberlin College was the first institution in the US to admit african americans, the first to admit women and is working closely with the city to build an ecologically, socially and economically sustainable model of a post-fossil fuel community.",
-      title: "Oberlin College",
-      link: "http://oberlindashboard.org/wiki.php#1i"
-    },
-    houses: {
-      text: "The decisions each of us make every day in our homes, schools and workplaces directly affect our community and the environment. We are all connected by these choices.",
-      title: "Your Home",
-      link: "http://oberlindashboard.org/wiki.php#1k"
-    },
-    water_treatment: {
-      text: "Dirty water from homes and businesses flows through underground pipes to Oberlin’s wastewater treatment plant where it is cleaned and released into the Plum Creek.",
-      title: "Wastewater Treatment Plant",
-      link: "http://oberlindashboard.org/wiki.php#1d"
-    },
-    agriculture: {
-      text: "Although farmland is rapidly turning into houses, agriculture is still the largest industry in Lorain County. While corn and soybeans cover the largest area, local fruits and vegetables are easily available and very tasty.",
-      title: "Agriculture",
-      link: "http://oberlindashboard.org/wiki.php#1f"
-    },
-    water_tower: {
-      text: "The water you use in Oberlin is collected from the West branch of the Black River, into a reservoir. It is then filtered, pumped, and stored in water towers until you turn on your tap.",
-      title: "Drinking Water",
-      link: "http://oberlindashboard.org/wiki.php#1b"
-    },
-    reservoir: {
-      text: "The water you use in Oberlin is collected from the West branch of the Black River, into a reservoir. It is then filtered, pumped, and stored in water towers until you turn on your tap.",
-      title: "Drinking Water",
-      link: "http://oberlindashboard.org/wiki.php#1b"
-    },
-    industry: {
-      text: "Oberlin Municipal Light and Power (OMLPS) manages the flow of electricity from power generation facilities (using landfill gas, hydroelectric, wind, solar, coal and nuclear) over the electrical “grid” to our homes and workplaces where we use it for lights, computers, toasters and more.",
-      title: "Electricity Production",
-      link: "http://oberlindashboard.org/wiki.php#1a"
-    },
-    city: {
-      text: "The bigger cities around Oberlin like Elyria, Lorain and Cleveland are part of the “rust belt” -- places where the steel industry has declined and politicians, residents and entrepreneurs are working to build the economy, clean the environment and celebrate culture.",
-      title: "Urbanization and Cleveland",
-      link: "http://oberlindashboard.org/wiki.php#1g"
-    },
-    river_click: {
-      text: "A watershed is an area of land that drains to a single body of water. Rain and snow that fall on Oberlin drain into the Plum Creek, which then flows into the Black River.",
-      title: "Watershed",
-      link: "http://oberlindashboard.org/wiki.php#1c"
-    }
-  };
   $("#clickables > *").each(function() {
     clickable = this.instance;
     
@@ -499,7 +452,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     
     clickable.click(function(e) {
       playState.actioned();
-      var dscr = descriptions[this.attr('id')];
+      var dscr = prefs.landscape[this.attr('id')];
       $(".popup").remove();
       var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a></p></div>');
       popup.find(".close").click(function() { popup.remove() });
