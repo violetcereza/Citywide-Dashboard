@@ -53,12 +53,14 @@
         <script src="js/vendor/svg.import.js-master/svg.import.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/javascript-state-machine-master/state-machine.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.filter.js-master/svg.filter.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/vendor/jquery.parse-master/jquery.parse.min.js" type="text/javascript" charset="utf-8"></script>
+        <!--script src="js/vendor/jquery.parse-master/jquery.parse.min.js" type="text/javascript" charset="utf-8"></script-->
         <script src="js/vendor/svg.foreignobject.js-master/svg.foreignobject.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/moment.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/vendor/jquery.transform.js-master/jquery.transform2d.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
+      <video id="character" src="img/squirrel/Neutral.mov" width="183" height="207" autoplay loop></video>
       <div id="svg-container">
       </div>
     </body>

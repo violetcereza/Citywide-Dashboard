@@ -41,29 +41,74 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     window.setTimeout(pipesOut, 1000);
   }
   pipesIn();
-  
-  var squirrel = SVG.get("squirrel");
-  squirrel.each(function() {
-    this.hide();
-  });
-  var squirrelFrame = squirrel.first().show();
-  
-  var fish = SVG.get("fish");
-  fish.each(function() {
-    this.hide();
-  });
-  var fishFrame = fish.first().show();
-  
-  window.setInterval(function() {
-    squirrelFrame = squirrelFrame.hide().next();
-    if (!squirrelFrame) squirrelFrame = squirrel.first();
-    squirrelFrame.show();
     
-    fishFrame = fishFrame.hide().next();
-    if (!fishFrame) fishFrame = fish.first();
-    fishFrame.show();
-  }, 1000/24);
-  // 24fps
+  var character = $("#character");
+  character.css("position", "absolute");
+  var rescaleCharacter = function() {
+    var width = $('#background').get(0).getBoundingClientRect().width;
+    var scale = width / 1584; // Original width of SVG
+    // var x = ($(document.body).width() / 2) - ((1584/2+10+character.width())*scale);
+    var x = ($(document.body).width()-width)/2;
+    
+    character.css({
+      transform: 'scale('+scale*1+')',
+      left: x+'px',
+      top: 0*scale+"px",
+      '-webkit-transform-origin': "top left",
+      '-moz-transform-origin': "top left",
+      '-ms-transform-origin': "top left",
+      '-o-transform-origin': "top left"
+    });
+  }
+  rescaleCharacter();
+  window.setInterval(rescaleCharacter, 1000);
+  var setCharacterAnim = function(anim) {
+    if (character.attr('src') != 'img/'+anim+'.mov') {
+      character.attr('src', 'img/'+anim+'.mov');
+    }
+  }
+  var setCharacter = function(character) {
+    var bin = getBin();
+    var emote;
+    if (character == "squirrel") {
+      switch (bin) {
+      case 1:
+        emote = 'happy';
+        break;
+      case 2:
+        emote = 'neutral';
+        break;
+      case 3:
+        emote = 'neutral';
+        break;
+      case 4:
+        emote = 'neutral';
+        break;
+      case 5:
+        emote = 'angry';
+        break;
+      }
+    } else if (character == "fish") {
+      switch (bin) {
+      case 1:
+        emote = 'happy';
+        break;
+      case 2:
+        emote = 'neutral';
+        break;
+      case 3:
+        emote = 'neutral';
+        break;
+      case 4:
+        emote = 'neutral';
+        break;
+      case 5:
+        emote = 'scared';
+        break;
+      }
+    }
+    setCharacterAnim(character+"/"+emote);
+  }
   
   /***************************
   ** State-based animations **
@@ -96,9 +141,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       if (typeof sourceMessages[i].probability == "number") {
         selectedWeights.push(sourceMessages[i].probability);
       } else {
-        // TODO; bins
-        var bin = 4;
-        selectedWeights.push(sourceMessages[i].probability[bin]);
+        selectedWeights.push(sourceMessages[i].probability[getBin()]);
       }
     }
     
@@ -132,7 +175,21 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   
   var gauges = draw.foreignObject(286, 835).move(1278, 75);
   gauges.appendChild("div");
-  $(gauges.getChild(0)).append('<iframe frameBorder="0" src="grape.html" height="100%" width="100%" marginwidth="0" scrolling="no">We apologize, but it looks like this feature can\'t be displayed in your browser</iframe>');
+  var gaugesIFrame = $('<iframe frameBorder="0" src="grape.html" height="100%" width="100%" marginwidth="0" \
+      scrolling="no">We apologize, but it looks like this feature can\'t be displayed in \
+      your browser</iframe>').appendTo(gauges.getChild(0)).load(function() {
+        // Force redraw
+        gauges.dmove(1,0);
+        gauges.dmove(-1,0);
+      });
+  var getBin = function() {
+    // TODO; bins
+    if (gaugesIFrame.get(0).contentWindow.getBin) {
+      return gaugesIFrame.get(0).contentWindow.getBin();
+    } else {
+      return 3;
+    }
+  }
   
   var intervalObjs = [];
   var state = StateMachine.create({
@@ -149,7 +206,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     callbacks: {
       onelectricity: function() {
         SVG.get('powerlines_lit').show();
-        squirrel.show();
+        setCharacter('squirrel');
     
         var startTime = new Date();
         var duration = 2;
@@ -183,14 +240,13 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       },
       onleaveelectricity:  function() {
         SVG.get('powerlines_lit').hide()
-        squirrel.hide()
         $(".spark").each(function() { this.instance.remove(); });
       },
       onwater: function() {
         var clip = draw.clip();
         SVG.get('freshwater_highlighted').show();
         SVG.get('wastewater_highlighted').show();
-        fish.show();        
+        setCharacter('fish');
         SVG.get("waterlines_clip").show().clipWith(clip);
                 
         var startTime = new Date();
@@ -222,13 +278,12 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         SVG.get('freshwater_highlighted').hide()
         SVG.get('wastewater_highlighted').hide()
         SVG.get("waterlines_clip").hide()
-        fish.hide()
         $(".droplet").each(function() { this.instance.remove(); });
       },
       onstream: function() {
         var clip = draw.clip();
         SVG.get("flow_marks").show().clipWith(clip);
-        fish.show();
+        setCharacter('fish');
         
         var startTime = new Date();
         var duration = 2;
@@ -257,23 +312,21 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       },
       onleavestream: function() {
         SVG.get('flow_marks').hide()
-        SVG.get('fish').hide()
         $(".flowshine").each(function() { this.instance.remove(); });
       },
       onweather: function() {
         SVG.get("sunset").show();
-        squirrel.show();
+        setCharacter('squirrel');
       },
       onleaveweather: function() {
         SVG.get('sunset').hide()
-        squirrel.hide()
       },
       onnone: function() {
         SVG.get('house_inside').hide();
+        setCharacter('squirrel');
       },
       onleavenone: function() {
         SVG.get('house_inside').show();
-        squirrel.hide()
       },
       onstate: function(event, from, to) {
         window.location.hash = to;

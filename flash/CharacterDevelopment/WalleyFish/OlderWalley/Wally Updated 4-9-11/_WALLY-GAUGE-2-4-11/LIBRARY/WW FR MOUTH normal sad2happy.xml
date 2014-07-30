@@ -1,0 +1,1254 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="WW FR MOUTH normal sad2happy" itemID="4b591731-000000be" symbolType="graphic" lastModified="1279399771">
+  <timeline>
+    <DOMTimeline name="WW FR MOUTH normal sad2happy" currentFrame="99">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH001" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="5.2" ty="26.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="1" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!1130 601[1127 607 1106 607!1106 607[1069 607 1000 561!1000 561[911 497 854 460!854 460[627 313 388 313!388 313[-32 282 -65 282!-65 282[-290 282 -539 371!-539 371[-733 440 -1007 591!-1007 591[-1009 589 -1012 586!-1012 586[-1017 581 -1017
+ 562!-1017 562[-1017 519 -818 421!-818 421[-633 330 -529 307!-529 307[-426 284 -295 264!-295 264[-115 235 -22 235!-22 235[53 235 142 246!142 246[231 256 378 256!378 256[395 256 464 268!464 268[534 279 550 279!550 279[645 279 861 406!861
+ 406[994 485 1132 585!1132 585[1130 592 1130 601"/>
+                    <Edge cubics="!1132 585(;1127,598 1139,607 1106,607q1132 585Q1130 592q1130 601Q1127 607q1106 607);"/>
+                    <Edge cubics="!1106 607(;986,607 794,313 388,313q1106 607Q1069 607q1000 561Q911 497q854 460Q627 313q388 313);"/>
+                    <Edge cubics="!388 313(;355,313 -32,282 -65,282q388 313Q-32 282q-65 282);"/>
+                    <Edge cubics="!-65 282(;-391,282 -689,416 -1007,591q-65 282Q-290 282q-539 371Q-733 440q-1007 591);"/>
+                    <Edge cubics="!-1007 591(;-1007,585 -1017,594 -1017,562q-1007 591Q-1009 589q-1012 586Q-1017 581q-1017 562);"/>
+                    <Edge cubics="!-1017 562(;-1017,500 -650,334 -529,307q-1017 562Q-1017 519q-818 421Q-633 330q-529 307);"/>
+                    <Edge cubics="!-529 307(;-438,287 -164,235 -22,235q-529 307Q-426 284q-295 264Q-115 235q-22 235);"/>
+                    <Edge cubics="!-22 235(-22,235;152,235 108,256 378,256q-22 235Q53 235q142 246Q231 256q378 256)378,256;"/>
+                    <Edge cubics="!378 256(378,256;411,256 518,279 550,279q378 256Q395 256q464 268Q534 279q550 279);"/>
+                    <Edge cubics="!550 279(;698,279 1036,515 1132,585q550 279Q645 279q861 406Q994 485q1132 585)1132,585;"/>
+                  </edges>
+                </DOMShape>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH002" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="5.05" ty="26"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="2" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH003" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.95" ty="25.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="3" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH004" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.8" ty="24.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="4" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH005" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.7" ty="24.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="5" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH006" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.55" ty="23.4"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="6" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH007" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.45" ty="22.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="7" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH008" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.35" ty="22.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="8" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH009" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.25" ty="21.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH010" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.1" ty="20.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="10" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH011" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4" ty="20.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="11" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH012" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.85" ty="19.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="12" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH013" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.75" ty="18.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="13" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH014" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.65" ty="18.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH015" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.5" ty="17.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="15" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH016" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.4" ty="17"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="16" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH017" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.25" ty="16.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="17" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH018" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.2" ty="15.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="18" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH019" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.05" ty="15.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH020" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.95" ty="14.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH021" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.85" ty="14"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="21" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH022" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.7" ty="13.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="22" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH023" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.65" ty="13"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH024" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.5" ty="12.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="24" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH025" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.4" ty="12"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="25" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH026" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.3" ty="11.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="26" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH027" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.2" ty="11.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="27" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH028" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.1" ty="10.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="28" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH029" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2" ty="10"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="29" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH030" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.9" ty="9.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH031" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.8" ty="9.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH032" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.65" ty="8.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="32" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH033" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.55" ty="8.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="33" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH034" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.5" ty="7.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="34" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH035" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.4" ty="7.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="35" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH036" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.3" ty="6.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="36" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH037" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.15" ty="6.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="37" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH038" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.1" ty="5.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH039" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.95" ty="5.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="39" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH040" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.9" ty="4.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="40" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH041" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.8" ty="4.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="41" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH042" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.7" ty="3.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="42" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH043" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.6" ty="3.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="43" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH044" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.5" ty="2.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="44" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH045" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.45" ty="2.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="45" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH046" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.35" ty="1.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="46" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH047" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.25" ty="1.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="47" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH048" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.15" ty="0.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="48" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH049" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.05" ty="0.4"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="49" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH050" name="" symbolType="graphic" loop="loop">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="50" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH051" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.05" ty="-0.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="51" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH052" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.15" ty="-0.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="52" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH053" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.2" ty="-0.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="53" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH054" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.3" ty="-0.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="54" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH055" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.35" ty="-0.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="55" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH056" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.45" ty="-1.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="56" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH057" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.55" ty="-1.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="57" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH058" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.65" ty="-1.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="58" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH059" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.8" ty="-1.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="59" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH060" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="0.9" ty="-2.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="60" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH061" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.05" ty="-2.4"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="61" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH062" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.15" ty="-2.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="62" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH063" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.3" ty="-2.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="63" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH064" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.45" ty="-3.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="64" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH065" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.6" ty="-3.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="65" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH066" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.8" ty="-3.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="66" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH067" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="1.95" ty="-4.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="67" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH068" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.15" ty="-4.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="68" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH069" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.35" ty="-4.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="69" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH070" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.55" ty="-4.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="70" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH071" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.75" ty="-5.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="71" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH072" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="2.95" ty="-5.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="72" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH073" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.15" ty="-5.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="73" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH074" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.4" ty="-6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="74" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH075" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.6" ty="-6.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="75" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH076" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="3.85" ty="-6.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="76" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH077" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.1" ty="-6.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="77" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH078" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.4" ty="-7.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="78" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH079" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.6" ty="-7.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="79" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH080" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="4.9" ty="-7.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="80" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH081" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="5.2" ty="-8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="81" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH082" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="5.45" ty="-8.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="82" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH083" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="5.75" ty="-8.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="83" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH084" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="6.05" ty="-8.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="84" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH085" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="6.3" ty="-9.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="85" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH086" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="6.6" ty="-9.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="86" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH087" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="6.9" ty="-9.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="87" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH088" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="7.2" ty="-10.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="88" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH089" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="7.5" ty="-10.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="89" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH090" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="7.75" ty="-10.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="90" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH091" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="8.05" ty="-10.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="91" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH092" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="8.35" ty="-11.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="92" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor/>
+                    </FillStyle>
+                    <FillStyle index="2">
+                      <SolidColor color="#606774"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1541 -1098[1586 -1098 1634 -1084!1634 -1084[1729 -1054 1791 -977!1791 -977[1858 -892 1882 -776!1882 -776[1884 -760 1886 -744!1886 -744[1900 -578 1849 -413!1849 -413[1848 -407 1845 -401!1845 -401[1792 -237 1680 -115!1680 -115[1667 -99
+ 1652 -84!1652 -84[1564 17 1465 106!1465 106[1441 128 1417 148!1417 148[1311 238 1190 314!1190 314[1147 340 1103 363!1103 363[994 421 874 457!874 457[704 511 526 549!526 549[439 566 355 591!355 591[183 641 0 638!0 638[-176 625 -352 588
+!-352 588[-420 576 -486 558!-486 558[-589 528 -687 486!-687 486[-845 416 -985 322!-985 322[-1116 236 -1223 126!-1223 126[-1329 20 -1403 -112!-1403 -112[-1469 -229 -1505 -356!-1505 -356[-1515 -387 -1522 -419!-1522 -419[-1556 -567 -1533
+ -720!-1533 -720|-1532 -725!-1532 -725[-1501 -911 -1332 -1010!-1332 -1010[-1321 -1017 -1308 -1023!-1308 -1023[-1172 -1092 -1026 -1072!-1026 -1072[-975 -1068 -926 -1058!-926 -1058[-829 -1034 -729 -1004!-729 -1004[-721 -999 -714 -995!-714
+ -995[-579 -919 -489 -863!-489 -863[-437 -832 -399 -808!-399 -808[-290 -740 -63 -715!-63 -715[162 -690 382 -704!382 -704[433 -709 484 -716!484 -716[559 -727 634 -742!634 -742[793 -778 942 -841!942 -841[1089 -904 1235 -963!1235 -963[1310
+ -995 1370 -1044!1370 -1044[1451 -1098 1541 -1098"/>
+                    <Edge fillStyle0="1" fillStyle1="2" edges="
+!402 -633[550 -646 693 -681!693 -681[861 -724 1018 -784!1018 -784[1165 -837 1303 -903!1303 -903[1354 -927 1398 -959!1398 -959[1493 -1027 1611 -1000!1611 -1000[1665 -986 1706 -952!1706 -952[1742 -924 1768 -881!1768 -881[1786 -851 1794
+ -816!1794 -816[1818 -714 1825 -606!1825 -606[1828 -546 1816 -491!1816 -491[1773 -350 1710 -266!1710 -266[1697 -248 1683 -230!1683 -230[1615 -140 1536 -56!1536 -56[1412 75 1260 170!1260 170[1254 174 1248 178!1248 178[1118 259 983 340
+!983 340[853 418 699 438!699 438[528 467 355 506!355 506[199 544 37 555!37 555[-83 561 -201 543!-201 543[-255 535 -308 521!-308 521[-454 485 -595 437!-595 437[-758 381 -904 294!-904 294[-1060 204 -1180 75!-1180 75[-1290 -40 -1364 -180
+!-1364 -180[-1374 -199 -1383 -218!-1383 -218[-1462 -373 -1477 -544!-1477 -544[-1486 -642 -1448 -741!-1448 -741[-1424 -805 -1385 -858!-1385 -858[-1323 -940 -1226 -985!-1226 -985[-1184 -1006 -1139 -1008!-1139 -1008[-1109 -1010 -1078 -1009
+!-1078 -1009[-964 -1009 -852 -979!-852 -979[-778 -958 -687 -920!-687 -920[-594 -883 -486 -788!-486 -788[-366 -692 -171 -631!-171 -631[-14 -583 237 -609!237 -609[315 -617 402 -633"/>
+                    <Edge fillStyle0="2" fillStyle1="1" edges="
+!98 -78[245 -82 408 -87!408 -87[546 -98 683 -125!683 -125[708 -130 733 -136!733 -136[936 -207 1102 -329!1102 -329[1161 -370 1215 -414!1215 -414[1230 -426 1243 -438!1243 -438[1325 -508 1402 -582!1402 -582[1421 -602 1438 -610!1438 -610
+[1459 -619 1483 -616!1483 -616[1486 -613 1487 -610!1487 -610[1499 -572 1468 -538!1468 -538[1452 -519 1430 -512!1430 -512[1428 -511 1427 -511!1427 -511[1416 -497 1405 -484!1405 -484[1404 -483 1403 -482!1403 -482[1391 -470 1380 -458!1380
+ -458[1353 -430 1323 -402!1323 -402[1169 -247 948 -149!948 -149[890 -121 831 -91!831 -91[828 -90 824 -88!824 -88[757 -56 682 -45!682 -45[428 -3 196 1!196 1[119 3 40 0!40 0[-201 -16 -430 -99!-430 -99[-519 -132 -604 -175!-604 -175[-668
+ -207 -716 -254!-716 -254[-779 -312 -848 -367!-848 -367[-900 -406 -943 -450!-943 -450[-959 -469 -976 -490!-976 -490[-990 -510 -1003 -529!-1003 -529|-1007 -533!-1007 -533[-1032 -572 -984 -586!-984 -586[-902 -528 -866 -486!-866 -486[-800
+ -407 -708 -353!-708 -353[-683 -339 -665 -319!-665 -319[-638 -290 -604 -268!-604 -268[-594 -262 -585 -256!-585 -256[-432 -174 -270 -122!-270 -122[-108 -73 53 -76!53 -76[76 -77 98 -78"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="93" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH094" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="8.95" ty="-11.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="94" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH095" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="9.25" ty="-12.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="95" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH096" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="9.55" ty="-12.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="96" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH097" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="9.85" ty="-13.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="97" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH098" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="10.15" ty="-13.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="98" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH099" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="10.45" ty="-14.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point y="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="99" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="WW FR MOUTH100" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="10.75" ty="-14.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-0.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>
