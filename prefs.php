@@ -280,6 +280,36 @@
                   link: {type: "string", title: "Link"}
                 }
               }
+            },
+            gauges: {
+              title: "Gauges",
+              options: {
+                disable_collapse: false,
+                collapsed: true,
+                no_additional_properties: false
+              },
+              type: 'object',
+              additionalProperties: {
+                type: 'array',
+                options: {
+                  disable_collapse: false,
+                  collapsed: true
+                },
+                items: {
+                  type: 'object',
+                  format: 'grid',
+                  properties: {
+                    gaugeId: {
+                      type: "integer", title: "Gauge ID", 
+                      description: "http://www.buildingos.com/blocks/XX/"
+                    },
+                    title: {type: "string", title: "Title"},
+                    text: {type: "string", title: "Description", format: "textarea"},
+                    link: {type: "string", title: "Link for more info"},
+                    buildingdash: {type: "string", title: "Link to building dashboard page"}
+                  }
+                }
+              }
             }
           },
           definitions: {

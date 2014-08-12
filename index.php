@@ -61,6 +61,8 @@
     </head>
     <body>
       <video id="character" src="img/squirrel/Neutral.mov" width="183" height="207" autoplay loop></video>
+      <div id="gauges">
+      </div>
       <div id="svg-container">
       </div>
     </body>

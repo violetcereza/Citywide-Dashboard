@@ -43,15 +43,21 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   pipesIn();
     
   var character = $("#character");
+  var gauges = $("#gauges");
+  
+  /*************************
+  ** Character and Gauges **
+  *************************/
+  
   character.css("position", "absolute");
-  var rescaleCharacter = function() {
+  gauges.css({position: "absolute", width: 286, height: 735});//835});
+  var rescaleElements = function() {
     var width = $('#background').get(0).getBoundingClientRect().width;
     var scale = width / 1584; // Original width of SVG
-    // var x = ($(document.body).width() / 2) - ((1584/2+10+character.width())*scale);
     var x = ($(document.body).width()-width)/2;
     
     character.css({
-      transform: 'scale('+scale*1+')',
+      transform: 'scale('+scale+')',
       left: x+'px',
       top: 0*scale+"px",
       '-webkit-transform-origin': "top left",
@@ -59,9 +65,39 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       '-ms-transform-origin': "top left",
       '-o-transform-origin': "top left"
     });
+        
+    gauges.css({
+      transform: 'scale('+scale+')',
+      right: x+(20*scale)+'px',
+      top: 85*scale+"px",
+      '-webkit-transform-origin': "top right",
+      '-moz-transform-origin': "top right",
+      '-ms-transform-origin': "top right",
+      '-o-transform-origin': "top right"
+    });
   }
-  rescaleCharacter();
-  window.setInterval(rescaleCharacter, 1000);
+  rescaleElements();
+  window.setInterval(rescaleElements, 1000);
+  
+  var getBin = function() {
+    // TODO; bins
+    if (false){//gaugesIFrame.get(0).contentWindow.getBin) {
+      return gaugesIFrame.get(0).contentWindow.getBin();
+    } else {
+      return 3;
+    }
+  }
+  var updateGauges = function(state) {
+    var state = state? state : 'none';
+    gauges.empty();
+    if (prefs.gauges[state]) {
+      for (var i = prefs.gauges[state].length - 1; i >= 0; i--) {
+        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+          prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="250" width="286"></iframe>');
+      }
+    }
+  }
+  updateGauges();
+  
   var setCharacterAnim = function(anim) {
     if (character.attr('src') != 'img/'+anim+'.mov') {
       character.attr('src', 'img/'+anim+'.mov');
@@ -172,25 +208,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     fObj.dmove(1,0);
     fObj.dmove(-1,0);
   }
-  
-  var gauges = draw.foreignObject(286, 835).move(1278, 75);
-  gauges.appendChild("div");
-  var gaugesIFrame = $('<iframe frameBorder="0" src="grape.html" height="100%" width="100%" marginwidth="0" \
-      scrolling="no">We apologize, but it looks like this feature can\'t be displayed in \
-      your browser</iframe>').appendTo(gauges.getChild(0)).load(function() {
-        // Force redraw
-        gauges.dmove(1,0);
-        gauges.dmove(-1,0);
-      });
-  var getBin = function() {
-    // TODO; bins
-    if (gaugesIFrame.get(0).contentWindow.getBin) {
-      return gaugesIFrame.get(0).contentWindow.getBin();
-    } else {
-      return 3;
-    }
-  }
-  
+    
   var intervalObjs = [];
   var state = StateMachine.create({
     events: [
@@ -353,6 +371,8 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
             selectMessage(messageSection+1);
           }, prefs.timing.delayBetweenMessages*1000));
         }
+        
+        updateGauges(to);
       },
       onleavestate: function(event, from, to) {
         for (var i = intervalObjs.length - 1; i >= 0; i--) {
@@ -512,6 +532,43 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
   });
+  
+  gauges.on("mouseover", "iframe", function(e) {
+    // http://stackoverflow.com/questions/16695369/how-to-get-last-folder-name-from-folder-path-in-javascript
+    var gaugeId = this.src.match(/([^\/]*)\/*$/)[1];
+    var dscr = null;
+    for (var state in prefs.gauges) {
+      for (var i = prefs.gauges[state].length - 1; i >= 0; i--) {
+        if (prefs.gauges[state][i].gaugeId == gaugeId) {
+          dscr = prefs.gauges[state][i];
+          break;
+        }
+      }
+      if (dscr != null) break;
+    }
+    
+    playState.actioned();
+    $(".popup").remove();
+    var popup = $('<div class="popup"><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a> or <a href="'+dscr.buildingdash+'">View on Building Dashboard</a></p></div>');
+    popup.mouseenter(function() {
+      this.isOver = true;
+    });
+    popup.mouseleave(function() {
+      popup.remove();
+    });
+    
+    var offset = $(this).offset();
+    popup.appendTo(document.body).offset({top: offset.top, left: offset.left-popup.width()});
+  });
+  gauges.mouseleave(function() {
+    // Ugh more complicated than it needs to be?
+    window.setTimeout(function() {
+      if ($(".popup").get(0) && !$(".popup").get(0).isOver) {
+        $(".popup").remove();
+      }
+    }, 0);
+  });
+  
   $("#play").css('cursor', 'pointer').mouseover(function() {
     clickable = this.instance;
     if (!hoverFilter) {
