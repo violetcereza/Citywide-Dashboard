@@ -13,6 +13,9 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   draw.svg(jqXHR.responseText);
   draw = SVG.get('drawing');
   $("#drawing").attr("width", "100%").attr("height", "100%");
+  window.setTimeout(function() {
+    $("#loader").hide();
+  }, 500);
   
   /*************************
   ** Continual animations **
@@ -92,13 +95,14 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     gauges.empty();
     if (prefs.gauges[state]) {
       for (var i = prefs.gauges[state].length - 1; i >= 0; i--) {
-        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+          prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="250" width="286"></iframe>');
+        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="210" scrolling="no" width="286"></iframe>');
       }
     }
   }
   updateGauges();
   
   var setCharacterAnim = function(anim) {
+    console.log(anim);
     if (character.attr('src') != 'img/'+anim+'.mov') {
       character.attr('src', 'img/'+anim+'.mov');
     }
@@ -527,7 +531,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       playState.actioned();
       var dscr = prefs.landscape[this.attr('id')];
       $(".popup").remove();
-      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a></p></div>');
+      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'" target="_blank" >Read more</a></p></div>');
       popup.find(".close").click(function() { popup.remove() });
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
@@ -549,7 +553,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     
     playState.actioned();
     $(".popup").remove();
-    var popup = $('<div class="popup"><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'">Read more</a> or <a href="'+dscr.buildingdash+'">View on Building Dashboard</a></p></div>');
+    var popup = $('<div class="popup"><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a target="_blank" href="'+dscr.link+'">Read more</a> or <a target="_blank" href="'+dscr.buildingdash+'">View on Building Dashboard</a></p></div>');
     popup.mouseenter(function() {
       this.isOver = true;
     });

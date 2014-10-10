@@ -1,5 +1,5 @@
 <?php
-  if ($_POST['username'] == 'dashboard' && $_POST['password'] == 'walleyandflash') {
+  if ($_POST['username'] == 'dashboard' && md5($_POST['password']) == 'd72aa949d86845e6c1e2575bc2390152') {
     print_r($_POST['data']);
     file_put_contents('prefs.json', $_POST['data']);
   } else {
