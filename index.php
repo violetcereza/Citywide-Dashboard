@@ -67,6 +67,7 @@
               -ms-transform: translate(-50%, -50%);
                   transform: translate(-50%, -50%);
         }
+        
         </style>
         <script type="text/javascript">
           var prefs = <?php echo file_get_contents('prefs.json'); ?>;
@@ -84,7 +85,11 @@
         <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
-      <div id="loader"><span>The Environmental Dashboard is loading...</span></div>
+      <div id="loader"><span>
+        <!-- <img src="img/loader2.gif" width="128px" height="128px" /><br/> -->
+        <img src="img/loader.gif" width="16px" height="16px" /><br/><br/>
+        The Environmental Dashboard is loading...
+      </span></div>
       <video id="character" src="img/squirrel/neutral.mov" width="183" height="207" autoplay loop></video>
       <div id="gauges">
       </div>

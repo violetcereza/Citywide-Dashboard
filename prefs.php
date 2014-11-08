@@ -173,8 +173,10 @@
                     properties: {
                       probability: { "$ref": "#/definitions/probability" },
                       text: { type: "string", title: "Text", format: "textarea" },
-                      startDate: { type: "string", format: "date", title: "Start Date" },
-                      endDate: { type: "string", format: "date", title: "End Date" },
+                      startDate: { type: "string", title: "Start Date" },
+                      endDate: { type: "string", title: "End Date" },
+                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                      web: { type: "boolean", default: "true", title: "Display on Web?" },
                     }
                   }
                 },
@@ -189,7 +191,9 @@
                     properties: {
                       probability: { "$ref": "#/definitions/probability" },
                       text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                      web: { type: "boolean", default: "true", title: "Display on Web?" },
                     }
                   }
                 },
@@ -204,7 +208,9 @@
                     properties: {
                       probability: { "$ref": "#/definitions/probability" },
                       text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                      web: { type: "boolean", default: "true", title: "Display on Web?" },
                     }
                   }
                 },
@@ -219,7 +225,9 @@
                     properties: {
                       probability: { "$ref": "#/definitions/probability" },
                       text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                      web: { type: "boolean", default: "true", title: "Display on Web?" },
                     }
                   }
                 },
@@ -234,7 +242,9 @@
                     properties: {
                       probability: { "$ref": "#/definitions/probability" },
                       text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" }
+                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                      web: { type: "boolean", default: "true", title: "Display on Web?" },
                     }
                   }
                 },
@@ -381,7 +391,7 @@
           indicator.textContent = "Valid";
         }
                 
-        $('input[type="date"]').pikaday();
+        $('input[name*="startDate"], input[name*="endDate"]').pikaday();
       });
     </script>
   </body>

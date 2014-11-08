@@ -15,7 +15,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   $("#drawing").attr("width", "100%").attr("height", "100%");
   window.setTimeout(function() {
     $("#loader").hide();
-  }, 500);
+  }, 2000);
   
   /*************************
   ** Continual animations **
@@ -59,10 +59,15 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     var scale = width / 1584; // Original width of SVG
     var x = ($(document.body).width()-width)/2;
     
+    var kioskMode = 0;
+    if (window.location.search == "?kiosk") {
+      kioskMode = 1;
+    }
+    
     character.css({
       transform: 'scale('+scale+')',
       left: x+'px',
-      top: 0*scale+"px",
+      top: -20*kioskMode*scale+"px",
       '-webkit-transform-origin': "top left",
       '-moz-transform-origin': "top left",
       '-ms-transform-origin': "top left",
@@ -72,7 +77,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     gauges.css({
       transform: 'scale('+scale+')',
       right: x+(20*scale)+'px',
-      top: 85*scale+"px",
+      top: 85*scale+(40*kioskMode*scale)+"px",
       '-webkit-transform-origin': "top right",
       '-moz-transform-origin': "top right",
       '-ms-transform-origin': "top right",
@@ -95,14 +100,13 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
     gauges.empty();
     if (prefs.gauges[state]) {
       for (var i = prefs.gauges[state].length - 1; i >= 0; i--) {
-        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="210" scrolling="no" width="286"></iframe>');
+        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="230" scrolling="no" width="286"></iframe>');
       }
     }
   }
   updateGauges();
   
   var setCharacterAnim = function(anim) {
-    console.log(anim);
     if (character.attr('src') != 'img/'+anim+'.mov') {
       character.attr('src', 'img/'+anim+'.mov');
     }
@@ -175,6 +179,12 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       if (sourceMessages[i].startDate && sourceMessages[i].endDate) {
         if ( moment().isBefore(moment(sourceMessages[i].startDate, "ddd MMM DD YYYY")) ) continue;
         if ( moment().isAfter(moment(sourceMessages[i].endDate, "ddd MMM DD YYYY")) ) continue;
+      }
+      if (sourceMessages[i].kiosk == false) {
+        if ( window.location.search == "?kiosk" ) continue;
+      }
+      if (sourceMessages[i].web == false) {
+        if ( window.location.search != "?kiosk" ) continue;
       }
       
       selectedMessages.push(sourceMessages[i].text);
@@ -353,10 +363,17 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       onstate: function(event, from, to) {
         window.location.hash = to;
         
-        // top menu buttons
-        SVG.get(to).hide();
-        SVG.get(to+"_hover").hide();
-        SVG.get(to+"_highlight").show();
+        if (window.location.search == "?kiosk") {
+          SVG.get('buttons').each(function() {
+            this.hide();
+          });
+          SVG.get(to).show();
+        } else {
+          // top menu buttons
+          SVG.get(to).hide();
+          SVG.get(to+"_hover").hide();
+          SVG.get(to+"_highlight").show();
+        }
         
         // stick figures
         SVG.get('stick_figures').each(function() {
@@ -392,15 +409,23 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       }
     }
   });
+  if (window.location.search == "?noplay") {
+    SVG.get('play').hide();
+  }
+  if (window.location.search == "?kiosk") {
+    SVG.get('play').hide();
+    SVG.get('top_menu').hide();
+    fObj.move(200, 30);
+    SVG.get('buttons').each(function() {
+      this.attr('transform', '');
+      this.center(1420, 60);
+      this.hide();
+    });
+    prefs.timing.delayBeforePlayMode = 0;
+  }
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
-  }
-  if (window.location.search == "?noplay") {
-    SVG.get('play').hide()
-  }
-  if (window.location.search == "?autoplay") {
-    prefs.timing.delayBeforePlayMode = 0;
   }
     
   var playIntervalObj;
@@ -431,7 +456,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         SVG.get("pausetext").show();
         SVG.get('darkplay').show();
       
-        if (window.location.search != "?autoplay") {
+        if (window.location.search != "?kiosk") {
           state.next();
         }
         playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
@@ -459,43 +484,47 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   ** Button Interaction **
   ***********************/
   
-  $("#buttons > image").each(function() {
-    var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
-    var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
+  if (window.location.search != "?kiosk") {
+  
+    $("#buttons > image").each(function() {
+      var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
+      var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
     
-    this.instance.mouseover(function() {
-      playState.actioned();
-      if (!state.is(thisState) && thisType!="hover") {
-        this.hide();
-        SVG.get(thisState+"_hover").show();
-      }
-    });
-    this.instance.mouseout(function() {
-      if (!state.is(thisState) && thisType=="hover") {
-        this.hide();
-        SVG.get(thisState).show();
-      }
-    });
-    this.instance.click(function() {
-      if (thisState == state.current) { return; }
+      this.instance.mouseover(function() {
+        playState.actioned();
+        if (!state.is(thisState) && thisType!="hover") {
+          this.hide();
+          SVG.get(thisState+"_hover").show();
+        }
+      });
+      this.instance.mouseout(function() {
+        if (!state.is(thisState) && thisType=="hover") {
+          this.hide();
+          SVG.get(thisState).show();
+        }
+      });
+      this.instance.click(function() {
+        if (thisState == state.current) { return; }
       
-      playState.toAction();
-      switch (thisState) {
-        case "electricity":
-          state.toElectricity();
-          break;
-        case "water":
-          state.toWater();
-          break;
-        case "stream":
-          state.toStream();
-          break;
-        case "weather":
-          state.toWeather();
-          break;
-      }
+        playState.toAction();
+        switch (thisState) {
+          case "electricity":
+            state.toElectricity();
+            break;
+          case "water":
+            state.toWater();
+            break;
+          case "stream":
+            state.toStream();
+            break;
+          case "weather":
+            state.toWeather();
+            break;
+        }
+      });
     });
-  });
+    
+  }
   
   var hoverFilter;
   $("#clickables > *").each(function() {
