@@ -114,8 +114,8 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   updateGauges();
   
   var setCharacterAnim = function(anim) {
-    if (character.attr('src') != 'img/'+anim+'.gif') {
-      character.attr('src', 'img/'+anim+'.gif');
+    if (character.attr('href') != 'img/'+anim+'.gif') {
+      character.attr('href', 'img/'+anim+'.gif');
     }
   }
   var setCharacter = function(character) {
@@ -158,7 +158,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
         break;
       }
     }
-    setCharacterAnim(character+"/"+emote);
+    setCharacterAnim(character+"/"+emote+'2');
   }
   
   /***************************
@@ -388,11 +388,11 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
         $(".flowshine").each(function() { this.instance.remove(); });
       },
       onweather: function() {
-        SVG.get("sunset").show();
+        // SVG.get("sunset").show();
         setCharacter('squirrel');
       },
       onleaveweather: function() {
-        SVG.get('sunset').hide()
+        // SVG.get('sunset').hide()
       },
       onnone: function() {
         SVG.get('house_inside').hide();

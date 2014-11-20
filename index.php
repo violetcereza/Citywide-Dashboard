@@ -1,6 +1,16 @@
 <html>
     <head>
         <title>City-Wide Dashboard</title>
+         <!-- 
+         _    _ _    _____
+        | |  | (_)  / ____|
+        | |__| |_  | (___   __ _ _ __ ___
+        |  __  | |  \___ \ / _` | '_ ` _ \
+        | |  | | |  ____) | (_| | | | | | |
+        |_|  |_|_| |_____/ \__,_|_| |_| |_|
+                                     
+                                     -->
+        
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script src="js/vendor/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
