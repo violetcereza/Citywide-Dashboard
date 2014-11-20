@@ -8,9 +8,16 @@ SVG.extend(SVG.Element, {
   }
 });
 
-$.get('dashboard.svg', function(data, textStatus, jqXHR) {
+var prefs;
+var prefsAjax = $.get('prefs.json');
+
+var svgAjax = $.get('dashboard.svg');
+
+$.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){  
+  prefs = prefsAjax[0];
+  
   var draw = SVG('svg-container');
-  draw.svg(jqXHR.responseText);
+  draw.svg(svgAjax[2].responseText);
   draw = SVG.get('drawing');
   $("#drawing").attr("width", "100%").attr("height", "100%");
   window.setTimeout(function() {
@@ -52,7 +59,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   ** Character and Gauges **
   *************************/
   
-  character.css("position", "absolute");
+  // character.css("position", "absolute");
   gauges.css({position: "absolute", width: 286, height: 735});//835});
   var rescaleElements = function() {
     var width = $('#background').get(0).getBoundingClientRect().width;
@@ -64,15 +71,15 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
       kioskMode = 1;
     }
     
-    character.css({
-      transform: 'scale('+scale+')',
-      left: x+'px',
-      top: -20*kioskMode*scale+"px",
-      '-webkit-transform-origin': "top left",
-      '-moz-transform-origin': "top left",
-      '-ms-transform-origin': "top left",
-      '-o-transform-origin': "top left"
-    });
+    // character.css({
+    //   transform: 'scale('+scale+')',
+    //   left: x+'px',
+    //   top: -20*kioskMode*scale+"px",
+    //   '-webkit-transform-origin': "top left",
+    //   '-moz-transform-origin': "top left",
+    //   '-ms-transform-origin': "top left",
+    //   '-o-transform-origin': "top left"
+    // });
         
     gauges.css({
       transform: 'scale('+scale+')',
@@ -107,8 +114,8 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
   updateGauges();
   
   var setCharacterAnim = function(anim) {
-    if (character.attr('src') != 'img/'+anim+'.mov') {
-      character.attr('src', 'img/'+anim+'.mov');
+    if (character.attr('src') != 'img/'+anim+'.gif') {
+      character.attr('src', 'img/'+anim+'.gif');
     }
   }
   var setCharacter = function(character) {
@@ -147,7 +154,7 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
         emote = 'neutral';
         break;
       case 5:
-        emote = 'scared';
+        emote = 'sad';
         break;
       }
     }
@@ -164,10 +171,45 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
           document.createTextNode( html ) ).parentNode.innerHTML;
   }
   
+  var messageHeight = window.location.search == "?kiosk"? 100 : 60;
+  function resizeMessage() {
+    // Resize text to fit container
+    var interval;
+    var size = 19;
+    interval = window.setInterval(function() {
+      size++;
+      text.css({ fontSize: size });
+
+      // Force redraw
+      fObj.dmove(1,0);
+      fObj.dmove(-1,0);
+
+      if (text.height() > messageHeight) {
+        window.clearInterval(interval);
+        text.css({ fontSize: size-2 });
+      }
+    }, 0);
+    
+    // var size = 19;
+    // while (text.height() < 70) {
+    //   text.css({ fontSize: size });
+    //   // Force redraw
+    //   fObj.dmove(1,0);
+    //   fObj.dmove(-1,0);
+    //
+    //   size++;
+    // }
+    // text.css({ fontSize: size-2 });
+    // // Force redraw
+    // fObj.dmove(1,0);
+    // fObj.dmove(-1,0);
+  }
+  
   var fObj = draw.foreignObject(1000, 100).move(200, 80);
   fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
   var text = $(fObj.getChild(0));
   text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
+  resizeMessage();
   var messageSection;
   function selectMessage(section) {
     var sourceMessages = prefs.messageSections[section.toString()];
@@ -217,12 +259,11 @@ $.get('dashboard.svg', function(data, textStatus, jqXHR) {
             }
         }
     };
+    text.css({ fontSize: 19 });
     text.text(htmlEncode(getRandomItem(selectedMessages, selectedWeights)));
-    // Force redraw
-    fObj.dmove(1,0);
-    fObj.dmove(-1,0);
+    resizeMessage();
   }
-    
+      
   var intervalObjs = [];
   var state = StateMachine.create({
     events: [
