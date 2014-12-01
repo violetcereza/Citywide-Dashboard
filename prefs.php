@@ -10,7 +10,11 @@
     <script src="js/vendor/Pikaday-master/pikaday.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/vendor/Pikaday-master/plugins/pikaday.jquery.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="js/vendor/Pikaday-master/css/pikaday.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    
+    <style type="text/css" media="screen">
+      input[type="text"][name*="probability"] {
+        width: 41px;
+      }
+    </style>
   </head>
   <body style="margin: 20px">
     <h1>Dashboard Preferences</h1>
@@ -19,7 +23,7 @@
     <input type="password" name="password" value="" id="password" placeholder="Password">
     <button id='submit'>Save</button>
     
-    <span id='valid_indicator'></span>
+    <span style="display: none;" id='valid_indicator'></span>
     <span id='save_indicator'></span>
     
     <div id='editor_holder' ></div>

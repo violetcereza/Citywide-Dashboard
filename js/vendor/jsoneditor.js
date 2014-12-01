@@ -5463,7 +5463,7 @@ JSONEditor.AbstractTheme = Class.extend({
   getTextareaInput: function() {
     var el = document.createElement('textarea');
     el.style = el.style || {};
-    el.style.width = '100%';
+    el.style.width = '500px';
     el.style.height = '300px';
     el.style.boxSizing = 'border-box';
     return el;
@@ -5847,6 +5847,8 @@ JSONEditor.defaults.themes.bootstrap3 = JSONEditor.AbstractTheme.extend({
   },
   getTextareaInput: function() {
     var el = document.createElement('textarea');
+    el.style.width = '500px';
+    el.style.height = '100px';
     el.className = 'form-control';
     return el;
   },
