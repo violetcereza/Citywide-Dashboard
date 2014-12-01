@@ -60,7 +60,10 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   *************************/
   
   // character.css("position", "absolute");
-  gauges.css({position: "absolute", width: 286, height: 735});//835});
+  gauges.css({position: "absolute", width: 286, height: 735});
+  if (window.location.search == "?kiosk") {
+    SVG.get("top_menu_side").hide();
+  }
   var rescaleElements = function() {
     var width = $('#background').get(0).getBoundingClientRect().width;
     var scale = width / 1584; // Original width of SVG
@@ -158,7 +161,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
         break;
       }
     }
-    setCharacterAnim(character+"/"+emote+'2');
+    setCharacterAnim(character+"/"+emote+(window.location.search == "?kiosk"?"-kiosk":""));
   }
   
   /***************************
@@ -208,7 +211,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   var fObj = draw.foreignObject(1000, 100).move(200, 80);
   fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
   var text = $(fObj.getChild(0));
-  text.css({ fontFamily: 'Futura-Medium', fontSize: 19, color: "#777" });
+  text.css({ fontFamily: 'Futura-Medium, Futura, futura, sans-serif', fontSize: 19, color: "#777" });
   resizeMessage();
   var messageSection;
   function selectMessage(section) {

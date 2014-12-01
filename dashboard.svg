@@ -1683,6 +1683,6 @@
 		</g>
 	</g>
 </g>
-<image overflow="visible" width="326" height="77" xlink:href="img/menu_top_side.png"  transform="matrix(0.9999 0 0 0.9999 1258.041 0)">
+<image overflow="visible" id="top_menu_side" width="326" height="77" xlink:href="img/menu_top_side.png"  transform="matrix(0.9999 0 0 0.9999 1258.041 0)">
 </image>
 </svg>
