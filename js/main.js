@@ -12,9 +12,11 @@ var prefs;
 var prefsAjax = $.get('prefs.json');
 
 var svgAjax = $.get('dashboard.svg');
-
+console.log(svgAjax, prefsAjax);
 $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){  
   prefs = prefsAjax[0];
+  
+  console.log("hi");
   
   var draw = SVG('svg-container');
   draw.svg(svgAjax[2].responseText);
@@ -59,7 +61,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   ** Character and Gauges **
   *************************/
   
-  // character.css("position", "absolute");
+  character.css("position", "absolute");
   gauges.css({position: "absolute", width: 286, height: 735});
   if (window.location.search == "?kiosk") {
     SVG.get("top_menu_side").hide();
@@ -74,15 +76,15 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
       kioskMode = 1;
     }
     
-    // character.css({
-    //   transform: 'scale('+scale+')',
-    //   left: x+'px',
-    //   top: -20*kioskMode*scale+"px",
-    //   '-webkit-transform-origin': "top left",
-    //   '-moz-transform-origin': "top left",
-    //   '-ms-transform-origin': "top left",
-    //   '-o-transform-origin': "top left"
-    // });
+    character.css({
+      transform: 'scale('+scale+')',
+      left: x+'px',
+      top: -20*kioskMode*scale+"px",
+      '-webkit-transform-origin': "top left",
+      '-moz-transform-origin': "top left",
+      '-ms-transform-origin': "top left",
+      '-o-transform-origin': "top left"
+    });
         
     gauges.css({
       transform: 'scale('+scale+')',
@@ -102,7 +104,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
     if (false){//gaugesIFrame.get(0).contentWindow.getBin) {
       return gaugesIFrame.get(0).contentWindow.getBin();
     } else {
-      return 3;
+      return 1;
     }
   }
   var updateGauges = function(state) {
@@ -117,9 +119,9 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   updateGauges();
   
   var setCharacterAnim = function(anim) {
-    if (character.attr('href') != 'img/'+anim+'.gif') {
-      character.attr('href', 'img/'+anim+'.gif');
-    }
+    // if (character.attr('href') != 'img/'+anim+'.gif') {
+    //   character.attr('href', 'img/'+anim+'.gif');
+    // }
   }
   var setCharacter = function(character) {
     var bin = getBin();
@@ -470,6 +472,8 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
+  } else {
+    setCharacter('squirrel');
   }
     
   var playIntervalObj;

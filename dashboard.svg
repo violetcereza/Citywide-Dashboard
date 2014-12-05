@@ -436,7 +436,7 @@
 </image>
 <image overflow="visible" enable-background="new    " width="1584" height="77" id="top_menu" xlink:href="img/menu_top.png" >
 </image>
-<image overflow="visible" enable-background="new    " width="366" height="414" id="character" xlink:href="img/squirrel/neutral2.gif"  transform="matrix(0.5 0 0 0.5 0 0)">
+<!-- <image overflow="visible" enable-background="new    " width="366" height="414" id="character" xlink:href="img/squirrel/neutral.gif"  transform="matrix(0.5 0 0 0.5 0 0)"> -->
 </image>
 <image overflow="visible" enable-background="new    " width="44" height="22" id="ship" xlink:href="img/ship.png"  transform="matrix(0.9999 0 0 0.9999 -46.9956 186.502)">
 </image>

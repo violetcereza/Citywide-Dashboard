@@ -26,11 +26,10 @@
     </head>
     <body>
       <div id="loader"><span>
-        <!-- <img src="img/loader2.gif" width="128px" height="128px" /><br/> -->
         <img src="img/loader.gif" width="16px" height="16px" /><br/><br/>
         The Environmental Dashboard is loading...
       </span></div>
-      <!-- <img id="character" src="img/squirrel/neutral.gif" width="183" height="207"/> -->
+      <video id="character" src="img/squirrel/neutral.mp4" width="183" height="207" autoplay loop></video>
       <div id="gauges">
       </div>
       <div id="svg-container">
