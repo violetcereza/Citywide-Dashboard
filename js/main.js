@@ -13,13 +13,11 @@ var prefsAjax = $.get('prefs.json');
 
 var svgAjax = $.get('dashboard.svg');
 console.log(svgAjax, prefsAjax);
-$.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){  
-  prefs = prefsAjax[0];
-  
-  console.log("hi");
+window.setTimeout(function(){
+  prefs = prefsAjax.responseJSON;
   
   var draw = SVG('svg-container');
-  draw.svg(svgAjax[2].responseText);
+  draw.svg(svgAjax.responseText);
   draw = SVG.get('drawing');
   $("#drawing").attr("width", "100%").attr("height", "100%");
   window.setTimeout(function() {
@@ -79,7 +77,7 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
     character.css({
       transform: 'scale('+scale+')',
       left: x+'px',
-      top: -20*kioskMode*scale+"px",
+      top: (-20*kioskMode*scale)+(10*scale)+"px",
       '-webkit-transform-origin': "top left",
       '-moz-transform-origin': "top left",
       '-ms-transform-origin': "top left",
@@ -668,4 +666,4 @@ $.when(prefsAjax, svgAjax).done(function(prefsAjax, svgAjax){
   }).click(function() {
     playState.toggle();
   });
-});
+}, 2000);
