@@ -1,3 +1,9 @@
+<?php
+
+require("config.php");
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,129 +24,48 @@
   </head>
   <body style="margin: 20px">
     <h1>Dashboard Preferences</h1>
+
+<?php if (!logged_in()) { ?>
+<div style="max-width: 500px; margin: 0 auto;">
+  <h2>Log In</h2>
+  <form class="form-horizontal" method="post">
+    <div class="form-group">
+      <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="inputUsername" name="username" placeholder="Username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Sign in</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>
+<?php
+} else {
+?>    
     
-    <input type="text" name="username" value="" id="username" placeholder="Username">
-    <input type="password" name="password" value="" id="password" placeholder="Password">
-    <button id='submit'>Save</button>
+    <div class="btn-group" role="group">
+      <a href="prefs.php?logout=true" class="btn btn-default" role="button">Logout</a>
+      <button type="button" class="btn btn-primary" id='submit'>Save</button>
+    </div>
     
-    <span style="display: none;" id='valid_indicator'></span>
+    <span id='valid_indicator'></span>
     <span id='save_indicator'></span>
     
     <div id='editor_holder' ></div>
     
     <script>
-      var starting_value = <?php echo file_get_contents('prefs.json'); ?>; /*{
-  "messageSections": [
-    {
-      "name": "Introduction Narration",
-      "simpleMessageSection": true,
-      "messages": [
-        {
-          "probability": 9,
-          "text": "Welcome to Oberlin’s Environmental Dashboard.  The Energy Squirrel and Wally the Walleye will tell you about current environmental conditions in Oberlin.  Press the \"play button\" to start."
-        },
-        {
-          "probability": 10,
-          "text": "Welcome to Oberlin’s Environmental Dashboard.  The Energy Squirrel and Wally the Walleye will tell you about current environmental conditions in Oberlin and actions you can take.  Choose a resource or press the play button to start."
-        },
-        {
-          "probability": 7,
-          "text": "Welcome to Oberlin's Environmental Dashboard.  Try exploring our webpage by scrolling over different parts of the picture below."
-        },
-        {
-          "probability": 10,
-          "text": "Welcome to Oberlin's Environmental Dashboard! Let us walk you through this new and exciting community resource. Please press the orange \"play\" button to begin."
-        },
-        {
-          "probability": 5,
-          "text": "Welcome to the Bioregional Dashboard.  Explore current environmental conditions in Oberlin by clicking on different icons in the picture below."
-        },
-        {
-          "probability": 10,
-          "text": "Welcome to Oberlin's Bioregional Dashboard.  Did you know that less than 1% of the water on Earth is readily accessible to humans?  Click on the icons below to see how water and electricity flow through our city's environment."
-        },
-        {
-          "probability": 9,
-          "text": "Welcome to Oberlin's Environmental Resource Dashboard.  Did you know that the Great Lakes hold 20% of the Earth's readily accessible freshwater?  Click on the play button below to learn more."
-        },
-        {
-          "probability": 7,
-          "text": "Good day and welcome to Oberlin's Bioregional Dashboard! Click on the icons below to learn more about the existing environmental conditions in Oberlin."
-        },
-        {
-          "probability": 10,
-          "text": "Welcome to Oberlin's Environmental Dashboard.  Try exploring by scrolling over the four gauges at the top of the picture."
-        },
-        {
-          "probability": 5,
-          "text": " Welcome to Oberlin's Environmental Dashboard.  Did you know that the Great Lakes hold 20% of the Earth's readily accessible freshwater?  Click the gauges above to explore the dashboard."
-        },
-        {
-          "probability": 10,
-          "text": "Hello! I'm the Energy Squirrel and I will help you to better understand how resources like electricity and water flow through the City of Oberlin. Click the gauges above to explore!"
-        },
-        {
-          "probability": 9,
-          "text": "Hello! This dashboard will help you to better understand how resources like electricity and water flow through the City of Oberlin. Click the gauges above to explore!"
-        },
-        {
-          "probability": 7,
-          "text": "Welcome to the Bioregional Dashboard.  Did you know that less than 1% of the water on Earth is readily accessible to humans?  Click on the gauges above to explore our city’s environment."
-        },
-        {
-          "probability": 8,
-          "text": "Hi there! A bioregion is an area that constitutes an ecological community with natural, not artificial boundaries. We live in the Great Lakes Region and in the Black River Watershed. Click on the picture below to learn more about our bioregion."
-        }
-      ]
-    },
-    {
-      "name": "Resource Category",
-      "messageSectionWithState": true,
-      "messages": [
-        {
-          "probability": 10,
-          "text": "Hello. Welcome to the Bioregional Dashboard's electricity use page. Here you can click on gauges and icons and learn more about energy in our community.",
-          "state": "electricity"
-        },
-        {
-          "probability": 9,
-          "text": "This view of the dashboard shows community-wide electricity electricity use",
-          "state": "electricity"
-        },
-        {
-          "probability": 10,
-          "text": "Hello. Welcome to the Bioregional Dashboard's water page. Here you can scroll over the icons and learn all about water in our community.",
-          "state": "water"
-        },
-        {
-          "probability": 9,
-          "text": "This view of the dashboard shows community-wide water use and treatment",
-          "state": "water"
-        },
-        {
-          "probability": 10,
-          "text": "Hello. Welcome to the Bioregional Dashboard's watershed page. Here you can click on gauges and icons and learn more about water quality in the Plum Creek and in the Black River Watershed.",
-          "state": "stream"
-        },
-        {
-          "probability": 9,
-          "text": "This view of the dashboard shows community-wide conditions in the Plum Creek into which water falling on Oberlin drains",
-          "state": "stream"
-        },
-        {
-          "probability": 10,
-          "text": "Hello. Welcome to the Bioregional Dashboard's weather page. Learn about Oberlin's climate and weather.",
-          "state": "weather"
-        },
-        {
-          "probability": 9,
-          "text": "This view of the dashboard shows community-wide activity weather conditions",
-          "state": "weather"
-        }
-      ]
-    }
-  ]
-};*/
+      var starting_value = <?php echo file_get_contents('prefs.json'); ?>;
             
       // JSONEditor.defaults.resolvers.unshift(function(schema) {
       //   if(schema.type === "object" && schema.format === "bins") {
@@ -354,18 +279,16 @@
         disable_collapse: true
       });
       
-      document.getElementById('submit').addEventListener('click',function() {
+      function save() {
         $('#submit').html('\<span class="glyphicon glyphicon-refresh">\</span>');
         console.log(JSON.stringify(editor.getValue()));
         var indicator = document.getElementById('save_indicator');
-        $.post('save.php', {
-          data: JSON.stringify(editor.getValue()),
-          username: $('#username').val(),
-          password: $('#password').val() },
+        $.post('save.php', { data: JSON.stringify(editor.getValue()) },
           function() {
             $('#submit').html('Save');
             indicator.style.color = 'green';
-            indicator.textContent = "Saved";
+            var currentdate = new Date(); 
+            indicator.textContent = "Saved "+ currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();;
             console.log(arguments);
           }).error(function() {
             console.log(arguments);
@@ -373,7 +296,9 @@
             indicator.style.color = 'red';
             indicator.textContent = "Wrong username/passsword";
           });
-      });
+      }
+      
+      document.getElementById('submit').addEventListener('click', save);
       
       // Hook up the validation indicator to update its 
       // status whenever the editor changes
@@ -386,17 +311,19 @@
         // Not valid
         if(errors.length) {
           indicator.style.color = 'red';
-          indicator.textContent = "Not valid";
+          indicator.textContent = "Form contents not valid!";
           console.log(errors);
         }
         // Valid
         else {
-          indicator.style.color = 'green';
-          indicator.textContent = "Valid";
+          indicator.textContent = "";
         }
                 
         $('input[name*="startDate"], input[name*="endDate"]').pikaday();
+        
+        save();
       });
     </script>
   </body>
 </html>
+<?php } ?>
