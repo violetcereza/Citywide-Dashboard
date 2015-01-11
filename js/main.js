@@ -73,11 +73,11 @@ window.setTimeout(function(){
     if (window.location.search == "?kiosk") {
       kioskMode = 1;
     }
-    
+
     character.css({
       transform: 'scale('+scale+')',
       left: x+'px',
-      top: (-20*kioskMode*scale)+(10*scale)+"px",
+      top: (-20*kioskMode*scale)+$("#top_menu").offset().top+"px",
       '-webkit-transform-origin': "top left",
       '-moz-transform-origin': "top left",
       '-ms-transform-origin': "top left",
@@ -87,7 +87,7 @@ window.setTimeout(function(){
     gauges.css({
       transform: 'scale('+scale+')',
       right: x+(20*scale)+'px',
-      top: 85*scale+(40*kioskMode*scale)+"px",
+      top: 85*scale+(40*kioskMode*scale)+$("#top_menu").offset().top+"px",
       '-webkit-transform-origin': "top right",
       '-moz-transform-origin': "top right",
       '-ms-transform-origin': "top right",
