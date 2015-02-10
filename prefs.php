@@ -20,6 +20,19 @@ session_start();
       input[type="text"][name*="probability"] {
         width: 41px;
       }
+      #valid_indicator {
+        margin-left: 10px;
+      }
+      #nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        background: white;
+        z-index: 100;
+        border: solid #e3e3e3;
+        border-width: 0 0 1px 1px;
+      }
     </style>
   </head>
   <body style="margin: 20px">
@@ -54,13 +67,15 @@ session_start();
 } else {
 ?>    
     
-    <div class="btn-group" role="group">
-      <a href="prefs.php?logout=true" class="btn btn-default" role="button">Logout</a>
-      <button type="button" class="btn btn-primary" id='submit'>Save</button>
-    </div>
+    <div id="nav">
+      <div class="btn-group" role="group">
+        <a href="prefs.php?logout=true" class="btn btn-default" role="button">Logout</a>
+        <button type="button" class="btn btn-primary" id='submit'>Save</button>
+      </div>
     
-    <span id='valid_indicator'></span>
-    <span id='save_indicator'></span>
+      <span id='valid_indicator'></span>
+      <span id='save_indicator'></span>
+    </div>
     
     <div id='editor_holder' ></div>
     
@@ -80,176 +95,200 @@ session_start();
       // });
       
       // Initialize the editor
+      // Initialize the editor
       var editor = new JSONEditor(document.getElementById('editor_holder'), {        
         schema: {
-          type: "object",
-          title: "Preferences",
-          properties: {
-            messageSections: {
-              title: "Messages",
-              type: "object",
-              format: "tabs",
-              options: {disable_collapse: false},
-              properties: {
-                0: {
-                  type: "array",
-                  title: "Introduction Narration",
-                  format: "table",
-                  options: {  disable_collapse: false, collapsed: true },
-                  items: {
-                    type: "object",
-                    title: "Message",
-                    properties: {
-                      probability: { "$ref": "#/definitions/probability" },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      startDate: { type: "string", title: "Start Date" },
-                      endDate: { type: "string", title: "End Date" },
-                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
-                      web: { type: "boolean", default: "true", title: "Display on Web?" },
-                    }
-                  }
-                },
-                1: {
-                  type: "array",
-                  title: "Resource Category",
-                  format: "table",
-                  options: {  disable_collapse: false, collapsed: true },
-                  items: {
-                    type: "object",
-                    title: "Message",
-                    properties: {
-                      probability: { "$ref": "#/definitions/probability" },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
-                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
-                      web: { type: "boolean", default: "true", title: "Display on Web?" },
-                    }
-                  }
-                },
-                2: {
-                  type: "array",
-                  title: "Resource Explanation",
-                  format: "table",
-                  options: {  disable_collapse: false, collapsed: true },
-                  items: {
-                    type: "object",
-                    title: "Message",
-                    properties: {
-                      probability: { "$ref": "#/definitions/probability" },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
-                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
-                      web: { type: "boolean", default: "true", title: "Display on Web?" },
-                    }
-                  }
-                },
-                3: {
-                  type: "array",
-                  title: "Level Narration",
-                  format: "table",
-                  options: {  disable_collapse: false, collapsed: true },
-                  items: {
-                    type: "object",
-                    title: "Message",
-                    properties: {
-                      probability: { "$ref": "#/definitions/probability" },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
-                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
-                      web: { type: "boolean", default: "true", title: "Display on Web?" },
-                    }
-                  }
-                },
-                4: {
-                  type: "array",
-                  title: "Conservation Suggestion",
-                  format: "table",
-                  options: {  disable_collapse: false, collapsed: true },
-                  items: {
-                    type: "object",
-                    title: "Message",
-                    properties: {
-                      probability: { "$ref": "#/definitions/probability" },
-                      text: { type: "string", title: "Text", format: "textarea" },
-                      state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
-                      kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
-                      web: { type: "boolean", default: "true", title: "Display on Web?" },
-                    }
-                  }
-                },
-              }
-            },
-            timing: {
-              title: 'Timing',
-              options: { disable_collapse: false },
-              type: 'object',
-              format: 'grid',
-              properties: {
-                delayBetweenMessages: {
-                  type: "number",
-                  title: 'Seconds for each message section',                  
-                },
-                delayBeforePlayMode: {
-                  type: 'number',
-                  title: 'Seconds before play mode'
-                },
-                delayWhenPlaying: {
-                  type: "number",
-                  title: 'Seconds on each screen when playing',
-                  description: "Allow enough time for every message section to display!"
-                }
-              }
-            },
-            landscape: {
-              title: 'Landscape Components',
-              options: {
-                disable_collapse: false,
-                collapsed: true,
-                no_additional_properties: false,
-                disable_properties: false
+          type: "array",
+          title: " ",
+          format: "tabs",
+          items: {
+            type: "object",
+            title: "Dashboard Version",
+            headerTemplate: "{{ self.name }}",
+            options: {disable_array_delete: true},
+            properties: {
+              name: {
+                type: "string",
+                title: "Dashboard Name"
               },
-              type: 'object',
-              format: 'grid',
-              additionalProperties: {
+              messageSections: {
+                title: "Messages",
+                type: "object",
+                format: "tabs",
+                options: {disable_collapse: false},
+                properties: {
+                  0: {
+                    type: "array",
+                    title: "Introduction Narration",
+                    format: "table",
+                    options: {  disable_collapse: false, collapsed: true },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      properties: {
+                        probability: { "$ref": "#/definitions/probability" },
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        startDate: { type: "string", title: "Start Date" },
+                        endDate: { type: "string", title: "End Date" },
+                        kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                        web: { type: "boolean", default: "true", title: "Display on Web?" },
+                      }
+                    }
+                  },
+                  1: {
+                    type: "array",
+                    title: "Resource Category",
+                    format: "table",
+                    options: {  disable_collapse: false, collapsed: true },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      properties: {
+                        probability: { "$ref": "#/definitions/probability" },
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                        kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                        web: { type: "boolean", default: "true", title: "Display on Web?" },
+                      }
+                    }
+                  },
+                  2: {
+                    type: "array",
+                    title: "Resource Explanation",
+                    format: "table",
+                    options: {  disable_collapse: false, collapsed: true },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      properties: {
+                        probability: { "$ref": "#/definitions/probability" },
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                        kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                        web: { type: "boolean", default: "true", title: "Display on Web?" },
+                      }
+                    }
+                  },
+                  3: {
+                    type: "array",
+                    title: "Level Narration",
+                    format: "table",
+                    options: {  disable_collapse: false, collapsed: true },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      properties: {
+                        probability: { "$ref": "#/definitions/probability" },
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                        kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                        web: { type: "boolean", default: "true", title: "Display on Web?" },
+                      }
+                    }
+                  },
+                  4: {
+                    type: "array",
+                    title: "Conservation Suggestion",
+                    format: "table",
+                    options: {  disable_collapse: false, collapsed: true },
+                    items: {
+                      type: "object",
+                      title: "Message",
+                      properties: {
+                        probability: { "$ref": "#/definitions/probability" },
+                        text: { type: "string", title: "Text", format: "textarea" },
+                        state: { type: "string", "enum": ["electricity", "water", "stream", "weather"],title: "State" },
+                        kiosk: { type: "boolean", default: "true", title: "Display on Kiosk?" },
+                        web: { type: "boolean", default: "true", title: "Display on Web?" },
+                      }
+                    }
+                  },
+                }
+              },
+              timing: {
+                title: 'Timing',
+                options: { disable_collapse: false },
                 type: 'object',
                 format: 'grid',
                 properties: {
-                  title: {type: "string", title: "Title"},
-                  text: {type: "string", title: "Text", format: "textarea"},
-                  link: {type: "string", title: "Link"}
+                  delayBetweenMessages: {
+                    type: "number",
+                    title: 'Seconds for each message section',                  
+                  },
+                  delayBeforePlayMode: {
+                    type: 'number',
+                    title: 'Seconds before play mode'
+                  },
+                  delayWhenPlaying: {
+                    type: "number",
+                    title: 'Seconds on each screen when playing',
+                    description: "Allow enough time for every message section to display!"
+                  }
                 }
-              }
-            },
-            gauges: {
-              title: "Gauges",
-              options: {
-                disable_collapse: false,
-                collapsed: true,
-                no_additional_properties: false
               },
-              type: 'object',
-              additionalProperties: {
-                type: 'array',
+              landscape: {
+                title: 'Landscape Components',
                 options: {
                   disable_collapse: false,
-                  collapsed: true
+                  collapsed: true,
+                  no_additional_properties: false,
+                  disable_properties: false
                 },
-                items: {
+                type: 'object',
+                format: 'grid',
+                additionalProperties: {
                   type: 'object',
                   format: 'grid',
                   properties: {
-                    gaugeId: {
-                      type: "integer", title: "Gauge ID", 
-                      description: "http://www.buildingos.com/blocks/XX/"
-                    },
                     title: {type: "string", title: "Title"},
-                    text: {type: "string", title: "Description", format: "textarea"},
-                    link: {type: "string", title: "Link for more info"},
-                    buildingdash: {type: "string", title: "Link to building dashboard page"}
+                    image: {
+                      type: "string",
+                      title: "Image URL",
+                      description: "If blank, default image will be used.",
+                      default: "",
+                      links: [
+                        {
+                          "href": "img/{{self}}",
+                          "mediaType": "image/*"
+                        }
+                      ]
+                    },
+                    text: {type: "string", title: "Text", format: "textarea"},
+                    link: {type: "string", title: "Link"}
+                  }
+                }
+              },
+              gauges: {
+                title: "Gauges",
+                options: {
+                  disable_collapse: false,
+                  collapsed: true,
+                  no_additional_properties: false
+                },
+                type: 'object',
+                additionalProperties: {
+                  type: 'array',
+                  options: {
+                    disable_collapse: false,
+                    collapsed: true
+                  },
+                  items: {
+                    type: 'object',
+                    format: 'grid',
+                    properties: {
+                      gaugeId: {
+                        type: "integer", title: "Gauge ID", 
+                        description: "http://www.buildingos.com/blocks/XX/"
+                      },
+                      title: {type: "string", title: "Title"},
+                      text: {type: "string", title: "Description", format: "textarea"},
+                      link: {type: "string", title: "Link for more info"},
+                      buildingdash: {type: "string", title: "Link to building dashboard page"}
+                    }
                   }
                 }
               }
-            }
+            },
           },
           definitions: {
             probability: { title: "Probability", oneOf: [

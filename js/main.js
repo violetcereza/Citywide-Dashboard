@@ -14,7 +14,7 @@ var prefsAjax = $.get('prefs.json');
 var svgAjax = $.get('dashboard.svg');
 console.log(svgAjax, prefsAjax);
 window.setTimeout(function(){
-  prefs = prefsAjax.responseJSON;
+  prefs = prefsAjax.responseJSON[0];
   
   var draw = SVG('svg-container');
   draw.svg(svgAjax.responseText);
