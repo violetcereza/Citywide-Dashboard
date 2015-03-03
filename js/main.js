@@ -141,9 +141,9 @@ window.setTimeout(function(){
   updateGauges();
   
   var setCharacterAnim = function(anim) {
-    // if (character.attr('href') != 'img/'+anim+'.gif') {
-    //   character.attr('href', 'img/'+anim+'.gif');
-    // }
+    if (character.attr('src') != 'img/'+anim+'.mp4') {
+      character.attr('src', 'img/'+anim+'.mp4');
+    }
   }
   var setCharacter = function(character) {
     var bin = getBin();
