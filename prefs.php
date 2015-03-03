@@ -277,7 +277,7 @@ session_start();
                     format: 'grid',
                     properties: {
                       gaugeId: {
-                        type: "integer", title: "Gauge ID", 
+                        type: "string", title: "Gauge ID", 
                         description: "buildingos.com/blocks/XX/"
                       },
                       height: {
