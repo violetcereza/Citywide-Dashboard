@@ -14,7 +14,21 @@ var prefsAjax = $.get('prefs.json');
 var svgAjax = $.get('dashboard.svg');
 console.log(svgAjax, prefsAjax);
 window.setTimeout(function(){
-  prefs = prefsAjax.responseJSON[0];
+
+  // From http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  function getURLParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  // Search for the correct dashboard where name == "version" variable from url
+  var i = 0;
+  var dashboardName = getURLParameterByName('version').toLowerCase();
+  if (dashboardName.length > 0) {
+    while (prefsAjax.responseJSON[i].name.toLowerCase() != dashboardName) i++;
+  }
+  prefs = prefsAjax.responseJSON[i];
   
   var draw = SVG('svg-container');
   draw.svg(svgAjax.responseText);
@@ -23,6 +37,16 @@ window.setTimeout(function(){
   window.setTimeout(function() {
     $("#loader").hide();
   }, 2000);
+  
+  /***************************
+  ** Custom Building Images **
+  ***************************/
+  
+  for (clickable in prefs.landscape) {
+  	if (prefs.landscape[clickable].image.length > 1) {
+  	  SVG.get(clickable).attr('href', 'img/'+prefs.landscape[clickable].image);
+ 	}
+  }
   
   /*************************
   ** Continual animations **
@@ -61,7 +85,7 @@ window.setTimeout(function(){
   
   character.css("position", "absolute");
   gauges.css({position: "absolute", width: 286, height: 735});
-  if (window.location.search == "?kiosk") {
+  if (getURLParameterByName('context') == "kiosk") {
     SVG.get("top_menu_side").hide();
   }
   var rescaleElements = function() {
@@ -70,7 +94,7 @@ window.setTimeout(function(){
     var x = ($(document.body).width()-width)/2;
     
     var kioskMode = 0;
-    if (window.location.search == "?kiosk") {
+    if (getURLParameterByName('context') == "kiosk") {
       kioskMode = 1;
     }
 
@@ -161,7 +185,7 @@ window.setTimeout(function(){
         break;
       }
     }
-    setCharacterAnim(character+"/"+emote+(window.location.search == "?kiosk"?"-kiosk":""));
+    setCharacterAnim(character+"/"+emote+(getURLParameterByName('context') == "kiosk"?"-kiosk":""));
   }
   
   /***************************
@@ -174,7 +198,7 @@ window.setTimeout(function(){
           document.createTextNode( html ) ).parentNode.innerHTML;
   }
   
-  var messageHeight = window.location.search == "?kiosk"? 100 : 60;
+  var messageHeight = getURLParameterByName('context') == "kiosk"? 100 : 60;
   function resizeMessage() {
     // Resize text to fit container
     var interval;
@@ -226,10 +250,10 @@ window.setTimeout(function(){
         if ( moment().isAfter(moment(sourceMessages[i].endDate, "ddd MMM DD YYYY")) ) continue;
       }
       if (sourceMessages[i].kiosk == false) {
-        if ( window.location.search == "?kiosk" ) continue;
+        if ( getURLParameterByName('context') == "kiosk" ) continue;
       }
       if (sourceMessages[i].web == false) {
-        if ( window.location.search != "?kiosk" ) continue;
+        if ( getURLParameterByName('context') != "kiosk" ) continue;
       }
       
       selectedMessages.push(sourceMessages[i].text);
@@ -282,16 +306,18 @@ window.setTimeout(function(){
     callbacks: {
       onelectricity: function() {
         SVG.get('powerlines_lit').show();
+        SVG.get('powerlines_lit_back').show();
         setCharacter('squirrel');
     
         var startTime = new Date();
         var duration = 2;
-        $("#sparkpaths > path").each(function() {
+        $("#sparkpaths > path, #sparkpaths_back > path").each(function() {
           var path = this;
           var spark = draw.circle(15).move(-15,-15).fill(draw.gradient('radial', function(stop) {
             stop.at(0, "#FDF502")
             stop.at(1, '#FDCC02')
           })).attr("class", "spark");
+          path.instance.parent.after(spark);          
           var len = path.getTotalLength();
       
           intervalObjs.push(window.setInterval(function() {
@@ -315,7 +341,8 @@ window.setTimeout(function(){
         });                
       },
       onleaveelectricity:  function() {
-        SVG.get('powerlines_lit').hide()
+        SVG.get('powerlines_lit').hide();
+        SVG.get('powerlines_lit_back').hide();
         $(".spark").each(function() { this.instance.remove(); });
       },
       onwater: function() {
@@ -407,7 +434,7 @@ window.setTimeout(function(){
       onstate: function(event, from, to) {
         window.location.hash = to;
         
-        if (window.location.search == "?kiosk") {
+        if (getURLParameterByName('context') == "kiosk") {
           SVG.get('buttons').each(function() {
             this.hide();
           });
@@ -453,10 +480,10 @@ window.setTimeout(function(){
       }
     }
   });
-  if (window.location.search == "?noplay") {
+  if (getURLParameterByName('context') == "noplay") {
     SVG.get('play').hide();
   }
-  if (window.location.search == "?kiosk") {
+  if (getURLParameterByName('context') == "kiosk") {
     SVG.get('play').hide();
     SVG.get('top_menu').hide();
     fObj.move(200, 30);
@@ -491,7 +518,7 @@ window.setTimeout(function(){
       onaction: function() {
         var playState = this;
         playState.toWaiting();
-        if (window.location.search != "?noplay") {
+        if (getURLParameterByName('context') != "noplay") {
           playIntervalObj = window.setInterval(function() {
             playState.toPlaying();
           }, prefs.timing.delayBeforePlayMode*1000);
@@ -502,7 +529,7 @@ window.setTimeout(function(){
         SVG.get("pausetext").show();
         SVG.get('darkplay').show();
       
-        if (window.location.search != "?kiosk") {
+        if (getURLParameterByName('context') != "kiosk") {
           state.next();
         }
         playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
@@ -530,7 +557,7 @@ window.setTimeout(function(){
   ** Button Interaction **
   ***********************/
   
-  if (window.location.search != "?kiosk") {
+  if (getURLParameterByName('context') != "kiosk") {
   
     $("#buttons > image").each(function() {
       var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
