@@ -278,7 +278,12 @@ session_start();
                     properties: {
                       gaugeId: {
                         type: "integer", title: "Gauge ID", 
-                        description: "http://www.buildingos.com/blocks/XX/"
+                        description: "buildingos.com/blocks/XX/"
+                      },
+                      height: {
+                        type: "integer", title: "Gauge Height", 
+                        description: "190 for one line titles, 210 for two",
+                        default: 220
                       },
                       title: {type: "string", title: "Title"},
                       text: {type: "string", title: "Description", format: "textarea"},

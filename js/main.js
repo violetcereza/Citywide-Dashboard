@@ -87,7 +87,7 @@ window.setTimeout(function(){
     gauges.css({
       transform: 'scale('+scale+')',
       right: x+(20*scale)+'px',
-      top: 85*scale+(40*kioskMode*scale)+$("#top_menu").offset().top+"px",
+      top: 75*scale+(40*kioskMode*scale)+$("#top_menu").offset().top+"px",
       '-webkit-transform-origin': "top right",
       '-moz-transform-origin': "top right",
       '-ms-transform-origin': "top right",
@@ -110,7 +110,7 @@ window.setTimeout(function(){
     gauges.empty();
     if (prefs.gauges[state]) {
       for (var i = prefs.gauges[state].length - 1; i >= 0; i--) {
-        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="230" scrolling="no" width="286"></iframe>');
+        gauges.prepend('<iframe src="http://www.buildingos.com/blocks/'+prefs.gauges[state][i].gaugeId+'/" allowtransparency="true" frameBorder=0 height="'+prefs.gauges[state][i].height+'" scrolling="no" width="286"></iframe>');
       }
     }
   }
