@@ -8,7 +8,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Dashboard Preferences</title>
+    <title>City Wide Dashboard Preferences</title>
     <link rel="stylesheet" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="js/vendor/jsoneditor.js" type="text/javascript" charset="utf-8"></script>
     
@@ -72,6 +72,7 @@ session_start();
         <a href="prefs.php?logout=true" class="btn btn-default" role="button">Logout</a>
         <button type="button" class="btn btn-primary" id='submit'>Save</button>
       </div>
+      <a href="#" onclick="gotolive();">View Selected Version Live &rarr;</a>
     
       <span id='valid_indicator'></span>
       <span id='save_indicator'></span>
@@ -94,7 +95,17 @@ session_start();
       //   }
       // });
       
-      // Initialize the editor
+      function gotolive() {
+        // This is sooooo clunky
+        // It selects the currently active dashboard version based on css styles
+        var version = $("#editor_holder .col-md-2 .list-group-item.active").text();
+        if (version) {
+          window.location = "./?version="+version;
+        } else {
+          window.location = "./";
+        }
+      }
+      
       // Initialize the editor
       var editor = new JSONEditor(document.getElementById('editor_holder'), {        
         schema: {
