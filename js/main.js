@@ -101,7 +101,7 @@ window.setTimeout(function(){
     character.css({
       transform: 'scale('+scale+')',
       left: x+'px',
-      top: (-20*kioskMode*scale)+$("#top_menu").offset().top+"px",
+      top: $("#background").offset().top+"px",
       '-webkit-transform-origin': "top left",
       '-moz-transform-origin': "top left",
       '-ms-transform-origin': "top left",
@@ -111,7 +111,7 @@ window.setTimeout(function(){
     gauges.css({
       transform: 'scale('+scale+')',
       right: x+(20*scale)+'px',
-      top: 75*scale+(40*kioskMode*scale)+$("#top_menu").offset().top+"px",
+      top: 75*scale+$("#background").offset().top+"px",
       '-webkit-transform-origin': "top right",
       '-moz-transform-origin': "top right",
       '-ms-transform-origin': "top right",
@@ -489,7 +489,7 @@ window.setTimeout(function(){
     fObj.move(200, 30);
     SVG.get('buttons').each(function() {
       this.attr('transform', '');
-      this.center(1420, 60);
+      this.center(1420, 45);
       this.hide();
     });
     prefs.timing.delayBeforePlayMode = 0;
