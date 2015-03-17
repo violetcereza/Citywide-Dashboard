@@ -8,7 +8,7 @@ session_start();
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>City Wide Dashboard Preferences</title>
+    <title>Citywide Dashboard Preferences</title>
     <link rel="stylesheet" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="js/vendor/jsoneditor.js" type="text/javascript" charset="utf-8"></script>
     
@@ -112,15 +112,22 @@ session_start();
           type: "array",
           title: " ",
           format: "tabs",
+          options: {disable_array_delete: true, disable_array_reorder: true},
           items: {
             type: "object",
             title: "Dashboard Version",
             headerTemplate: "{{ self.name }}",
-            options: {disable_array_delete: true},
+            options: {disable_array_delete: false},
             properties: {
               name: {
                 type: "string",
                 title: "Dashboard Name"
+              },
+              disableLevels: {
+                type: "boolean",
+                format: "checkbox",
+                title: "Disable levels functionality",
+                description: "Since we can't yet access the relative use indicators from gauges, this disables Level Narration text and level-based character animations."
               },
               messageSections: {
                 title: "Messages",
@@ -264,6 +271,10 @@ session_start();
                         }
                       ]
                     },
+                    imageWidth: {type: "integer", title: "Custom Image Width"},
+                    imageHeight: {type: "integer", title: "Custom Image Height"},
+                    imageXOffset: {type: "integer", title: "Custom Image X Position Offset"},
+                    imageYOffset: {type: "integer", title: "Custom Image Y Position Offset"},
                     text: {type: "string", title: "Text", format: "textarea"},
                     link: {type: "string", title: "Link"}
                   }

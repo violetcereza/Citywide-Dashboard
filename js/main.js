@@ -44,8 +44,21 @@ window.setTimeout(function(){
   
   for (clickable in prefs.landscape) {
   	if (prefs.landscape[clickable].image.length > 1) {
-  	  SVG.get(clickable).attr('href', 'img/'+prefs.landscape[clickable].image);
- 	}
+      var el = SVG.get(clickable);
+  	  el.attr('href', 'img/'+prefs.landscape[clickable].image);
+      if (prefs.landscape[clickable].imageWidth) {
+        el.width(prefs.landscape[clickable].imageWidth);
+      }
+      if (prefs.landscape[clickable].imageHeight) {
+        el.height(prefs.landscape[clickable].imageHeight);
+      }
+      if (prefs.landscape[clickable].imageXOffset) {
+        el.dx(prefs.landscape[clickable].imageXOffset);
+      }
+      if (prefs.landscape[clickable].imageYOffset) {
+        el.dy(prefs.landscape[clickable].imageYOffset);
+      }
+ 	  }
   }
   
   /*************************
@@ -122,11 +135,15 @@ window.setTimeout(function(){
   window.setInterval(rescaleElements, 1000);
   
   var getBin = function() {
-    // TODO; bins
-    if (false){//gaugesIFrame.get(0).contentWindow.getBin) {
-      return gaugesIFrame.get(0).contentWindow.getBin();
+    if (prefs.disableLevels) {
+      return 3;
     } else {
-      return 1;
+      // TODO; bins
+      if (false){//gaugesIFrame.get(0).contentWindow.getBin) {
+        return gaugesIFrame.get(0).contentWindow.getBin();
+      } else {
+        return 3;
+      }
     }
   }
   var updateGauges = function(state) {
@@ -197,6 +214,8 @@ window.setTimeout(function(){
       return document.createElement( 'a' ).appendChild( 
           document.createTextNode( html ) ).parentNode.innerHTML;
   }
+  
+  // Rotating top messages
   
   var messageHeight = getURLParameterByName('context') == "kiosk"? 100 : 60;
   function resizeMessage() {
@@ -290,6 +309,7 @@ window.setTimeout(function(){
     text.text(htmlEncode(getRandomItem(selectedMessages, selectedWeights)));
     resizeMessage();
   }
+  selectMessage(0);
       
   var intervalObjs = [];
   var state = StateMachine.create({
@@ -460,6 +480,8 @@ window.setTimeout(function(){
           selectMessage(messageSection+1);
           intervalObjs.push(window.setInterval(function() {
             messageSection = (messageSection+1) % 4//(prefs.messageSections.length-1);
+            // When levels are disabled, skip Level Narration
+            if (prefs.disableLevels && (messageSection+1) == 3) messageSection++;
             selectMessage(messageSection+1);
           }, prefs.timing.delayBetweenMessages*1000));
         }
@@ -493,6 +515,7 @@ window.setTimeout(function(){
       this.hide();
     });
     prefs.timing.delayBeforePlayMode = 0;
+    state.toElectricity();
   }
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
