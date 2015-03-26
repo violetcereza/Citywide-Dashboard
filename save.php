@@ -1,6 +1,5 @@
 <?php
   require("config.php");
-  session_start();
   
   if (logged_in()) {
     print_r($_POST['data']);

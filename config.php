@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * These are the login details
  */  

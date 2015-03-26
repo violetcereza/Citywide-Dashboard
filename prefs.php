@@ -1,7 +1,9 @@
 <?php
 
 require("config.php");
-session_start();
+if (!logged_in()) {
+  header("Location: ./login.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,42 +39,13 @@ session_start();
   </head>
   <body style="margin: 20px">
     <h1>Dashboard Preferences</h1>
-
-<?php if (!logged_in()) { ?>
-<div style="max-width: 500px; margin: 0 auto;">
-  <h2>Log In</h2>
-  <form class="form-horizontal" method="post">
-    <div class="form-group">
-      <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-      <div class="col-sm-10">
-        <input class="form-control" id="inputUsername" name="username" placeholder="Username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Sign in</button>
-      </div>
-    </div>
-  </form>
-</div>
-</body>
-</html>
-<?php
-} else {
-?>    
     
     <div id="nav">
       <div class="btn-group" role="group">
         <a href="prefs.php?logout=true" class="btn btn-default" role="button">Logout</a>
         <button type="button" class="btn btn-primary" id='submit'>Save</button>
       </div>
-      <a href="#" onclick="gotolive();">View Selected Version Live &rarr;</a>
+      <a href="./" id="gotolive" target="_blank">View Selected Version Live &rarr;</a>
     
       <span id='valid_indicator'></span>
       <span id='save_indicator'></span>
@@ -83,29 +56,6 @@ session_start();
     <script>
       var starting_value = <?php echo file_get_contents('prefs.json'); ?>;
             
-      // JSONEditor.defaults.resolvers.unshift(function(schema) {
-      //   if(schema.type === "object" && schema.format === "bins") {
-      //     return "bins";
-      //   }
-      // });
-      //
-      // JSONEditor.defaults.editors.bins = JSONEditor.AbstractEditor.extend({
-      //   build: function() {
-      //     console.log("hi");
-      //   }
-      // });
-      
-      function gotolive() {
-        // This is sooooo clunky
-        // It selects the currently active dashboard version based on css styles
-        var version = $("#editor_holder .col-md-2 .list-group-item.active").text();
-        if (version) {
-          window.location = "./?version="+version;
-        } else {
-          window.location = "./";
-        }
-      }
-      
       // Initialize the editor
       var editor = new JSONEditor(document.getElementById('editor_holder'), {        
         schema: {
@@ -389,7 +339,17 @@ session_start();
         
         save();
       });
+      
+      // This is sooooo clunky
+      // It selects the currently active dashboard version based on css styles
+      function updateGoToLiveLink() {
+        var version = $("#editor_holder .col-md-2 .list-group-item.active").text();
+        $("#gotolive").attr("href", "./?version="+version);
+      }
+      updateGoToLiveLink();
+      $("#editor_holder .col-md-2 .list-group-item").on('click', function() {
+        updateGoToLiveLink();
+      });
     </script>
   </body>
 </html>
-<?php } ?>

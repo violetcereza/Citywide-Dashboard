@@ -593,12 +593,16 @@ window.setTimeout(function(){
           SVG.get(thisState+"_hover").show();
         }
       });
-      this.instance.mouseout(function() {
+      var button = this.instance;
+      var mouseout = function() {
         if (!state.is(thisState) && thisType=="hover") {
-          this.hide();
+          button.hide();
           SVG.get(thisState).show();
         }
-      });
+      };
+      this.instance.mouseleave(mouseout);
+      // This still doesn't completely eliminate hover bugs, if you move the mouse rapidly down crossing the button >:(
+      $(document).mouseleave(mouseout);
       this.instance.click(function() {
         if (thisState == state.current) { return; }
       
@@ -656,7 +660,11 @@ window.setTimeout(function(){
       playState.actioned();
       var dscr = prefs.landscape[this.attr('id')];
       $(".popup").remove();
-      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a href="'+dscr.link+'" target="_blank" >Read more</a></p></div>');
+      var text = dscr.text;
+      if (dscr.link) {
+        text += ' <a href="'+dscr.link+'" target="_blank" >Read more</a>';
+      }
+      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+'</p></div>');
       popup.find(".close").click(function() { popup.remove() });
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
@@ -678,7 +686,14 @@ window.setTimeout(function(){
     
     playState.actioned();
     $(".popup").remove();
-    var popup = $('<div class="popup"><h1>'+dscr.title+'</h1><p>'+dscr.text+' <a target="_blank" href="'+dscr.link+'">Read more</a> or <a target="_blank" href="'+dscr.buildingdash+'">View on Building Dashboard</a></p></div>');
+    var text = dscr.text;
+    if (dscr.link) {
+      text += ' <a target="_blank" href="'+dscr.link+'">Read more</a>';
+    }
+    if (dscr.buildingdash) {
+      text += ' or <a target="_blank" href="'+dscr.buildingdash+'">View on Building Dashboard</a>';
+    }
+    var popup = $('<div class="popup"><h1>'+dscr.title+'</h1><p>'+dscr.text+'</p></div>');
     popup.mouseenter(function() {
       this.isOver = true;
     });
