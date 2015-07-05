@@ -79,6 +79,17 @@ if (!logged_in()) {
                 title: "Disable levels functionality",
                 description: "Since we can't yet access the relative use indicators from gauges, this disables Level Narration text and level-based character animations."
               },
+              buttonLabels: {
+                title: "Button Labels",
+                type: 'object',
+                format: 'grid',
+                properties: {
+                  electricity: { type: "string" },
+                  water: { type: "string" },
+                  stream: { type: "string" },
+                  weather: { type: "string" }
+                }
+              },
               messageSections: {
                 title: "Messages",
                 type: "object",

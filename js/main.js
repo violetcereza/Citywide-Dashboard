@@ -459,6 +459,7 @@ window.setTimeout(function(){
             this.hide();
           });
           SVG.get(to).show();
+          SVG.get(to+"_label").show();
         } else {
           // top menu buttons
           SVG.get(to).hide();
@@ -510,13 +511,32 @@ window.setTimeout(function(){
     SVG.get('top_menu').hide();
     fObj.move(200, 30);
     SVG.get('buttons').each(function() {
-      this.attr('transform', '');
-      this.center(1420, 45);
       this.hide();
+      this.attr('transform', '');
+      if (this.node.tagName == "image") {
+        this.center(1420, 45);
+      } else if (this.node.tagName == "text") {      
+        this.center(1400, 45);
+      }
     });
     prefs.timing.delayBeforePlayMode = 0;
     state.toElectricity();
   }
+  
+  // Set up the button labels with prefs
+  SVG.get('buttons').each(function() {
+    if (this.node.tagName == "text") {      
+      // Trims the "_label" off of "electricity_label" etc
+      var type = this.attr("id").slice(0, -6);
+      if (prefs.buttonLabels[type]) {
+        this.text(prefs.buttonLabels[type]);
+      }
+      
+      // IDK why svg.js creates a tspan child for each text element and adds a "dy" property ¯\_(ツ)_/¯
+      this.node.childNodes[0].instance.attr({dy: "", dx:""});
+      this.style({ "pointer-events": 'none' });
+    }
+  });
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
@@ -627,6 +647,7 @@ window.setTimeout(function(){
   }
   
   var hoverFilter;
+  if (getURLParameterByName('context') != "kiosk")
   $("#clickables > *").each(function() {
     clickable = this.instance;
     
