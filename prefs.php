@@ -306,11 +306,11 @@ if (!logged_in()) {
             var currentdate = new Date(); 
             indicator.textContent = "Saved "+ currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();;
             console.log(arguments);
-          }).error(function() {
+          }).error(function(request) {
             console.log(arguments);
             $('#submit').html('Save');
             indicator.style.color = 'red';
-            indicator.textContent = "Wrong username/passsword";
+            indicator.textContent = request.responseText;
           });
       }
       
@@ -341,7 +341,7 @@ if (!logged_in()) {
       });
       
       // This is sooooo clunky
-      // It selects the currently active dashboard version based on css styles
+      // It selects the currently active dashboard version based on css styles (for the "go to live" link)
       function updateGoToLiveLink() {
         var version = $("#editor_holder .col-md-2 .list-group-item.active").text();
         $("#gotolive").attr("href", "./?version="+version);
