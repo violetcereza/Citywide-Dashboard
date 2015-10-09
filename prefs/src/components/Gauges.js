@@ -7,16 +7,16 @@ var Gauges = React.createClass({
     return (
       <Tabs defaultActiveKey={1} position="left" animation={false}>
         <Tab eventKey={1} title="Electricity">
-          <GaugeList gauges={gauges.electricity} type="intro" />
+          <GaugeList gauges={gauges.electricity} />
         </Tab>
         <Tab eventKey={2} title="Water">
-          <GaugeList gauges={gauges.water} type="intro" />
+          <GaugeList gauges={gauges.water} />
         </Tab>
         <Tab eventKey={3} title="Stream">
-          <GaugeList gauges={gauges.stream} type="intro" />
+          <GaugeList gauges={gauges.stream} />
         </Tab>
         <Tab eventKey={4} title="Weather">
-          <GaugeList gauges={gauges.weather} type="intro" />
+          <GaugeList gauges={gauges.weather} />
         </Tab>
       </Tabs>
     );
