@@ -24,6 +24,7 @@ var Messages = React.createClass({
     );
   }
 });
+module.exports = Messages;
 
 var MessageTable = React.createClass({
   render: function() {
@@ -103,5 +104,3 @@ var MessageProbabilityField = React.createClass({
     }
   }
 });
-
-module.exports = Messages;
