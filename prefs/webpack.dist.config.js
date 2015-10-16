@@ -18,7 +18,7 @@ module.exports = {
 
   debug: false,
   devtool: false,
-  entry: './src/components/CwdApp.js',
+  entry: './src/components/PrefsForm.js',
 
   stats: {
     colors: true,

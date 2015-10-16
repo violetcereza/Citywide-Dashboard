@@ -1,4 +1,5 @@
 var React = require('react/addons');
+//var update = require('react-addons-update');
 import { Input, Tabs, Tab, Table } from 'react-bootstrap';
 
 var Messages = React.createClass({
@@ -6,7 +7,7 @@ var Messages = React.createClass({
     return (
       <Tabs defaultActiveKey={1} position="left" tabWidth={2} animation={false}>
         <Tab eventKey={1} title="Introduction Narration">
-          <MessageTable messages={this.props.messages[0]} type="intro" />
+          <MessageTable stateStore={this.props.stateStore} messages={this.props.messages[0]} type="intro" />
         </Tab>
         <Tab eventKey={2} title="Resource Category">
           <MessageStateSelector messages={this.props.messages[1]} type="intro" />
@@ -27,13 +28,27 @@ var Messages = React.createClass({
 module.exports = Messages;
 
 var MessageTable = React.createClass({
+  handleChange: function(event) {
+    this.props.stateStore.setState(React.addons.update(this.props.stateStore.state, {
+      messageSections: {
+        0: {
+          0: {
+            text: {
+              $set: event.target.value
+            }
+          }
+        }
+      }
+    }));
+  },
   render: function() {
+    var messageTable = this;
     var createRow = function(message, index) {
       return (
         // TODO: make separate class? figure out key= thing. allow deletion etc.
         <tr key={message.key || index}>
           <td><MessageProbabilityField probability={message.probability} /></td>
-          <td><Input type="textarea" placeholder="Message Text" value={message.text} /></td>
+          <td><Input onChange={messageTable.handleChange} type="textarea" placeholder="Message Text" value={message.text} index={index} /></td>
           <td></td>
         </tr>
       );

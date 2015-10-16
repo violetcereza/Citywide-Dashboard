@@ -1,4 +1,5 @@
 var React = require('react/addons');
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 // CSS
 require('normalize.css');
@@ -8,20 +9,16 @@ require('../styles/main.css');
 import { Input, PageHeader, Tabs, Tab } from 'react-bootstrap';
 require('bootstrap/dist/css/bootstrap.css');
 
-var CwdApp = React.createClass({
-  render: function() {
-    return (
-      <PrefsForm />
-    );
-  }
-});
-
 var prefsData = require('json!../prefs.json')[0];
 var Messages = require('./Messages.js');
 var Timing = require('./Timing.js');
 var LandscapeComponents = require('./LandscapeComponents.js');
 var Gauges = require('./Gauges.js');
 var PrefsForm = React.createClass({
+  mixins: [LinkedStateMixin],
+  getInitialState: function() {
+    return require('json!../prefs.json')[0];
+  },
   render: function() {
     return (
       <form className="form-horizontal">
@@ -31,7 +28,7 @@ var PrefsForm = React.createClass({
                value={this.props.prefs.name} />
         <Tabs defaultActiveKey={1} animation={false}>
           <Tab eventKey={1} title="Messages">
-            <Messages messages={this.props.prefs.messageSections} />
+            <Messages stateStore={this} stateAccess={ function(x) { return {messageSections: x}; } } valueLink={this.linkState('messageSections')} messages={this.state.messageSections} />
           </Tab>
           <Tab eventKey={2} title="Timing">
             <Timing timing={this.props.prefs.timing} />
@@ -50,4 +47,4 @@ var PrefsForm = React.createClass({
 
 React.render(<PrefsForm prefs={prefsData} />, document.getElementById('content')); // jshint ignore:line
 
-module.exports = CwdApp;
+module.exports = PrefsForm;

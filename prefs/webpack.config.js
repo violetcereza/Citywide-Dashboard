@@ -19,7 +19,7 @@ module.exports = {
   devtool: 'sourcemap',
   entry: [
       'webpack/hot/only-dev-server',
-      './src/components/CwdApp.js'
+      './src/components/PrefsForm.js'
   ],
 
   stats: {
