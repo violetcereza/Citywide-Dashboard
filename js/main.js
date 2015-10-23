@@ -1,10 +1,10 @@
 // Because Illustrator modifies attr and not style, so showing does work unless we do too
 SVG.extend(SVG.Element, {
   hide: function() {
-    return this.attr('display', 'none')
+    return this.attr('display', 'none');
   },
   show: function() {
-    return this.attr('display', '')
+    return this.attr('display', '');
   }
 });
 
@@ -685,7 +685,7 @@ window.setTimeout(function(){
       if (dscr.link) {
         text += ' <a href="'+dscr.link+'" target="_blank" >Read more</a>';
       }
-      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+dscr.text+'</p></div>');
+      var popup = $('<div class="popup"><span class="close">X</span><h1>'+dscr.title+'</h1><p>'+text+'</p></div>');
       popup.find(".close").click(function() { popup.remove() });
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
