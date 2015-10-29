@@ -6,6 +6,9 @@ var Gauges = React.createClass({
     var gauges = this.props.gauges;
     return (
       <Tabs defaultActiveKey={1} position="left" animation={false}>
+        <Tab eventKey={4} title="Landing Page">
+          <GaugeList gauges={gauges.none} />
+        </Tab>
         <Tab eventKey={1} title="Electricity">
           <GaugeList gauges={gauges.electricity} />
         </Tab>
@@ -34,7 +37,7 @@ var GaugeList = React.createClass({
       );
     };
     return (
-      <Grid fluid="true">
+      <Grid fluid={true}>
         {Object.keys(gauges).map(createRow)}
       </Grid>
     );

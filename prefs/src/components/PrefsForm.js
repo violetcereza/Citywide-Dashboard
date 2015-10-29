@@ -22,13 +22,13 @@ var PrefsForm = React.createClass({
   render: function() {
     return (
       <form className="form-horizontal">
-        <PageHeader>City Wide Dashboard Preferences</PageHeader>
+        <PageHeader>Citywide Dashboard Preferences</PageHeader>
         <Input type="text" label="Dashboard Name"
                placeholder="The title of this dashboard"
                value={this.props.prefs.name} />
         <Tabs defaultActiveKey={1} animation={false}>
           <Tab eventKey={1} title="Messages">
-            <Messages stateStore={this} stateAccess={ function(x) { return {messageSections: x}; } } valueLink={this.linkState('messageSections')} messages={this.state.messageSections} />
+            <Messages stateStore={this} messages={this.state.messageSections} />
           </Tab>
           <Tab eventKey={2} title="Timing">
             <Timing timing={this.props.prefs.timing} />

@@ -29,17 +29,19 @@ module.exports = Messages;
 
 var MessageTable = React.createClass({
   handleChange: function(event) {
-    this.props.stateStore.setState(React.addons.update(this.props.stateStore.state, {
+    var updateCommand = {
       messageSections: {
-        0: {
-          0: {
-            text: {
-              $set: event.target.value
-            }
-          }
-        }
+        0: {}
       }
-    }));
+    };
+    updateCommand.messageSections[0][event.target.index] = {
+      text: {
+        $set: event.target.value
+      }
+    };
+    console.log(event.target.props);
+    console.log(updateCommand);
+    this.props.stateStore.setState(React.addons.update(this.props.stateStore.state, updateCommand));
   },
   render: function() {
     var messageTable = this;
