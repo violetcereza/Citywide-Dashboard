@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var LinkedStateMixin = require('react-addons-linked-state-mixin');
 
 // CSS
 require('normalize.css');
@@ -9,42 +8,46 @@ require('../styles/main.css');
 import { Input, PageHeader, Tabs, Tab } from 'react-bootstrap';
 require('bootstrap/dist/css/bootstrap.css');
 
-var prefsData = require('json!../prefs.json')[0];
 var Messages = require('./Messages.js');
 var Timing = require('./Timing.js');
 var LandscapeComponents = require('./LandscapeComponents.js');
 var Gauges = require('./Gauges.js');
+
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var PrefsForm = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState: function() {
     return require('json!../prefs.json')[0];
   },
+  handleStateChange: function(updateCommand) {
+    this.setState(React.addons.update(this.state, updateCommand));
+  },
   render: function() {
     return (
-      <form className="form-horizontal">
+      <div>
         <PageHeader>Citywide Dashboard Preferences</PageHeader>
         <Input type="text" label="Dashboard Name"
                placeholder="The title of this dashboard"
-               value={this.props.prefs.name} />
-        <Tabs defaultActiveKey={1} animation={false}>
-          <Tab eventKey={1} title="Messages">
-            <Messages stateStore={this} messages={this.state.messageSections} />
+               valueLink={this.linkState('name')} />
+        <Tabs defaultActiveKey={1} animation={false} >
+          <Tab eventKey={1} title="Messages" style={{marginTop: 20}}>
+            <Messages parentHandleStateChange={this.handleStateChange} messages={this.state.messageSections} />
           </Tab>
-          <Tab eventKey={2} title="Timing">
-            <Timing timing={this.props.prefs.timing} />
+          <Tab eventKey={2} title="Timing" style={{marginTop: 20}}>
+            <Timing timing={this.state.timing} />
           </Tab>
-          <Tab eventKey={3} title="Landscape Components">
-            <LandscapeComponents components={this.props.prefs.landscape} />
+          <Tab eventKey={3} title="Landscape Components" style={{marginTop: 20}}>
+            <LandscapeComponents components={this.state.landscape} />
           </Tab>
-          <Tab eventKey={4} title="Gauges">
-            <Gauges gauges={this.props.prefs.gauges} />
+          <Tab eventKey={4} title="Gauges" style={{marginTop: 20}}>
+            <Gauges gauges={this.state.gauges} />
           </Tab>
         </Tabs>
-      </form>
+      </div>
     );
   }
 });
 
-React.render(<PrefsForm prefs={prefsData} />, document.getElementById('content')); // jshint ignore:line
+React.render(<PrefsForm />, document.getElementById('content')); // jshint ignore:line
 
 module.exports = PrefsForm;
