@@ -31,10 +31,10 @@ var PrefsForm = React.createClass({
                valueLink={this.linkState('name')} />
         <Tabs defaultActiveKey={1} animation={false} >
           <Tab eventKey={1} title="Messages" style={{marginTop: 20}}>
-            <Messages parentHandleStateChange={this.handleStateChange} messages={this.state.messageSections} />
+            <Messages messages={this.state.messageSections} parentHandleStateChange={this.handleStateChange} />
           </Tab>
           <Tab eventKey={2} title="Timing" style={{marginTop: 20}}>
-            <Timing timing={this.state.timing} />
+            <Timing timing={this.state.timing} parentHandleStateChange={this.handleStateChange} />
           </Tab>
           <Tab eventKey={3} title="Landscape Components" style={{marginTop: 20}}>
             <LandscapeComponents components={this.state.landscape} />
