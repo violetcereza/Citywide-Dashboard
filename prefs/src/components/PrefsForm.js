@@ -5,7 +5,7 @@ require('normalize.css');
 require('../styles/main.css');
 
 // BOOTSTRAP
-import { Input, PageHeader, Tabs, Tab } from 'react-bootstrap';
+import { PageHeader, Tabs, Tab } from 'react-bootstrap';
 require('bootstrap/dist/css/bootstrap.css');
 
 var Messages = require('./Messages.js');
@@ -13,9 +13,7 @@ var Timing = require('./Timing.js');
 var LandscapeComponents = require('./LandscapeComponents.js');
 var Gauges = require('./Gauges.js');
 
-var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var PrefsForm = React.createClass({
-  mixins: [LinkedStateMixin],
   getInitialState: function() {
     return require('json!../prefs.json')[0];
   },
@@ -25,10 +23,7 @@ var PrefsForm = React.createClass({
   render: function() {
     return (
       <div>
-        <PageHeader>Citywide Dashboard Preferences</PageHeader>
-        <Input type="text" label="Dashboard Name"
-               placeholder="The title of this dashboard"
-               valueLink={this.linkState('name')} />
+        <DashboardName name={this.state.name} parentHandleStateChange={this.handleStateChange} />
         <Tabs defaultActiveKey={1} animation={false} >
           <Tab eventKey={1} title="Messages" style={{marginTop: 20}}>
             <Messages messages={this.state.messageSections} parentHandleStateChange={this.handleStateChange} />
@@ -45,6 +40,43 @@ var PrefsForm = React.createClass({
         </Tabs>
       </div>
     );
+  }
+});
+
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var DashboardName = React.createClass({
+  mixins: [LinkedStateMixin],
+  getInitialState: function() {
+    return { editing: false };
+  },
+  toEditMode: function() {
+    this.setState({
+      editing: true,
+      name: this.props.name
+    });
+  },
+  saveChanges: function() {
+    var updateCommand = {};
+    updateCommand.name = {
+      $set: this.state.name
+    };
+    this.props.parentHandleStateChange(updateCommand);
+    this.setState({ editing: false });
+  },
+  render: function() {
+    if (this.state.editing === false) {
+      return (
+        <PageHeader>Citywide Dashboard Preferences: <a onClick={this.toEditMode}>{this.props.name}</a>
+        </PageHeader>
+      );
+    } else {
+      return (
+        <PageHeader>Citywide Dashboard Preferences:
+            <input type="text" placeholder="Dashboard Name"
+            valueLink={this.linkState('name')} onBlur={this.saveChanges} />
+        </PageHeader>
+      );
+    }
   }
 });
 
