@@ -1,5 +1,4 @@
 var React = require('react/addons');
-//var update = require('react-addons-update');
 import { Input, Tabs, Tab, Table, Button } from 'react-bootstrap';
 
 var Messages = React.createClass({
@@ -27,19 +26,19 @@ var Messages = React.createClass({
     return (
       <Tabs defaultActiveKey={1} position="left" tabWidth={2} animation={false}>
         <Tab eventKey={1} title="Introduction Narration">
-          <MessageTable parentHandleStateChange={this.handleStateChange} stateStore={this.props.stateStore} section={0} messages={this.props.messages[0]} type="intro" />
+          <MessageTable parentHandleStateChange={this.handleStateChange} section={0} messages={this.props.messages[0]} />
         </Tab>
         <Tab eventKey={2} title="Resource Category">
-          <MessageStateSelector section={1} messages={this.props.messages[1]} type="intro" />
+          <MessageStateSelector parentHandleStateChange={this.handleStateChange} section={1} messages={this.props.messages[1]} />
         </Tab>
         <Tab eventKey={3} title="Resource Explanation">
-          <MessageStateSelector section={2} messages={this.props.messages[2]} type="intro" />
+          <MessageStateSelector parentHandleStateChange={this.handleStateChange} section={2} messages={this.props.messages[2]} />
         </Tab>
         <Tab eventKey={4} title="Level Narration">
-          <MessageStateSelector section={3} messages={this.props.messages[3]} type="intro" />
+          <MessageStateSelector parentHandleStateChange={this.handleStateChange} section={3} messages={this.props.messages[3]} />
         </Tab>
         <Tab eventKey={5} title="Conservation Suggestion">
-          <MessageStateSelector section={4} messages={this.props.messages[4]} type="intro" />
+          <MessageStateSelector parentHandleStateChange={this.handleStateChange} section={4} messages={this.props.messages[4]} />
         </Tab>
       </Tabs>
     );
@@ -99,16 +98,16 @@ var MessageStateSelector = React.createClass({
     return (
       <Tabs defaultActiveKey={1} position="top" animation={false}>
         <Tab eventKey={1} title="Electricity">
-          <MessageTable messages={filterToState('electricity')} type="intro" />
+          <MessageTable messages={filterToState('electricity')} parentHandleStateChange={this.props.parentHandleStateChange} section={this.props.section} />
         </Tab>
         <Tab eventKey={2} title="Water">
-          <MessageTable messages={filterToState('water')} type="intro" />
+          <MessageTable messages={filterToState('water')} parentHandleStateChange={this.props.parentHandleStateChange} section={this.props.section} />
         </Tab>
         <Tab eventKey={3} title="Stream">
-          <MessageTable messages={filterToState('stream')} type="intro" />
+          <MessageTable messages={filterToState('stream')} parentHandleStateChange={this.props.parentHandleStateChange} section={this.props.section} />
         </Tab>
         <Tab eventKey={4} title="Weather">
-          <MessageTable messages={filterToState('weather')} type="intro" />
+          <MessageTable messages={filterToState('weather')} parentHandleStateChange={this.props.parentHandleStateChange} section={this.props.section} />
         </Tab>
       </Tabs>
     );
@@ -184,26 +183,32 @@ var MessageProbabilityText = React.createClass({
   }
 });
 
+var update = require('react-addons-update');
 var MessageProbabilityField = React.createClass({
   render: function() {
-    var probability = this.props.probability;
-    console.log(this.props.valueLink);
+    var probability = this.props.valueLink.value;
     if (isNaN(probability)) {
+
       var inputs = [];
+      var valueLink = this.props.valueLink;
+      var handleChange = function(event) {
+        var updateCommand = {};
+        updateCommand[this.props.objKey] = {$set: event.target.value};
+        valueLink.requestChange(update(probability, updateCommand));
+      };
       for(var key in probability) {
         inputs.push(
-          <input bsSize="small" type="text" value={probability[key]} />
+          <input bsSize="small" type="text" value={probability[key]} onChange={handleChange} objKey={key} />
         );
       }
-      return (
-        <div>
-          { inputs }
-        </div>
-      );
+      return (<div>{ inputs }</div>);
+
     } else {
+
       return (
         <Input type="text" placeholder="Probability" valueLink={this.props.valueLink} />
       );
+
     }
   }
 });

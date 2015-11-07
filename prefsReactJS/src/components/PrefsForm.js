@@ -13,12 +13,13 @@ var Timing = require('./Timing.js');
 var LandscapeComponents = require('./LandscapeComponents.js');
 var Gauges = require('./Gauges.js');
 
+var update = require('react-addons-update');
 var PrefsForm = React.createClass({
   getInitialState: function() {
     return require('json!../prefs.json')[0];
   },
   handleStateChange: function(updateCommand) {
-    this.setState(React.addons.update(this.state, updateCommand));
+    this.setState(update(this.state, updateCommand));
   },
   render: function() {
     return (
