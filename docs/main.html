@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>main.js aka partie central</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="main-js-aka-partie-central">main.js aka partie central</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h1 id="a-vocab-lesson">A Vocab Lesson</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p><em>Gauge:</em> The blocks on the right side from building dashboard</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p><em>Bin/level:</em> The relative use indicator on the gauge. We were thinking of using the top gauge for whatever state you’re in</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p><em>State:</em> Water, Electricity, Stream, or Weather</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><em>Button:</em> Mainly refers to the state buttons at the top of the dashboard.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p><em>Message:</em> The text below the state buttons at the top. It has several different “message sections” that it shifts through every couple seconds. Some sections are state dependent, some are even bin dependent. </p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p><em>Landscape components/clickables:</em> Everything you see on the landscape that lights up and you can click on it to see a description.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p><em>Character:</em> The little squirrel or fish in the top left.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h1 id="url-functionality">URL functionality</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h2 id="-state">#state</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Jump to state.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2 id="-version-cleveland">?version=cleveland</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Access different versions of the dashboard via their name on the prefs page.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h2 id="-context-noplay">?context=noplay</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Hide play button and don’t automatically start playing. For presentations and stuff where you want to stick to one state and talk about it.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h2 id="-context-kiosk">?context=kiosk</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Hide state buttons and automatically start playing. A lot cleaner visually for when the user won’t be able to click.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Because Illustrator modifies attr and not style, so showing with svg.js doesn’t work unless we do too</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>SVG.extend(SVG.Element, {
+  hide: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.attr(<span class="hljs-string">'display'</span>, <span class="hljs-string">'none'</span>)
+  },
+  show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.attr(<span class="hljs-string">'display'</span>, <span class="hljs-string">''</span>)
+  }
+});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>First, retrieve the svg file and the prefs JSON file</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> prefs;
+<span class="hljs-keyword">var</span> prefsAjax = $.get(<span class="hljs-string">'prefs.json'</span>);
+<span class="hljs-keyword">var</span> svgAjax = $.get(<span class="hljs-string">'dashboard.svg'</span>);
+<span class="hljs-built_in">console</span>.log(svgAjax, prefsAjax);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>We wait until they are both loaded before hiding the loading screen (this is a clunky hardcoded wating time)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">window</span>.setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h1 id="url-processing-setting-up-svg">URL processing, setting up SVG</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>From <a href="http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript">http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getURLParameterByName</span><span class="hljs-params">(name)</span> </span>{
+    name = name.replace(<span class="hljs-regexp">/[\[]/</span>, <span class="hljs-string">"\\["</span>).replace(<span class="hljs-regexp">/[\]]/</span>, <span class="hljs-string">"\\]"</span>);
+    <span class="hljs-keyword">var</span> regex = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">"[\\?&amp;]"</span> + name + <span class="hljs-string">"=([^&amp;#]*)"</span>),
+        results = regex.exec(location.search);
+    <span class="hljs-keyword">return</span> results === <span class="hljs-literal">null</span> ? <span class="hljs-string">""</span> : <span class="hljs-built_in">decodeURIComponent</span>(results[<span class="hljs-number">1</span>].replace(<span class="hljs-regexp">/\+/g</span>, <span class="hljs-string">" "</span>));
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Search for the correct dashboard where name == “?version=” from url</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> dashboardName = getURLParameterByName(<span class="hljs-string">'version'</span>).toLowerCase();
+  <span class="hljs-keyword">if</span> (dashboardName.length &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">while</span> (prefsAjax.responseJSON[i].name.toLowerCase() != dashboardName) i++;
+  }
+  prefs = prefsAjax.responseJSON[i];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>TEST OF WORDPRESS PREFS please delete in the future.
+This just replaces the default starting text with the wordpress setting.
+The variable wpSetting come from index.php, where it is retrieved via php.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  prefs.messageSections[<span class="hljs-number">0</span>] = [{<span class="hljs-string">"text"</span>: wpSetting, <span class="hljs-string">"probability"</span>:<span class="hljs-number">10</span>, <span class="hljs-string">"kiosk"</span>:<span class="hljs-literal">true</span>, <span class="hljs-string">"web"</span>:<span class="hljs-literal">true</span>}];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Put the loaded SVG on the page and hide the loading screen.
+Maybe it would make more sense to have the SVG hardcoded into index.php?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> draw = SVG(<span class="hljs-string">'svg-container'</span>);
+  draw.svg(svgAjax.responseText);
+  draw = SVG.get(<span class="hljs-string">'drawing'</span>);
+  $(<span class="hljs-string">"#drawing"</span>).attr(<span class="hljs-string">"width"</span>, <span class="hljs-string">"100%"</span>).attr(<span class="hljs-string">"height"</span>, <span class="hljs-string">"100%"</span>);
+  <span class="hljs-built_in">window</span>.setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    $(<span class="hljs-string">"#loader"</span>).hide();
+  }, <span class="hljs-number">2000</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h1 id="custom-images-of-buildings">Custom Images of Buildings</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+  <span class="hljs-keyword">for</span> (clickable <span class="hljs-keyword">in</span> prefs.landscape) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>If the image url is not blank, plug that url in!</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (prefs.landscape[clickable].image.length &gt; <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">var</span> el = SVG.get(clickable);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Currently, all image urls are relative to dashboard/img</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      el.attr(<span class="hljs-string">'href'</span>, <span class="hljs-string">'img/'</span>+prefs.landscape[clickable].image);
+      <span class="hljs-keyword">if</span> (prefs.landscape[clickable].imageWidth) {
+        el.width(prefs.landscape[clickable].imageWidth);
+      }
+      <span class="hljs-keyword">if</span> (prefs.landscape[clickable].imageHeight) {
+        el.height(prefs.landscape[clickable].imageHeight);
+      }
+      <span class="hljs-keyword">if</span> (prefs.landscape[clickable].imageXOffset) {
+        el.dx(prefs.landscape[clickable].imageXOffset);
+      }
+      <span class="hljs-keyword">if</span> (prefs.landscape[clickable].imageYOffset) {
+        el.dy(prefs.landscape[clickable].imageYOffset);
+      }
+     }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <h1 id="continual-animations">Continual animations</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Thank you SVG.js :-*</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+  SVG.get(<span class="hljs-string">"ship"</span>).animate(<span class="hljs-number">40000</span>, <span class="hljs-string">'-'</span>).dmove(<span class="hljs-number">1350</span>, -<span class="hljs-number">50</span>).loop();
+  SVG.get(<span class="hljs-string">"blades"</span>).transform({cx: <span class="hljs-number">19</span>, cy: <span class="hljs-number">25</span>}).animate(<span class="hljs-number">2000</span>, <span class="hljs-string">'-'</span>).transform({rotation: <span class="hljs-number">360</span>}).loop();
+  
+  <span class="hljs-keyword">var</span> pipes = $(<span class="hljs-string">"#svg-container #pipes &gt; image"</span>);
+  <span class="hljs-keyword">var</span> smoke = SVG.get(<span class="hljs-string">'smoke'</span>);
+  <span class="hljs-keyword">var</span> pipesOut = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    pipes.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">this</span>.instance.load(<span class="hljs-string">"img/smokestack/smokestack1.png"</span>);
+    });
+    
+    smoke.animate(<span class="hljs-number">1000</span>, <span class="hljs-string">"&gt;"</span>).scale(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>).dmove(<span class="hljs-number">0</span>,-<span class="hljs-number">300</span>).attr(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">0</span>).after(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">this</span>.attr(<span class="hljs-string">'opacity'</span>, <span class="hljs-number">1</span>).translate(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>).scale(<span class="hljs-number">1</span>);
+    });
+    
+    <span class="hljs-built_in">window</span>.setTimeout(pipesIn, <span class="hljs-number">1000</span>);
+  }
+  <span class="hljs-keyword">var</span> pipesIn = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    pipes.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">this</span>.instance.load(<span class="hljs-string">"img/smokestack/smokestack2.png"</span>);
+    });
+    <span class="hljs-built_in">window</span>.setTimeout(pipesOut, <span class="hljs-number">1000</span>);
+  }
+  pipesIn();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <h1 id="character-and-gauges">Character and Gauges</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+  <span class="hljs-keyword">var</span> character = $(<span class="hljs-string">"#character"</span>);
+  <span class="hljs-keyword">var</span> gauges = $(<span class="hljs-string">"#gauges"</span>);
+  
+  character.css(<span class="hljs-string">"position"</span>, <span class="hljs-string">"absolute"</span>);
+  gauges.css({position: <span class="hljs-string">"absolute"</span>, width: <span class="hljs-number">286</span>, height: <span class="hljs-number">735</span>});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Kiosk mode “?context=kiosk” makes all sorts of tweaks throughout the program</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>) {
+    SVG.get(<span class="hljs-string">"top_menu_side"</span>).hide();
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Gauges and characters are elements that are dynamically positioned <em>over</em> the SVG.
+This function figures out how to center and scale them so they look part of the SVG.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> rescaleElements = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> width = $(<span class="hljs-string">'#background'</span>).get(<span class="hljs-number">0</span>).getBoundingClientRect().width;
+    <span class="hljs-keyword">var</span> scale = width / <span class="hljs-number">1584</span>; <span class="hljs-comment">// Original width of SVG</span>
+    <span class="hljs-keyword">var</span> x = ($(<span class="hljs-built_in">document</span>.body).width()-width)/<span class="hljs-number">2</span>;
+    
+    <span class="hljs-keyword">var</span> kioskMode = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>) {
+      kioskMode = <span class="hljs-number">1</span>;
+    }
+
+    character.css({
+      transform: <span class="hljs-string">'scale('</span>+scale+<span class="hljs-string">')'</span>,
+      left: x+<span class="hljs-string">'px'</span>,
+      top: $(<span class="hljs-string">"#background"</span>).offset().top+<span class="hljs-string">"px"</span>,
+      <span class="hljs-string">'-webkit-transform-origin'</span>: <span class="hljs-string">"top left"</span>,
+      <span class="hljs-string">'-moz-transform-origin'</span>: <span class="hljs-string">"top left"</span>,
+      <span class="hljs-string">'-ms-transform-origin'</span>: <span class="hljs-string">"top left"</span>,
+      <span class="hljs-string">'-o-transform-origin'</span>: <span class="hljs-string">"top left"</span>
+    });
+        
+    gauges.css({
+      transform: <span class="hljs-string">'scale('</span>+scale+<span class="hljs-string">')'</span>,
+      right: x+(<span class="hljs-number">20</span>*scale)+<span class="hljs-string">'px'</span>,
+      top: <span class="hljs-number">75</span>*scale+$(<span class="hljs-string">"#background"</span>).offset().top+<span class="hljs-string">"px"</span>,
+      <span class="hljs-string">'-webkit-transform-origin'</span>: <span class="hljs-string">"top right"</span>,
+      <span class="hljs-string">'-moz-transform-origin'</span>: <span class="hljs-string">"top right"</span>,
+      <span class="hljs-string">'-ms-transform-origin'</span>: <span class="hljs-string">"top right"</span>,
+      <span class="hljs-string">'-o-transform-origin'</span>: <span class="hljs-string">"top right"</span>
+    });
+  }
+  rescaleElements();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>I could have just run the function via window.onresize, but I think that fires too often when scaling</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">window</span>.setInterval(rescaleElements, <span class="hljs-number">1000</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>Waiting on lucid for live gauge levels.
+We need the gauge to use the postmessage framework to communicate the relative
+use level because XSS stuff prevents us from reading it directly.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> getBin = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Right now, we have an option to just not have level based functionality. (see prefs page)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (prefs.disableLevels) {
+      <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span>){
+        <span class="hljs-keyword">return</span> gaugesIFrame.get(<span class="hljs-number">0</span>).contentWindow.getBin();
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
+      }
+    }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Iframes! We just plug in the gaugeId to the buildingos url</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> updateGauges = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(state)</span> </span>{
+    <span class="hljs-keyword">var</span> state = state? state : <span class="hljs-string">'none'</span>;
+    gauges.empty();
+    <span class="hljs-keyword">if</span> (prefs.gauges[state]) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = prefs.gauges[state].length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        gauges.prepend(<span class="hljs-string">'&lt;iframe src="http://www.buildingos.com/blocks/'</span>+prefs.gauges[state][i].gaugeId+<span class="hljs-string">'/" allowtransparency="true" frameBorder=0 height="'</span>+prefs.gauges[state][i].height+<span class="hljs-string">'" scrolling="no" width="286"&gt;&lt;/iframe&gt;'</span>);
+      }
+    }
+  }
+  updateGauges();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>There are two characters (walley and flash) with 3 emotion animations each</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> setCharacterAnim = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(anim)</span> </span>{
+    <span class="hljs-keyword">if</span> (character.attr(<span class="hljs-string">'src'</span>) != <span class="hljs-string">'img/'</span>+anim+<span class="hljs-string">'.mp4'</span>) {
+      character.attr(<span class="hljs-string">'src'</span>, <span class="hljs-string">'img/'</span>+anim+<span class="hljs-string">'.mp4'</span>);
+    }
+  }
+  <span class="hljs-keyword">var</span> setCharacter = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(character)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>With bin functionality disabled, only neutral gets used</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> bin = getBin();
+    <span class="hljs-keyword">var</span> emote;
+    <span class="hljs-keyword">if</span> (character == <span class="hljs-string">"squirrel"</span>) {
+      <span class="hljs-keyword">switch</span> (bin) {
+      <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        emote = <span class="hljs-string">'happy'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+        emote = <span class="hljs-string">'angry'</span>;
+        <span class="hljs-keyword">break</span>;
+      }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (character == <span class="hljs-string">"fish"</span>) {
+      <span class="hljs-keyword">switch</span> (bin) {
+      <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+        emote = <span class="hljs-string">'happy'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+        emote = <span class="hljs-string">'neutral'</span>;
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+        emote = <span class="hljs-string">'sad'</span>;
+        <span class="hljs-keyword">break</span>;
+      }
+    }
+    setCharacterAnim(character+<span class="hljs-string">"/"</span>+emote+(getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>?<span class="hljs-string">"-kiosk"</span>:<span class="hljs-string">""</span>));
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <h1 id="state-based-animations">State-based animations</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p><a href="http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery">http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">htmlEncode</span><span class="hljs-params">( html )</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">'a'</span> ).appendChild( 
+          <span class="hljs-built_in">document</span>.createTextNode( html ) ).parentNode.innerHTML;
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <h2 id="rotating-top-messages">Rotating top messages</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+  <span class="hljs-keyword">var</span> messageHeight = getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>? <span class="hljs-number">100</span> : <span class="hljs-number">60</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Resize text to fit container.
+Basically by trial and error size it up and up and up until it’s too big.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">resizeMessage</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> interval;
+    <span class="hljs-keyword">var</span> size = <span class="hljs-number">19</span>;
+    interval = <span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      size++;
+      text.css({ fontSize: size });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>Force redraw</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      fObj.dmove(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);
+      fObj.dmove(-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);
+
+      <span class="hljs-keyword">if</span> (text.height() &gt; messageHeight) {
+        <span class="hljs-built_in">window</span>.clearInterval(interval);
+        text.css({ fontSize: size-<span class="hljs-number">2</span> });
+      }
+    }, <span class="hljs-number">0</span>);
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>Messages are a “foreignObject” which is an HTML element <em>within</em> the SVG. (it’s greatt)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> fObj = draw.foreignObject(<span class="hljs-number">1000</span>, <span class="hljs-number">100</span>).move(<span class="hljs-number">200</span>, <span class="hljs-number">80</span>);
+  fObj.appendChild(<span class="hljs-string">"div"</span>, { innerText: <span class="hljs-string">"Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."</span>});
+  <span class="hljs-keyword">var</span> text = $(fObj.getChild(<span class="hljs-number">0</span>));
+  text.css({ fontFamily: <span class="hljs-string">'Futura-Medium, Futura, futura, sans-serif'</span>, fontSize: <span class="hljs-number">19</span>, color: <span class="hljs-string">"#777"</span> });
+  resizeMessage();
+  <span class="hljs-keyword">var</span> messageSection;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>Relative probabilities for selecting messages.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">selectMessage</span><span class="hljs-params">(section)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Go to the section we want to display</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> sourceMessages = prefs.messageSections[section.toString()];
+    
+    <span class="hljs-keyword">var</span> selectedMessages = [];
+    <span class="hljs-keyword">var</span> selectedWeights = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = sourceMessages.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Filter by current state (if message.state is not empty)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (sourceMessages[i].state &amp;&amp; !state.is(sourceMessages[i].state)) <span class="hljs-keyword">continue</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>Filter by date (if message.startDate and message.endDate are not empty)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (sourceMessages[i].startDate &amp;&amp; sourceMessages[i].endDate) {
+        <span class="hljs-keyword">if</span> ( moment().isBefore(moment(sourceMessages[i].startDate, <span class="hljs-string">"ddd MMM DD YYYY"</span>)) ) <span class="hljs-keyword">continue</span>;
+        <span class="hljs-keyword">if</span> ( moment().isAfter(moment(sourceMessages[i].endDate, <span class="hljs-string">"ddd MMM DD YYYY"</span>)) ) <span class="hljs-keyword">continue</span>;
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Filter by context (some messages are like “click here” and Jon didn’t want this to display in a context where users can’t click)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (sourceMessages[i].kiosk == <span class="hljs-literal">false</span>) {
+        <span class="hljs-keyword">if</span> ( getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span> ) <span class="hljs-keyword">continue</span>;
+      }
+      <span class="hljs-keyword">if</span> (sourceMessages[i].web == <span class="hljs-literal">false</span>) {
+        <span class="hljs-keyword">if</span> ( getURLParameterByName(<span class="hljs-string">'context'</span>) != <span class="hljs-string">"kiosk"</span> ) <span class="hljs-keyword">continue</span>;
+      }
+      
+      selectedMessages.push(sourceMessages[i].text);
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> sourceMessages[i].probability == <span class="hljs-string">"number"</span>) {
+        selectedWeights.push(sourceMessages[i].probability);
+      } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>Bin based relative probabilities (so certain messages can be more probable in certain bins)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        selectedWeights.push(sourceMessages[i].probability[getBin()]);
+      }
+    }
+    
+    <span class="hljs-keyword">if</span> (selectedMessages.length == <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>;
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p><a href="http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/">http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> getRandomItem = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(list, weight)</span> </span>{
+        <span class="hljs-keyword">var</span> total_weight = weight.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prev, cur, i, arr)</span> </span>{
+            <span class="hljs-keyword">return</span> prev + cur;
+        });
+
+        <span class="hljs-keyword">var</span> random_num = <span class="hljs-built_in">Math</span>.random() * total_weight;
+        <span class="hljs-keyword">var</span> weight_sum = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; list.length; i++) {
+            weight_sum += weight[i];
+            weight_sum = +weight_sum.toFixed(<span class="hljs-number">2</span>);
+   
+            <span class="hljs-keyword">if</span> (random_num &lt;= weight_sum) {
+                <span class="hljs-keyword">return</span> list[i];
+            }
+        }
+    };
+    text.css({ fontSize: <span class="hljs-number">19</span> });
+    text.text(htmlEncode(getRandomItem(selectedMessages, selectedWeights)));
+    resizeMessage();
+  }
+  selectMessage(<span class="hljs-number">0</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <h2 id="the-state-machine-">The State Machine!</h2>
+<p>State machine framework thanks to <a href="https://github.com/jakesgordon/javascript-state-machine">https://github.com/jakesgordon/javascript-state-machine</a></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>intervalObjs is for state based animations that need to be closed out when we shift out of that state.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> intervalObjs = [];
+  <span class="hljs-keyword">var</span> state = StateMachine.create({
+    events: [
+      { name: <span class="hljs-string">'toElectricity'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'electricity'</span> },
+      { name: <span class="hljs-string">'toWater'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'water'</span> },
+      { name: <span class="hljs-string">'toStream'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'stream'</span> },
+      { name: <span class="hljs-string">'toWeather'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'weather'</span> },
+      { name: <span class="hljs-string">'next'</span>, from: <span class="hljs-string">'none'</span>, to: <span class="hljs-string">'electricity'</span> },
+      { name: <span class="hljs-string">'next'</span>, from: <span class="hljs-string">'weather'</span>, to: <span class="hljs-string">'electricity'</span> },
+      { name: <span class="hljs-string">'next'</span>, from: <span class="hljs-string">'electricity'</span>, to: <span class="hljs-string">'water'</span> },
+      { name: <span class="hljs-string">'next'</span>, from: <span class="hljs-string">'water'</span>, to: <span class="hljs-string">'stream'</span> },
+      { name: <span class="hljs-string">'next'</span>, from: <span class="hljs-string">'stream'</span>, to: <span class="hljs-string">'weather'</span> }],
+    callbacks: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <h3 id="electricity">Electricity</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onelectricity: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'powerlines_lit'</span>).show();
+        SVG.get(<span class="hljs-string">'powerlines_lit_back'</span>).show();
+        setCharacter(<span class="hljs-string">'squirrel'</span>);
+    
+        <span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+        <span class="hljs-keyword">var</span> duration = <span class="hljs-number">2</span>;
+        $(<span class="hljs-string">"#sparkpaths &gt; path, #sparkpaths_back &gt; path"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">var</span> path = <span class="hljs-keyword">this</span>;
+          <span class="hljs-keyword">var</span> spark = draw.circle(<span class="hljs-number">15</span>).move(-<span class="hljs-number">15</span>,-<span class="hljs-number">15</span>).fill(draw.gradient(<span class="hljs-string">'radial'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(stop)</span> </span>{
+            stop.at(<span class="hljs-number">0</span>, <span class="hljs-string">"#FDF502"</span>)
+            stop.at(<span class="hljs-number">1</span>, <span class="hljs-string">'#FDCC02'</span>)
+          })).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"spark"</span>);
+          path.instance.parent.after(spark);          
+          <span class="hljs-keyword">var</span> len = path.getTotalLength();
+      
+          intervalObjs.push(<span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+                elapsed = (now-startTime)/<span class="hljs-number">1000</span>,
+                pos;
+            
+            <span class="hljs-keyword">if</span> (elapsed &gt; duration) {
+              startTime = now;
+              pos = <span class="hljs-number">0</span>;
+            } <span class="hljs-keyword">else</span> {
+              pos = (elapsed/duration);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p><a href="https://gist.github.com/gre/1650294">https://gist.github.com/gre/1650294</a> Ease Out Quad</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            pos = pos*(<span class="hljs-number">2</span>-pos);
+            
+            <span class="hljs-keyword">var</span> coord = path.getPointAtLength(len*pos);
+            spark.center(coord.x, coord.y);
+          }, <span class="hljs-number">10</span>));
+        });                
+      },
+      onleaveelectricity:  <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'powerlines_lit'</span>).hide();
+        SVG.get(<span class="hljs-string">'powerlines_lit_back'</span>).hide();
+        $(<span class="hljs-string">".spark"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">this</span>.instance.remove(); });
+      },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <h3 id="water">Water</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onwater: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">var</span> clip = draw.clip();
+        SVG.get(<span class="hljs-string">'freshwater_highlighted'</span>).show();
+        SVG.get(<span class="hljs-string">'wastewater_highlighted'</span>).show();
+        setCharacter(<span class="hljs-string">'fish'</span>);
+        SVG.get(<span class="hljs-string">"waterlines_clip"</span>).show().clipWith(clip);
+                
+        <span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+        <span class="hljs-keyword">var</span> duration = <span class="hljs-number">4</span>;
+        $(<span class="hljs-string">"#dropletpaths &gt; path"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">var</span> path = <span class="hljs-keyword">this</span>;
+          <span class="hljs-keyword">var</span> droplet = draw.circle(<span class="hljs-number">50</span>).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"droplet"</span>);
+          <span class="hljs-keyword">var</span> len = path.getTotalLength();
+          
+          clip.add(droplet);
+          
+          intervalObjs.push(<span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+                elapsed = (now-startTime)/<span class="hljs-number">1000</span>,
+                pos;
+            
+            <span class="hljs-keyword">if</span> (elapsed &gt; duration) {
+              startTime = now;
+              pos = <span class="hljs-number">0</span>;
+            } <span class="hljs-keyword">else</span> {
+              pos = (elapsed/duration);
+            }
+            <span class="hljs-keyword">var</span> coord = path.getPointAtLength(len*pos);
+            droplet.center(coord.x, coord.y);
+          }, <span class="hljs-number">10</span>));
+        });                
+      },
+      onleavewater: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'freshwater_highlighted'</span>).hide()
+        SVG.get(<span class="hljs-string">'wastewater_highlighted'</span>).hide()
+        SVG.get(<span class="hljs-string">"waterlines_clip"</span>).hide()
+        $(<span class="hljs-string">".droplet"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">this</span>.instance.remove(); });
+      },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <h3 id="stream">Stream</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onstream: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">var</span> clip = draw.clip();
+        SVG.get(<span class="hljs-string">"flow_marks"</span>).show().clipWith(clip);
+        setCharacter(<span class="hljs-string">'fish'</span>);
+        
+        <span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+        <span class="hljs-keyword">var</span> duration = <span class="hljs-number">2</span>;
+        $(<span class="hljs-string">"#flowpath"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">var</span> path = <span class="hljs-keyword">this</span>;
+          <span class="hljs-keyword">var</span> droplet = draw.circle(<span class="hljs-number">100</span>).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"flowshine"</span>);
+          <span class="hljs-keyword">var</span> len = path.getTotalLength();
+          
+          clip.add(droplet);
+          
+          intervalObjs.push(<span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+                elapsed = (now-startTime)/<span class="hljs-number">1000</span>,
+                pos;
+            
+            <span class="hljs-keyword">if</span> (elapsed &gt; duration) {
+              startTime = now;
+              pos = <span class="hljs-number">0</span>;
+            } <span class="hljs-keyword">else</span> {
+              pos = (elapsed/duration);
+            }
+            <span class="hljs-keyword">var</span> coord = path.getPointAtLength(len*pos);
+            droplet.center(coord.x, coord.y);
+          }, <span class="hljs-number">10</span>));
+        });                
+      },
+      onleavestream: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'flow_marks'</span>).hide()
+        $(<span class="hljs-string">".flowshine"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">this</span>.instance.remove(); });
+      },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <h3 id="weather">Weather</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onweather: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>Sunset functionality disabled because the background behind the character is build in to the animation so it doesn’t look good.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/* SVG.get("sunset").show(); */</span>
+        setCharacter(<span class="hljs-string">'squirrel'</span>);
+      },
+      onleaveweather: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-comment">/* SVG.get('sunset').hide() */</span>
+      },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <h3 id="none">None</h3>
+<p>None state is what happens when you load the page before selecting a state.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onnone: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'house_inside'</span>).hide();
+        setCharacter(<span class="hljs-string">'squirrel'</span>);
+      },
+      onleavenone: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">'house_inside'</span>).show();
+      },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <h3 id="on-every-state">On Every State</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      onstate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event, from, to)</span> </span>{
+        <span class="hljs-built_in">window</span>.location.hash = to;
+        
+        <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>) {
+          SVG.get(<span class="hljs-string">'buttons'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.hide();
+          });
+          SVG.get(to).show();
+          SVG.get(to+<span class="hljs-string">"_label"</span>).show();
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-66">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-66">&#182;</a>
+              </div>
+              <p>Top menu buttons</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          SVG.get(to).hide();
+          SVG.get(to+<span class="hljs-string">"_hover"</span>).hide();
+          SVG.get(to+<span class="hljs-string">"_highlight"</span>).show();
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-67">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-67">&#182;</a>
+              </div>
+              <p>Stick figures</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        SVG.get(<span class="hljs-string">'stick_figures'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">this</span>.hide();
+        });
+        <span class="hljs-keyword">if</span> (SVG.get(<span class="hljs-string">'stick_'</span>+to)) SVG.get(<span class="hljs-string">'stick_'</span>+to).show();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-68">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-68">&#182;</a>
+              </div>
+              <p>Message at top</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> (to == <span class="hljs-string">"none"</span>) {
+          selectMessage(<span class="hljs-number">0</span>);
+        } <span class="hljs-keyword">else</span> {
+          messageSection = <span class="hljs-number">0</span>;
+          selectMessage(messageSection+<span class="hljs-number">1</span>);
+          intervalObjs.push(<span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            messageSection = (messageSection+<span class="hljs-number">1</span>) % <span class="hljs-number">4</span><span class="hljs-comment">//(prefs.messageSections.length-1);</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-69">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-69">&#182;</a>
+              </div>
+              <p>When levels are disabled, skip Level Narration message section</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (prefs.disableLevels &amp;&amp; (messageSection+<span class="hljs-number">1</span>) == <span class="hljs-number">3</span>) messageSection++;
+            selectMessage(messageSection+<span class="hljs-number">1</span>);
+          }, prefs.timing.delayBetweenMessages*<span class="hljs-number">1000</span>));
+        }
+        
+        updateGauges(to);
+      },
+      onleavestate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event, from, to)</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = intervalObjs.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+          <span class="hljs-built_in">window</span>.clearInterval(intervalObjs[i]);
+        }
+        intervalObjs = [];
+        
+        <span class="hljs-keyword">if</span> (SVG.get(from)) {
+          SVG.get(from).show();
+          SVG.get(from+<span class="hljs-string">"_hover"</span>).hide();
+          SVG.get(from+<span class="hljs-string">"_highlight"</span>).hide();
+        }
+      }
+    }
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-70">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-70">&#182;</a>
+              </div>
+              <h2 id="context-based-modifications">Context based modifications</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"noplay"</span>) {
+    SVG.get(<span class="hljs-string">'play'</span>).hide();
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-71">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-71">&#182;</a>
+              </div>
+              <h3 id="in-kiosk-mode-put-all-the-buttons-on-the-sidebar-there-">In kiosk mode, put all the buttons on the sidebar there.</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) == <span class="hljs-string">"kiosk"</span>) {
+    SVG.get(<span class="hljs-string">'play'</span>).hide();
+    SVG.get(<span class="hljs-string">'top_menu'</span>).hide();
+    fObj.move(<span class="hljs-number">200</span>, <span class="hljs-number">30</span>);
+    SVG.get(<span class="hljs-string">'buttons'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">this</span>.hide();
+      <span class="hljs-keyword">this</span>.attr(<span class="hljs-string">'transform'</span>, <span class="hljs-string">''</span>);
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.node.tagName == <span class="hljs-string">"image"</span>) {
+        <span class="hljs-keyword">this</span>.center(<span class="hljs-number">1420</span>, <span class="hljs-number">45</span>);
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.node.tagName == <span class="hljs-string">"text"</span>) {      
+        <span class="hljs-keyword">this</span>.center(<span class="hljs-number">1400</span>, <span class="hljs-number">45</span>);
+      }
+    });
+    prefs.timing.delayBeforePlayMode = <span class="hljs-number">0</span>;
+    state.toElectricity();
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-72">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-72">&#182;</a>
+              </div>
+              <h3 id="allow-button-label-customization">Allow button label customization</h3>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  SVG.get(<span class="hljs-string">'buttons'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.node.tagName == <span class="hljs-string">"text"</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-73">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-73">&#182;</a>
+              </div>
+              <p>Trims the “_label” off of “electricity_label” etc</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> type = <span class="hljs-keyword">this</span>.attr(<span class="hljs-string">"id"</span>).slice(<span class="hljs-number">0</span>, -<span class="hljs-number">6</span>);
+      <span class="hljs-keyword">if</span> (prefs.buttonLabels[type]) {
+        <span class="hljs-keyword">this</span>.text(prefs.buttonLabels[type]);
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-74">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-74">&#182;</a>
+              </div>
+              <p>IDK why svg.js creates a tspan child for each text element and adds a “dy” property ¯_(ツ)_/¯</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.node.childNodes[<span class="hljs-number">0</span>].instance.attr({dy: <span class="hljs-string">""</span>, dx:<span class="hljs-string">""</span>});
+      <span class="hljs-keyword">this</span>.style({ <span class="hljs-string">"pointer-events"</span>: <span class="hljs-string">'none'</span> });
+    }
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-75">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-75">&#182;</a>
+              </div>
+              <p>If we’re loading the page with #electricity or something, transition to it now.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.location.hash) {
+    state[ <span class="hljs-string">"to"</span> + <span class="hljs-built_in">window</span>.location.hash.charAt(<span class="hljs-number">1</span>).toUpperCase() + <span class="hljs-built_in">window</span>.location.hash.slice(<span class="hljs-number">2</span>) ]();
+    state[ <span class="hljs-string">"to"</span> + <span class="hljs-built_in">window</span>.location.hash.charAt(<span class="hljs-number">1</span>).toUpperCase() + <span class="hljs-built_in">window</span>.location.hash.slice(<span class="hljs-number">2</span>) ]();
+  } <span class="hljs-keyword">else</span> {
+    setCharacter(<span class="hljs-string">'squirrel'</span>);
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
+              <h1 id="play-button">Play button</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-77">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-77">&#182;</a>
+              </div>
+              <p>playIntervalObj holds the timers for the whole playing situation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> playIntervalObj;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-78">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-78">&#182;</a>
+              </div>
+              <p>playBarMask is the loading bar in the back of the play button while it’s playing.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> playBarMask = draw.rect(<span class="hljs-number">0</span>, <span class="hljs-number">30</span>).move(<span class="hljs-number">200</span>, <span class="hljs-number">160</span>).fill(<span class="hljs-string">'white'</span>);
+  SVG.get(<span class="hljs-string">'darkplay'</span>).hide().maskWith(playBarMask);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-79">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-79">&#182;</a>
+              </div>
+              <h2 id="play-button-state-machine">Play button state machine</h2>
+<p><em>waiting:</em> Waits delayBeforePlayMode seconds before shifting to playing.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-80">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-80">&#182;</a>
+              </div>
+              <p><em>playing:</em> Waits delayWhenPlaying before shifting to next state.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-81">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-81">&#182;</a>
+              </div>
+              <p><em>action:</em> Triggered when it waiting mode, and user interacts with something. Resets delayBeforePlayMode timer and goes back to waiting.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> playState = StateMachine.create({
+    initial: <span class="hljs-string">"action"</span>,
+    events: [
+      { name: <span class="hljs-string">'actioned'</span>, from: <span class="hljs-string">'waiting'</span>, to: <span class="hljs-string">'action'</span> },
+      { name: <span class="hljs-string">'actioned'</span>, from: <span class="hljs-string">'playing'</span>, to: <span class="hljs-string">'playing'</span> },
+      { name: <span class="hljs-string">'toAction'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'action'</span> },
+      { name: <span class="hljs-string">'toWaiting'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'waiting'</span> },
+      { name: <span class="hljs-string">'toPlaying'</span>, from: <span class="hljs-string">'*'</span>, to: <span class="hljs-string">'playing'</span> },
+      { name: <span class="hljs-string">'toggle'</span>, from: <span class="hljs-string">'waiting'</span>, to: <span class="hljs-string">'playing'</span> },
+      { name: <span class="hljs-string">'toggle'</span>, from: <span class="hljs-string">'playing'</span>, to: <span class="hljs-string">'action'</span> }],
+    callbacks: {
+      onaction: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">var</span> playState = <span class="hljs-keyword">this</span>;
+        playState.toWaiting();
+        <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) != <span class="hljs-string">"noplay"</span>) {
+          playIntervalObj = <span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            playState.toPlaying();
+          }, prefs.timing.delayBeforePlayMode*<span class="hljs-number">1000</span>);
+        }
+      },
+      onplaying: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">"playtext"</span>).hide();
+        SVG.get(<span class="hljs-string">"pausetext"</span>).show();
+        SVG.get(<span class="hljs-string">'darkplay'</span>).show();
+      
+        <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) != <span class="hljs-string">"kiosk"</span>) {
+          state.next();
+        }
+        playBarMask.width(<span class="hljs-number">0</span>).animate(prefs.timing.delayWhenPlaying*<span class="hljs-number">1000</span>, <span class="hljs-string">'='</span>).attr({ width: <span class="hljs-number">100</span> });
+      
+        playIntervalObj = <span class="hljs-built_in">window</span>.setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          state.next();
+          playBarMask.width(<span class="hljs-number">0</span>).animate(prefs.timing.delayWhenPlaying*<span class="hljs-number">1000</span>, <span class="hljs-string">'='</span>).attr({ width: <span class="hljs-number">100</span> });
+        }, prefs.timing.delayWhenPlaying*<span class="hljs-number">1000</span>);
+      },
+      onleaveplaying: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        SVG.get(<span class="hljs-string">"playtext"</span>).show();
+        SVG.get(<span class="hljs-string">"pausetext"</span>).hide();
+        SVG.get(<span class="hljs-string">'darkplay'</span>).hide();        
+      },
+      onleavestate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event, from, to)</span> </span>{
+        <span class="hljs-keyword">if</span> (playIntervalObj) {
+          <span class="hljs-built_in">window</span>.clearInterval(playIntervalObj);
+        }
+        playIntervalObj = <span class="hljs-literal">null</span>;
+      }
+    }
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-82">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-82">&#182;</a>
+              </div>
+              <h1 id="button-interaction">Button Interaction</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-83">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-83">&#182;</a>
+              </div>
+              <h2 id="state-buttons">State Buttons</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) != <span class="hljs-string">"kiosk"</span>) {
+  
+    $(<span class="hljs-string">"#buttons &gt; image"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-84">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-84">&#182;</a>
+              </div>
+              <p>In the SVG, there are 3 different button images layered over each state button.
+We hide one and show the other (by id) when the button is hovered or active. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> thisState = <span class="hljs-keyword">this</span>.instance.attr(<span class="hljs-string">"id"</span>).split(<span class="hljs-string">"_"</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">// electricity, water, etc</span>
+      <span class="hljs-keyword">var</span> thisType = <span class="hljs-keyword">this</span>.instance.attr(<span class="hljs-string">"id"</span>).split(<span class="hljs-string">"_"</span>)[<span class="hljs-number">1</span>]; <span class="hljs-comment">// hover, "", highlight</span>
+    
+      <span class="hljs-keyword">this</span>.instance.mouseover(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        playState.actioned();
+        <span class="hljs-keyword">if</span> (!state.is(thisState) &amp;&amp; thisType!=<span class="hljs-string">"hover"</span>) {
+          <span class="hljs-keyword">this</span>.hide();
+          SVG.get(thisState+<span class="hljs-string">"_hover"</span>).show();
+        }
+      });
+      <span class="hljs-keyword">var</span> button = <span class="hljs-keyword">this</span>.instance;
+      <span class="hljs-keyword">var</span> mouseout = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!state.is(thisState) &amp;&amp; thisType==<span class="hljs-string">"hover"</span>) {
+          button.hide();
+          SVG.get(thisState).show();
+        }
+      };
+      <span class="hljs-keyword">this</span>.instance.mouseleave(mouseout);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-85">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-85">&#182;</a>
+              </div>
+              <p>This still doesn’t completely eliminate hover bugs, if you move the mouse rapidly down crossing the button &gt;:(</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      $(<span class="hljs-built_in">document</span>).mouseleave(mouseout);
+      <span class="hljs-keyword">this</span>.instance.click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (thisState == state.current) { <span class="hljs-keyword">return</span>; }
+      
+        playState.toAction();
+        <span class="hljs-keyword">switch</span> (thisState) {
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"electricity"</span>:
+            state.toElectricity();
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"water"</span>:
+            state.toWater();
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"stream"</span>:
+            state.toStream();
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"weather"</span>:
+            state.toWeather();
+            <span class="hljs-keyword">break</span>;
+        }
+      });
+    });
+    
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-86">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-86">&#182;</a>
+              </div>
+              <h2 id="landscape-components-clickables">Landscape Components / Clickables</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  
+  <span class="hljs-keyword">var</span> hoverFilter;
+  <span class="hljs-keyword">if</span> (getURLParameterByName(<span class="hljs-string">'context'</span>) != <span class="hljs-string">"kiosk"</span>)
+  $(<span class="hljs-string">"#clickables &gt; *"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    clickable = <span class="hljs-keyword">this</span>.instance;
+    
+    clickable.node.style.cursor = <span class="hljs-string">"pointer"</span>;
+    
+    clickable.mouseover(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      playState.actioned();
+      clickable = <span class="hljs-keyword">this</span>;
+      <span class="hljs-keyword">if</span> (clickable.attr(<span class="hljs-string">"id"</span>) == <span class="hljs-string">"river_click"</span>) clickable = SVG.get(<span class="hljs-string">"river"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-87">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-87">&#182;</a>
+              </div>
+              <p>This filter lightens the image via <em>SVG magic.</em></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (!hoverFilter) {
+        clickable.filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(add)</span> </span>{
+        add.componentTransfer({
+          rgb: { type: <span class="hljs-string">'linear'</span>, slope: <span class="hljs-number">1</span>, intercept: <span class="hljs-number">0.2</span> }
+        })
+      })
+        hoverFilter = clickable.filterer;
+      } <span class="hljs-keyword">else</span> {
+        clickable.filter(hoverFilter);
+      }
+    });
+    
+    clickable.mouseout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      clickable = <span class="hljs-keyword">this</span>;
+      <span class="hljs-keyword">if</span> (clickable.attr(<span class="hljs-string">"id"</span>) == <span class="hljs-string">"river_click"</span>) clickable = SVG.get(<span class="hljs-string">"river"</span>);
+      
+      clickable.unfilter();
+    });
+    
+    clickable.click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+      playState.actioned();
+      <span class="hljs-keyword">var</span> dscr = prefs.landscape[<span class="hljs-keyword">this</span>.attr(<span class="hljs-string">'id'</span>)];
+      $(<span class="hljs-string">".popup"</span>).remove();
+      <span class="hljs-keyword">var</span> text = dscr.text;
+      <span class="hljs-keyword">if</span> (dscr.link) {
+        text += <span class="hljs-string">' &lt;a href="'</span>+dscr.link+<span class="hljs-string">'" target="_blank" &gt;Read more&lt;/a&gt;'</span>;
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-88">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-88">&#182;</a>
+              </div>
+              <p>Popup with description when you click on a lanscape component</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">var</span> popup = $(<span class="hljs-string">'&lt;div class="popup"&gt;&lt;span class="close"&gt;X&lt;/span&gt;&lt;h1&gt;'</span>+dscr.title+<span class="hljs-string">'&lt;/h1&gt;&lt;p&gt;'</span>+dscr.text+<span class="hljs-string">'&lt;/p&gt;&lt;/div&gt;'</span>);
+      popup.find(<span class="hljs-string">".close"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ popup.remove() });
+      popup.appendTo(<span class="hljs-built_in">document</span>.body).offset({top: e.y, left: e.x});
+    });
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-89">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-89">&#182;</a>
+              </div>
+              <h2 id="gauge-descriptions-on-mouseover">Gauge descriptions on mouseover</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  gauges.on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-string">"iframe"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-90">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-90">&#182;</a>
+              </div>
+              <p><a href="http://stackoverflow.com/questions/16695369/how-to-get-last-folder-name-from-folder-path-in-javascript">http://stackoverflow.com/questions/16695369/how-to-get-last-folder-name-from-folder-path-in-javascript</a></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> gaugeId = <span class="hljs-keyword">this</span>.src.match(<span class="hljs-regexp">/([^\/]*)\/*$/</span>)[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">var</span> dscr = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> state <span class="hljs-keyword">in</span> prefs.gauges) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = prefs.gauges[state].length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        <span class="hljs-keyword">if</span> (prefs.gauges[state][i].gaugeId == gaugeId) {
+          dscr = prefs.gauges[state][i];
+          <span class="hljs-keyword">break</span>;
+        }
+      }
+      <span class="hljs-keyword">if</span> (dscr != <span class="hljs-literal">null</span>) <span class="hljs-keyword">break</span>;
+    }
+    
+    playState.actioned();
+    $(<span class="hljs-string">".popup"</span>).remove();
+    <span class="hljs-keyword">var</span> text = dscr.text;
+    <span class="hljs-keyword">if</span> (dscr.link) {
+      text += <span class="hljs-string">' &lt;a target="_blank" href="'</span>+dscr.link+<span class="hljs-string">'"&gt;Read more&lt;/a&gt;'</span>;
+    }
+    <span class="hljs-keyword">if</span> (dscr.buildingdash) {
+      text += <span class="hljs-string">' or &lt;a target="_blank" href="'</span>+dscr.buildingdash+<span class="hljs-string">'"&gt;View on Building Dashboard&lt;/a&gt;'</span>;
+    }
+    <span class="hljs-keyword">var</span> popup = $(<span class="hljs-string">'&lt;div class="popup"&gt;&lt;h1&gt;'</span>+dscr.title+<span class="hljs-string">'&lt;/h1&gt;&lt;p&gt;'</span>+dscr.text+<span class="hljs-string">'&lt;/p&gt;&lt;/div&gt;'</span>);
+    popup.mouseenter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">this</span>.isOver = <span class="hljs-literal">true</span>;
+    });
+    popup.mouseleave(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      popup.remove();
+    });
+    
+    <span class="hljs-keyword">var</span> offset = $(<span class="hljs-keyword">this</span>).offset();
+    popup.appendTo(<span class="hljs-built_in">document</span>.body).offset({top: offset.top, left: offset.left-popup.width()});
+  });
+  gauges.mouseleave(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-91">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-91">&#182;</a>
+              </div>
+              <p>Ugh more complicated than it needs to be?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-built_in">window</span>.setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">if</span> ($(<span class="hljs-string">".popup"</span>).get(<span class="hljs-number">0</span>) &amp;&amp; !$(<span class="hljs-string">".popup"</span>).get(<span class="hljs-number">0</span>).isOver) {
+        $(<span class="hljs-string">".popup"</span>).remove();
+      }
+    }, <span class="hljs-number">0</span>);
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-92">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-92">&#182;</a>
+              </div>
+              <h2 id="play-button-interaction">Play button interaction</h2>
+<p>Can we move this up to the other play button code?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  $(<span class="hljs-string">"#play"</span>).css(<span class="hljs-string">'cursor'</span>, <span class="hljs-string">'pointer'</span>).mouseover(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    clickable = <span class="hljs-keyword">this</span>.instance;
+    <span class="hljs-keyword">if</span> (!hoverFilter) {
+      clickable.filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(add)</span> </span>{
+      add.componentTransfer({
+        rgb: { type: <span class="hljs-string">'linear'</span>, slope: <span class="hljs-number">1</span>, intercept: <span class="hljs-number">0.2</span> }
+      })
+    })
+      hoverFilter = clickable.filterer;
+    } <span class="hljs-keyword">else</span> {
+      clickable.filter(hoverFilter);
+    }
+  }).mouseout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    clickable = <span class="hljs-keyword">this</span>.instance;
+    clickable.unfilter();
+  }).click(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    playState.toggle();
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-93">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-93">&#182;</a>
+              </div>
+              <p>SEEE? Clunky hardcoded loading time wtf</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>}, <span class="hljs-number">2000</span>);</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
