@@ -7,6 +7,8 @@ There are two components to the Citywide-Dashboard: the front-end animated displ
 
 This page (index.php) is run with jQuery and svg.js. It is a giant svg, mostly with pngs and vector shapes animated around inside. To read more about how it works, read [this](https://cdn.rawgit.com/jeratt/Citywide-Dashboard/master/docs/main.html) docco page.
 
+_Read the docco page because it has valuable vocab information! ;^)_
+
 ## The Back-end
 
 This "prefs page" was run by [JSON Editor](https://github.com/jdorn/json-editor) but this runs very slowly on page load, and is not customizable enough for the wide variety of dashboard settings. I'm working on transitioning the page over to React (the javascript library that Facebook uses for user interfaces). *This is where most work is concentrated: in the /prefsReactJS folder.*
@@ -32,13 +34,22 @@ This one last one is how I've installed React. I used this "yeoman generator," t
 
 ## Todo List
 
-- Add credits on prefs page
-- Finish data serialization in ReactJS
-  - Message probabilities need row key for state tabs
+Fall 2015:
+- Add credits on prefs page (yay)
+- Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink) 
+  - Message probabilities need row key for state tabs (weird bug)
   - Landscape components tab
   - Gauges tab
-- Data saving and connect to CWD front-end
+- Prefs data saving and connect to CWD front-end
+- Package up and write installation docs
+- W Steve: Connect gauge levels API to front-end dashboard
+
 - Develop extra prefs functionality
+  - Extra columns for messages
+    - Start date and end date
+    - Display on kiosk/web
+  - Live preview for gauges
+  - Live preview for landscape components
 - Multiple users functionality
 - Put within wordpress?
 - Small fixes on front-end
