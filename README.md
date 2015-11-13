@@ -9,7 +9,7 @@ This page (index.php) is run with jQuery and svg.js. It is a giant svg, mostly w
 
 ## The Back-end
 
-This "prefs page" was run by [JSON Editor](https://github.com/jdorn/json-editor) but this runs very slowly on page load, and is not customizable enough for the wide variety of dashboard settings. I'm working on transitioning the page over to React (the javascript library that Facebook uses for user interfaces). This is where most work is concentrated: in the /prefsReactJS folder.
+This "prefs page" was run by [JSON Editor](https://github.com/jdorn/json-editor) but this runs very slowly on page load, and is not customizable enough for the wide variety of dashboard settings. I'm working on transitioning the page over to React (the javascript library that Facebook uses for user interfaces). *This is where most work is concentrated: in the /prefsReactJS folder.*
 
 ### Relevant reading about React:
 
@@ -28,6 +28,16 @@ Using styled form components: (for tabs etc)
 How I've installed React:
 * https://github.com/newtriks/generator-react-webpack/blob/7f911b54f18a084cb33aa0184da3369fce725912/README.md
 
-This one last one is how I've installed React. It is a "yeoman generator," meaning that it uses Yeoman to set up the basic file structure and install the requirements. React is installed as its own server, so it won't work if you try to view /prefsReactJS from an Apache "localhost." To view, navigate to /prefsReactJS in terminal and run "grunt webpack-dev-server." Then navigate to http://localhost:8000/webpack-dev-server/index.html
+This one last one is how I've installed React. I used this "yeoman generator," to initially set up the basic file structure and install the requirements. React is installed as its own server, so it won't work if you try to view /prefsReactJS from an Apache "localhost." To view, navigate to /prefsReactJS in terminal and run "grunt webpack-dev-server." Then navigate to localhost:8000/webpack-dev-server/index.html
 
-## Timeline for Fall 2015
+## Todo List
+
+- Add credits on prefs page
+- Finish data serialization in ReactJS
+  - Message probabilities need row key for state tabs
+  - Landscape components tab
+  - Gauges tab
+- Data saving and connect to CWD front-end
+- Multiple users functionality
+- Put within wordpress?
+- Small fixes on front-end
