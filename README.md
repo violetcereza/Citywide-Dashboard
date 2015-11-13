@@ -38,6 +38,10 @@ This one last one is how I've installed React. I used this "yeoman generator," t
   - Landscape components tab
   - Gauges tab
 - Data saving and connect to CWD front-end
+- Develop extra prefs functionality
 - Multiple users functionality
 - Put within wordpress?
 - Small fixes on front-end
+  - Ajax loading for prefs and svg
+  - Switch mode to "none" by clicking on active state button at the top
+  - #houseinside hover works with clickables
