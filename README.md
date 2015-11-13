@@ -1,11 +1,11 @@
 # Citywide-Dashboard
-This project was developed as part of the Oberlin Environmental Dashboard. It is an animated display of current electricity use, water use and environmental conditions in the entire community.
+This project was developed as part of the Oberlin Environmental Dashboard. It is an animated display of current electricity use, water use and environmental conditions in the entire community. [See the live version](http://environmentaldashboard.org/cwd-static/)
 
 There are two components to the Citywide-Dashboard: the front-end animated display, and the back-end customization page.
 
 ## The Front-end
 
-This page (index.php) is run with jQuery and svg.js. It is a giant svg, mostly with pngs and vector shapes animated around inside. To read more about how it works, read [this](/docs/main.html) docco page.
+This page (index.php) is run with jQuery and svg.js. It is a giant svg, mostly with pngs and vector shapes animated around inside. To read more about how it works, read [this](https://cdn.rawgit.com/jeratt/Citywide-Dashboard/master/docs/main.html) docco page.
 
 ## The Back-end
 
