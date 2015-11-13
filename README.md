@@ -53,6 +53,8 @@ The future:
   - Live preview for landscape components
 - Multiple users functionality
 - Put within wordpress?
+  - Can the react prefs page be dropped within the wordpress backend?
+- Use webpack with front-end
 - Small fixes on front-end
   - Ajax loading for prefs and svg
   - Switch mode to "none" by clicking on active state button at the top
