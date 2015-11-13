@@ -44,6 +44,7 @@ Fall 2015:
 - Package up and write installation docs
 - W Steve: Connect gauge levels API to front-end dashboard
 
+The future:
 - Develop extra prefs functionality
   - Extra columns for messages
     - Start date and end date
