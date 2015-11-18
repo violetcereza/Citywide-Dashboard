@@ -1,64 +1,48 @@
-/*
- * Webpack development server configuration
- *
- * This file is set up for serving the webpack-dev-server, which will watch for changes and recompile as required if
- * the subfolder /webpack-dev-server/ is visited. Visiting the root will not automatically reload.
- */
 'use strict';
-var webpack = require('webpack');
 
-module.exports = {
+var path = require('path');
+var args = require('minimist')(process.argv.slice(2));
 
-  output: {
-    filename: 'main.js',
-    publicPath: '/assets/'
-  },
+// List of allowed environments
+var allowedEnvs = ['dev', 'dist', 'test'];
 
-  cache: true,
-  debug: true,
-  devtool: 'sourcemap',
-  entry: [
-      'webpack/hot/only-dev-server',
-      './src/components/PrefsForm.js'
-  ],
+// Set the correct environment
+var env;
+if(args._.length > 0 && args._.indexOf('start') !== -1) {
+  env = 'test';
+} else if (args.env) {
+  env = args.env;
+} else {
+  env = 'dev';
+}
+process.env.REACT_WEBPACK_ENV = env;
 
-  stats: {
-    colors: true,
-    reasons: true
-  },
-
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-    alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/'
-    }
-  },
-  module: {
-    preLoaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }],
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'react-hot!babel-loader'
-    }, {
-      test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.(png|jpg|woff|woff2)$/,
-      loader: 'url-loader?limit=8192'
-    }]
-  },
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
-
+// Get available configurations
+var configs = {
+  base: require(path.join(__dirname, 'cfg/base')),
+  dev: require(path.join(__dirname, 'cfg/dev')),
+  dist: require(path.join(__dirname, 'cfg/dist')),
+  test: require(path.join(__dirname, 'cfg/test'))
 };
+
+/**
+ * Get an allowed environment
+ * @param  {String}  env
+ * @return {String}
+ */
+function getValidEnv(env) {
+  var isValid = env && env.length > 0 && allowedEnvs.indexOf(env) !== -1;
+  return isValid ? env : 'dev';
+}
+
+/**
+ * Build the webpack configuration
+ * @param  {String} env Environment to use
+ * @return {Object} Webpack config
+ */
+function buildConfig(env) {
+  var usedEnv = getValidEnv(env);
+  return configs[usedEnv];
+}
+
+module.exports = buildConfig(env);

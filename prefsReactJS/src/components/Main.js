@@ -1,22 +1,20 @@
-var React = require('react/addons');
-
-// CSS
 require('normalize.css');
-require('../styles/main.css');
+require('styles/App.css');
 
-// BOOTSTRAP
+import React from 'react';
 import { PageHeader, Tabs, Tab } from 'react-bootstrap';
-require('bootstrap/dist/css/bootstrap.css');
-
-var Messages = require('./Messages.js');
-var Timing = require('./Timing.js');
-var LandscapeComponents = require('./LandscapeComponents.js');
-var Gauges = require('./Gauges.js');
-
+require('bootstrap/dist/css/bootstrap.min.css');
 var update = require('react-addons-update');
-var PrefsForm = React.createClass({
+var LinkedStateMixin = require('react-addons-linked-state-mixin');
+
+import Messages from './Messages';
+import Timing from './Timing';
+import LandscapeComponents from './LandscapeComponents';
+import Gauges from './Gauges';
+
+var AppComponent = React.createClass({
   getInitialState: function() {
-    return require('json!../prefs.json')[0];
+    return require('json!./prefs.json')[0];
   },
   handleStateChange: function(updateCommand) {
     this.setState(update(this.state, updateCommand));
@@ -44,7 +42,6 @@ var PrefsForm = React.createClass({
   }
 });
 
-var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var DashboardName = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState: function() {
@@ -81,6 +78,5 @@ var DashboardName = React.createClass({
   }
 });
 
-React.render(<PrefsForm />, document.getElementById('content')); // jshint ignore:line
 
-module.exports = PrefsForm;
+export default AppComponent;

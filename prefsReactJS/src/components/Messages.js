@@ -1,4 +1,4 @@
-var React = require('react/addons');
+import React from 'react';
 import { Input, Tabs, Tab, Table, Button } from 'react-bootstrap';
 
 var Messages = React.createClass({

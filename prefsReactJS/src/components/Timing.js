@@ -1,22 +1,23 @@
-var React = require('react/addons');
+import React from 'react';
 import { Input, Grid, Row, Col, Button } from 'react-bootstrap';
 
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
+require('styles//Timing.css');
+
 var Timing = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState: function() {
     return { editing: false };
   },
   toEditMode: function() {
-    this.setState({ editing: true, ...this.props.timing });
+    var props = this.props.timing;
+    props.editing = true;
+    this.setState(props);
   },
   saveChanges: function() {
-    var { editing, ...timingProps } = this.state;
     var updateCommand = {};
     updateCommand.timing = {
-      $set: {
-        ...timingProps
-      }
+      $set: this.state
     };
     this.props.parentHandleStateChange(updateCommand);
     this.setState({ editing: false });
@@ -31,7 +32,7 @@ var Timing = React.createClass({
               <h2>{this.props.timing.delayBetweenMessages}</h2>
               <p>The messages at the top rotate between
               "Introduction Narration", "Resource Category",
-              "Resource Explanation", etc.. How long should
+              "Resource Explanation", etc. How long should
               each of these sections be displayed?</p>
             </Col>
             <Col md={4}>

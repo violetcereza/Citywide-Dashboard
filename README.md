@@ -36,8 +36,9 @@ This one last one is how I've installed React. I used this "yeoman generator," t
 
 Fall 2015:
 - Add credits on prefs page (yay)
-- Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink) 
+- Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink)
   - Message probabilities need row key for state tabs (weird bug)
+  - Convert string data back into ints
   - Landscape components tab
   - Gauges tab
 - Prefs data saving and connect to CWD front-end

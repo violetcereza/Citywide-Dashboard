@@ -1,4 +1,4 @@
-var React = require('react/addons');
+import React from 'react';
 import { Input, Grid, Row, Col, Well } from 'react-bootstrap';
 
 var LandscapeComponents = React.createClass({
