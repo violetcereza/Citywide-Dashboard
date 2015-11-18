@@ -28,9 +28,9 @@ Using styled form components: (for tabs etc)
 * https://react-bootstrap.github.io/
 
 How I've installed React:
-* https://github.com/newtriks/generator-react-webpack/blob/7f911b54f18a084cb33aa0184da3369fce725912/README.md
+* https://github.com/newtriks/generator-react-webpack
 
-This one last one is how I've installed React. I used this "yeoman generator," to initially set up the basic file structure and install the requirements. React is installed as its own server, so it won't work if you try to view /prefsReactJS from an Apache "localhost." To view, navigate to /prefsReactJS in terminal and run "grunt webpack-dev-server." Then navigate to localhost:8000/webpack-dev-server/index.html
+This one last one is how I've installed React. I used this "yeoman generator," to initially set up the basic file structure and install the requirements. React is installed as its own server, so it won't work if you try to view /prefsReactJS from an Apache "localhost." To view, navigate to /prefsReactJS in terminal and run "npm start." Then navigate to localhost:8000/webpack-dev-server/index.html
 
 ## Todo List
 
