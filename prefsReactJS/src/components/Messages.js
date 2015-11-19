@@ -196,12 +196,12 @@ var MessageProbabilityField = React.createClass({
         updateCommand[this.props.objKey] = {$set: event.target.value};
         valueLink.requestChange(update(probability, updateCommand));
       };
-      for(var key in probability) {
-        inputs.push(
-          <input bsSize="small" type="text" value={probability[key]} onChange={handleChange} objKey={key} />
-        );
-      }
-      return (<div>{ inputs }</div>);
+    //  for(var key in probability) {   
+      //  inputs.push(
+          <input bsSize="small" type="text" value={probability} onChange={handleChange} objKey={key} />
+   //     );
+   //   }
+      return (<div>{ probability }</div>);
 
     } else {
 
