@@ -68,6 +68,8 @@
     "react-addons-test-utils": "^0.14.0",
     "react-addons-update": "^0.14.2",
     "react-bootstrap": "^0.28.1",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "webpack": "^1.12.6",
+    "webpack-windows": "0.0.3"
   }
 }
