@@ -31,7 +31,7 @@ var AppComponent = React.createClass({
             <Timing timing={this.state.timing} parentHandleStateChange={this.handleStateChange} />
           </Tab>
           <Tab eventKey={3} title="Landscape Components" style={{marginTop: 20}}>
-            <LandscapeComponents components={this.state.landscape} />
+            <LandscapeComponents components={this.state.landscape} parentHandleStateChange={this.handleStateChange} />
           </Tab>
           <Tab eventKey={4} title="Gauges" style={{marginTop: 20}}>
             <Gauges gauges={this.state.gauges} />

@@ -41,17 +41,21 @@ Fall 2015:
   - Convert string data back into ints
   - Landscape components tab
   - Gauges tab
+  - Add and remove rows from tables
 - Prefs data saving and connect to CWD front-end
 - Package up and write installation docs
 - W Steve: Connect gauge levels API to front-end dashboard
 
 The future:
 - Develop extra prefs functionality
+  - Max and min for probabilities
+  - Rename landscape components to "Landmark Icons"
   - Extra columns for messages
     - Start date and end date
     - Display on kiosk/web
   - Live preview for gauges
   - Live preview for landscape components
+  - "Button Labels" settings in Timing Tab
 - Multiple users functionality
 - Put within wordpress?
   - Can the react prefs page be dropped within the wordpress backend?
