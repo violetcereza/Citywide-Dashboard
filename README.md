@@ -11,7 +11,7 @@ _Read the docco page because it has valuable vocab information! ;^)_
 
 ## The Back-end
 
-This "prefs page" was run by [JSON Editor](https://github.com/jdorn/json-editor) but this runs very slowly on page load, and is not customizable enough for the wide variety of dashboard settings. I'm working on transitioning the page over to React (the javascript library that Facebook uses for user interfaces). *This is where most work is concentrated: in the /prefsReactJS folder.*
+This "prefs page" was run by [JSON Editor](https://github.com/jdorn/json-editor) but this runs very slowly on page load, and is not customizable enough for the wide variety of dashboard settings. I'm working on transitioning the page over to React (the javascript library that Facebook uses for user interfaces). *This is where most work is concentrated: in the /prefsReactJS folder.* [view demo](https://cdn.rawgit.com/jeratt/Citywide-Dashboard/master/prefsReactJS/dist/index.html)
 
 ### Relevant reading about React:
 
