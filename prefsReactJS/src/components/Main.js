@@ -34,9 +34,14 @@ var AppComponent = React.createClass({
             <LandscapeComponents components={this.state.landscape} parentHandleStateChange={this.handleStateChange} />
           </Tab>
           <Tab eventKey={4} title="Gauges" style={{marginTop: 20}}>
-            <Gauges gauges={this.state.gauges} />
+            <Gauges gauges={this.state.gauges} parentHandleStateChange={this.handleStateChange} />
           </Tab>
         </Tabs>
+        <hr/>
+        <div style={{ textAlign: "center", color: "gray", marginBottom: 20 }}>
+          Developed by <a href="http://jasper.clarkberg.org/">Jasper Clarkberg</a>, <a href="https://github.com/juanbib">Juanbi Berretta</a>,
+          and the <a href="http://environmentaldashboard.org/">Oberlin Environmental Dashboard Team</a>.
+        </div>
       </div>
     );
   }

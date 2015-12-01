@@ -35,12 +35,12 @@ This one last one is how I've installed React. I used this "yeoman generator," t
 ## Todo List
 
 Fall 2015:
-- Add credits on prefs page (yay)
+- <del>Add credits on prefs page (yay)</del>
 - Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink)
   - Message probabilities need row key for state tabs (weird bug)
   - Convert string data back into ints
-  - Landscape components tab
-  - Gauges tab
+  - <del>Landscape components tab</del>
+  - <del>Gauges tab</del>
   - Add and remove rows from tables
 - Prefs data saving and connect to CWD front-end
 - Package up and write installation docs

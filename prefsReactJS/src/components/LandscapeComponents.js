@@ -8,7 +8,6 @@ var LandscapeComponents = React.createClass({
     var updateCommand = {};
     updateCommand.landscape = landscapeUpdateCommand;
     this.props.parentHandleStateChange(updateCommand);
-    console.log(updateCommand);
   },
   render: function() {
     var components = this.props.components;
@@ -49,7 +48,6 @@ var LandscapeComponent = React.createClass({
     });
   },
   saveChanges: function() {
-    // TODO
     var updateCommand = {};
     updateCommand[this.props.slug] = {
       title: { $set: this.state.title },
