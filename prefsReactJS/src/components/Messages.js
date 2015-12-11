@@ -87,11 +87,14 @@ var MessageTable = React.createClass({
   }
 });
 
+var update = require('react-addons-update');
 var MessageStateSelector = React.createClass({
   render: function() {
     var allMessages = this.props.messages;
     var filterToState = function(state) {
-      return allMessages.filter(function(message) {
+      return allMessages.map(function(currentValue, index) {
+        return update(currentValue, {key: { $set: index}});
+      }).filter(function(message) {
         return message.state === state;
       });
     };

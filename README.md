@@ -37,7 +37,7 @@ This one last one is how I've installed React. I used this "yeoman generator," t
 Fall 2015:
 - <del>Add credits on prefs page (yay)</del>
 - Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink)
-  - Message probabilities need row key for state tabs (weird bug)
+  - <del>Message probabilities need row key for state tabs (weird bug)</del>
   - Convert string data back into ints
   - <del>Landscape components tab</del>
   - <del>Gauges tab</del>
