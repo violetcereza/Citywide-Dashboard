@@ -55,10 +55,10 @@ var LandscapeComponent = React.createClass({
       // slug: this.props.slug,
       image: { $set: this.state.image },
       link: { $set: this.state.link },
-      imageWidth: { $set: this.state.imageWidth },
-      imageHeight: { $set: this.state.imageHeight },
-      imageXOffset: { $set: this.state.imageXOffset },
-      imageYOffset: { $set: this.state.imageYOffset },
+      imageWidth: { $set: parseInt(this.state.imageWidth) },
+      imageHeight: { $set: parseInt(this.state.imageHeight) },
+      imageXOffset: { $set: parseInt(this.state.imageXOffset) },
+      imageYOffset: { $set: parseInt(this.state.imageYOffset) },
       text: { $set: this.state.text }
     };
     this.props.parentHandleStateChange(updateCommand);

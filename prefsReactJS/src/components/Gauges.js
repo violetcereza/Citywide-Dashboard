@@ -77,7 +77,7 @@ var Gauge = React.createClass({
     updateCommand[this.props.slug] = {
       title: { $set: this.state.title },
       gaugeId: { $set: this.state.gaugeId },
-      height: { $set: this.state.height },
+      height: { $set: parseInt(this.state.height) },
       text: { $set: this.state.text },
       link: { $set: this.state.link },
       buildingdash: { $set: this.state.buildingdash }

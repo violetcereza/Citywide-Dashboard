@@ -17,7 +17,9 @@ var Timing = React.createClass({
   saveChanges: function() {
     var updateCommand = {};
     updateCommand.timing = {
-      $set: this.state
+      delayBeforePlayMode: { $set: parseInt(this.state.delayBeforePlayMode) },
+      delayBetweenMessages: { $set: parseInt(this.state.delayBetweenMessages) },
+      delayWhenPlaying: { $set: parseInt(this.state.delayWhenPlaying) }
     };
     this.props.parentHandleStateChange(updateCommand);
     this.setState({ editing: false });

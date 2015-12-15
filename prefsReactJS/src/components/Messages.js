@@ -137,8 +137,17 @@ var MessageRow = React.createClass({
     //   }
     // };
     var updateCommand = {};
+    var probability;
+    if (typeof this.state.probability == 'object') {
+      probability = {};
+      for(var key in this.state.probability) {
+        probability[key] = parseInt(this.state.probability[key]);
+      }
+    } else {
+      probability = parseInt(this.state.probability);
+    }
     updateCommand[this.props.index] = {
-      probability: { $set: this.state.probability },
+      probability: { $set: probability },
       text: { $set: this.state.text }
     };
     this.props.parentHandleStateChange(updateCommand);
