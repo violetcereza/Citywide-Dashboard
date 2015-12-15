@@ -10,7 +10,7 @@
 
 // *Button:* Mainly refers to the state buttons at the top of the dashboard.
 
-// *Message:* The text below the state buttons at the top. It has several different "message sections" that it shifts through every couple seconds. Some sections are state dependent, some are even bin dependent. 
+// *Message:* The text below the state buttons at the top. It has several different "message sections" that it shifts through every couple seconds. Some sections are state dependent, some are even bin dependent.
 
 // *Landscape components/clickables:* Everything you see on the landscape that lights up and you can click on it to see a description.
 
@@ -73,13 +73,8 @@ window.setTimeout(function(){
   if (dashboardName.length > 0) {
     while (prefsAjax.responseJSON[i].name.toLowerCase() != dashboardName) i++;
   }
-  prefs = prefsAjax.responseJSON[i];
-  
-  // TEST OF WORDPRESS PREFS please delete in the future.
-  // This just replaces the default starting text with the wordpress setting.
-  // The variable wpSetting come from index.php, where it is retrieved via php.
-  prefs.messageSections[0] = [{"text": wpSetting, "probability":10, "kiosk":true, "web":true}];
-  
+  prefs = prefsAjax.responseJSON;//[i];
+
   // Put the loaded SVG on the page and hide the loading screen.
   // Maybe it would make more sense to have the SVG hardcoded into index.php?
   var draw = SVG('svg-container');
@@ -89,9 +84,9 @@ window.setTimeout(function(){
   window.setTimeout(function() {
     $("#loader").hide();
   }, 2000);
-  
+
   // # Custom Images of Buildings
-  
+
   for (clickable in prefs.landscape) {
     // If the image url is not blank, plug that url in!
     if (prefs.landscape[clickable].image.length > 1) {
@@ -112,25 +107,25 @@ window.setTimeout(function(){
       }
      }
   }
-  
+
   // # Continual animations
-  
+
   // Thank you SVG.js :-*
-  
+
   SVG.get("ship").animate(40000, '-').dmove(1350, -50).loop();
   SVG.get("blades").transform({cx: 19, cy: 25}).animate(2000, '-').transform({rotation: 360}).loop();
-  
+
   var pipes = $("#svg-container #pipes > image");
   var smoke = SVG.get('smoke');
   var pipesOut = function() {
     pipes.each(function() {
       this.instance.load("img/smokestack/smokestack1.png");
     });
-    
+
     smoke.animate(1000, ">").scale(2,2).dmove(0,-300).attr('opacity', 0).after(function() {
       this.attr('opacity', 1).translate(0,0).scale(1);
     });
-    
+
     window.setTimeout(pipesIn, 1000);
   }
   var pipesIn = function() {
@@ -140,12 +135,12 @@ window.setTimeout(function(){
     window.setTimeout(pipesOut, 1000);
   }
   pipesIn();
-      
+
   // # Character and Gauges
-  
+
   var character = $("#character");
   var gauges = $("#gauges");
-  
+
   character.css("position", "absolute");
   gauges.css({position: "absolute", width: 286, height: 735});
   // Kiosk mode "?context=kiosk" makes all sorts of tweaks throughout the program
@@ -158,7 +153,7 @@ window.setTimeout(function(){
     var width = $('#background').get(0).getBoundingClientRect().width;
     var scale = width / 1584; // Original width of SVG
     var x = ($(document.body).width()-width)/2;
-    
+
     var kioskMode = 0;
     if (getURLParameterByName('context') == "kiosk") {
       kioskMode = 1;
@@ -173,7 +168,7 @@ window.setTimeout(function(){
       '-ms-transform-origin': "top left",
       '-o-transform-origin': "top left"
     });
-        
+
     gauges.css({
       transform: 'scale('+scale+')',
       right: x+(20*scale)+'px',
@@ -187,7 +182,7 @@ window.setTimeout(function(){
   rescaleElements();
   // I could have just run the function via window.onresize, but I think that fires too often when scaling
   window.setInterval(rescaleElements, 1000);
-  
+
   // Waiting on lucid for live gauge levels.
   // We need the gauge to use the postmessage framework to communicate the relative
   // use level because XSS stuff prevents us from reading it directly.
@@ -214,7 +209,7 @@ window.setTimeout(function(){
     }
   }
   updateGauges();
-  
+
   // There are two characters (walley and flash) with 3 emotion animations each
   var setCharacterAnim = function(anim) {
     if (character.attr('src') != 'img/'+anim+'.mp4') {
@@ -264,17 +259,17 @@ window.setTimeout(function(){
     }
     setCharacterAnim(character+"/"+emote+(getURLParameterByName('context') == "kiosk"?"-kiosk":""));
   }
-  
+
   // # State-based animations
-  
+
   // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
   function htmlEncode( html ) {
-      return document.createElement( 'a' ).appendChild( 
+      return document.createElement( 'a' ).appendChild(
           document.createTextNode( html ) ).parentNode.innerHTML;
   }
-  
+
   // ## Rotating top messages
-  
+
   var messageHeight = getURLParameterByName('context') == "kiosk"? 100 : 60;
   // Resize text to fit container.
   // Basically by trial and error size it up and up and up until it's too big.
@@ -295,7 +290,7 @@ window.setTimeout(function(){
       }
     }, 0);
   }
-  
+
   // Messages are a "foreignObject" which is an HTML element *within* the SVG. (it's greatt)
   var fObj = draw.foreignObject(1000, 100).move(200, 80);
   fObj.appendChild("div", { innerText: "Welcome to Oberlin's Bioregional Dashboard! Click on the icons above to learn more out the environmental conditions at Oberlin."});
@@ -307,7 +302,7 @@ window.setTimeout(function(){
   function selectMessage(section) {
     // Go to the section we want to display
     var sourceMessages = prefs.messageSections[section.toString()];
-    
+
     var selectedMessages = [];
     var selectedWeights = [];
     for (var i = sourceMessages.length - 1; i >= 0; i--) {
@@ -325,7 +320,7 @@ window.setTimeout(function(){
       if (sourceMessages[i].web == false) {
         if ( getURLParameterByName('context') != "kiosk" ) continue;
       }
-      
+
       selectedMessages.push(sourceMessages[i].text);
       if (typeof sourceMessages[i].probability == "number") {
         selectedWeights.push(sourceMessages[i].probability);
@@ -334,11 +329,11 @@ window.setTimeout(function(){
         selectedWeights.push(sourceMessages[i].probability[getBin()]);
       }
     }
-    
+
     if (selectedMessages.length == 0) {
       return '';
     }
-    
+
     // http://codetheory.in/weighted-biased-random-number-generation-with-javascript-based-on-probability/
     var getRandomItem = function(list, weight) {
         var total_weight = weight.reduce(function (prev, cur, i, arr) {
@@ -351,7 +346,7 @@ window.setTimeout(function(){
         for (var i = 0; i < list.length; i++) {
             weight_sum += weight[i];
             weight_sum = +weight_sum.toFixed(2);
-   
+
             if (random_num <= weight_sum) {
                 return list[i];
             }
@@ -362,10 +357,10 @@ window.setTimeout(function(){
     resizeMessage();
   }
   selectMessage(0);
-  
-  // ## The State Machine! 
+
+  // ## The State Machine!
   // State machine framework thanks to https://github.com/jakesgordon/javascript-state-machine
-  
+
   // intervalObjs is for state based animations that need to be closed out when we shift out of that state.
   var intervalObjs = [];
   var state = StateMachine.create({
@@ -385,7 +380,7 @@ window.setTimeout(function(){
         SVG.get('powerlines_lit').show();
         SVG.get('powerlines_lit_back').show();
         setCharacter('squirrel');
-    
+
         var startTime = new Date();
         var duration = 2;
         $("#sparkpaths > path, #sparkpaths_back > path").each(function() {
@@ -394,28 +389,28 @@ window.setTimeout(function(){
             stop.at(0, "#FDF502")
             stop.at(1, '#FDCC02')
           })).attr("class", "spark");
-          path.instance.parent.after(spark);          
+          path.instance.parent.after(spark);
           var len = path.getTotalLength();
-      
+
           intervalObjs.push(window.setInterval(function() {
             var now = new Date(),
                 elapsed = (now-startTime)/1000,
                 pos;
-            
+
             if (elapsed > duration) {
               startTime = now;
               pos = 0;
             } else {
               pos = (elapsed/duration);
             }
-            
+
             // https://gist.github.com/gre/1650294 Ease Out Quad
             pos = pos*(2-pos);
-            
+
             var coord = path.getPointAtLength(len*pos);
             spark.center(coord.x, coord.y);
           }, 10));
-        });                
+        });
       },
       onleaveelectricity:  function() {
         SVG.get('powerlines_lit').hide();
@@ -429,21 +424,21 @@ window.setTimeout(function(){
         SVG.get('wastewater_highlighted').show();
         setCharacter('fish');
         SVG.get("waterlines_clip").show().clipWith(clip);
-                
+
         var startTime = new Date();
         var duration = 4;
         $("#dropletpaths > path").each(function() {
           var path = this;
           var droplet = draw.circle(50).attr("class", "droplet");
           var len = path.getTotalLength();
-          
+
           clip.add(droplet);
-          
+
           intervalObjs.push(window.setInterval(function() {
             var now = new Date(),
                 elapsed = (now-startTime)/1000,
                 pos;
-            
+
             if (elapsed > duration) {
               startTime = now;
               pos = 0;
@@ -453,7 +448,7 @@ window.setTimeout(function(){
             var coord = path.getPointAtLength(len*pos);
             droplet.center(coord.x, coord.y);
           }, 10));
-        });                
+        });
       },
       onleavewater: function() {
         SVG.get('freshwater_highlighted').hide()
@@ -466,21 +461,21 @@ window.setTimeout(function(){
         var clip = draw.clip();
         SVG.get("flow_marks").show().clipWith(clip);
         setCharacter('fish');
-        
+
         var startTime = new Date();
         var duration = 2;
         $("#flowpath").each(function() {
           var path = this;
           var droplet = draw.circle(100).attr("class", "flowshine");
           var len = path.getTotalLength();
-          
+
           clip.add(droplet);
-          
+
           intervalObjs.push(window.setInterval(function() {
             var now = new Date(),
                 elapsed = (now-startTime)/1000,
                 pos;
-            
+
             if (elapsed > duration) {
               startTime = now;
               pos = 0;
@@ -490,7 +485,7 @@ window.setTimeout(function(){
             var coord = path.getPointAtLength(len*pos);
             droplet.center(coord.x, coord.y);
           }, 10));
-        });                
+        });
       },
       onleavestream: function() {
         SVG.get('flow_marks').hide()
@@ -517,7 +512,7 @@ window.setTimeout(function(){
       // ### On Every State
       onstate: function(event, from, to) {
         window.location.hash = to;
-        
+
         if (getURLParameterByName('context') == "kiosk") {
           SVG.get('buttons').each(function() {
             this.hide();
@@ -530,13 +525,13 @@ window.setTimeout(function(){
           SVG.get(to+"_hover").hide();
           SVG.get(to+"_highlight").show();
         }
-        
+
         // Stick figures
         SVG.get('stick_figures').each(function() {
           this.hide();
         });
         if (SVG.get('stick_'+to)) SVG.get('stick_'+to).show();
-        
+
         // Message at top
         if (to == "none") {
           selectMessage(0);
@@ -550,7 +545,7 @@ window.setTimeout(function(){
             selectMessage(messageSection+1);
           }, prefs.timing.delayBetweenMessages*1000));
         }
-        
+
         updateGauges(to);
       },
       onleavestate: function(event, from, to) {
@@ -558,7 +553,7 @@ window.setTimeout(function(){
           window.clearInterval(intervalObjs[i]);
         }
         intervalObjs = [];
-        
+
         if (SVG.get(from)) {
           SVG.get(from).show();
           SVG.get(from+"_hover").hide();
@@ -581,7 +576,7 @@ window.setTimeout(function(){
       this.attr('transform', '');
       if (this.node.tagName == "image") {
         this.center(1420, 45);
-      } else if (this.node.tagName == "text") {      
+      } else if (this.node.tagName == "text") {
         this.center(1400, 45);
       }
     });
@@ -591,19 +586,19 @@ window.setTimeout(function(){
 
   // ### Allow button label customization
   SVG.get('buttons').each(function() {
-    if (this.node.tagName == "text") {      
+    if (this.node.tagName == "text") {
       // Trims the "_label" off of "electricity_label" etc
       var type = this.attr("id").slice(0, -6);
       if (prefs.buttonLabels[type]) {
         this.text(prefs.buttonLabels[type]);
       }
-      
+
       // IDK why svg.js creates a tspan child for each text element and adds a "dy" property ¯\_(ツ)_/¯
       this.node.childNodes[0].instance.attr({dy: "", dx:""});
       this.style({ "pointer-events": 'none' });
     }
   });
-  
+
   // If we're loading the page with #electricity or something, transition to it now.
   if (window.location.hash) {
     state[ "to" + window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2) ]();
@@ -611,9 +606,9 @@ window.setTimeout(function(){
   } else {
     setCharacter('squirrel');
   }
-  
+
   // # Play button
-  
+
   // playIntervalObj holds the timers for the whole playing situation.
   var playIntervalObj;
   // playBarMask is the loading bar in the back of the play button while it's playing.
@@ -621,9 +616,9 @@ window.setTimeout(function(){
   SVG.get('darkplay').hide().maskWith(playBarMask);
   // ## Play button state machine
   // *waiting:* Waits delayBeforePlayMode seconds before shifting to playing.
-  
+
   // *playing:* Waits delayWhenPlaying before shifting to next state.
-  
+
   // *action:* Triggered when it waiting mode, and user interacts with something. Resets delayBeforePlayMode timer and goes back to waiting.
   var playState = StateMachine.create({
     initial: "action",
@@ -649,12 +644,12 @@ window.setTimeout(function(){
         SVG.get("playtext").hide();
         SVG.get("pausetext").show();
         SVG.get('darkplay').show();
-      
+
         if (getURLParameterByName('context') != "kiosk") {
           state.next();
         }
         playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
-      
+
         playIntervalObj = window.setInterval(function() {
           state.next();
           playBarMask.width(0).animate(prefs.timing.delayWhenPlaying*1000, '=').attr({ width: 100 });
@@ -663,7 +658,7 @@ window.setTimeout(function(){
       onleaveplaying: function() {
         SVG.get("playtext").show();
         SVG.get("pausetext").hide();
-        SVG.get('darkplay').hide();        
+        SVG.get('darkplay').hide();
       },
       onleavestate: function(event, from, to) {
         if (playIntervalObj) {
@@ -673,18 +668,18 @@ window.setTimeout(function(){
       }
     }
   });
-      
+
   // # Button Interaction
-  
+
   // ## State Buttons
   if (getURLParameterByName('context') != "kiosk") {
-  
+
     $("#buttons > image").each(function() {
       // In the SVG, there are 3 different button images layered over each state button.
-      // We hide one and show the other (by id) when the button is hovered or active. 
+      // We hide one and show the other (by id) when the button is hovered or active.
       var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
       var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
-    
+
       this.instance.mouseover(function() {
         playState.actioned();
         if (!state.is(thisState) && thisType!="hover") {
@@ -704,7 +699,7 @@ window.setTimeout(function(){
       $(document).mouseleave(mouseout);
       this.instance.click(function() {
         if (thisState == state.current) { return; }
-      
+
         playState.toAction();
         switch (thisState) {
           case "electricity":
@@ -722,23 +717,23 @@ window.setTimeout(function(){
         }
       });
     });
-    
+
   }
-  
+
   // ## Landscape Components / Clickables
-  
+
   var hoverFilter;
   if (getURLParameterByName('context') != "kiosk")
   $("#clickables > *").each(function() {
     clickable = this.instance;
-    
+
     clickable.node.style.cursor = "pointer";
-    
+
     clickable.mouseover(function() {
       playState.actioned();
       clickable = this;
       if (clickable.attr("id") == "river_click") clickable = SVG.get("river");
-      
+
       // This filter lightens the image via *SVG magic.*
       if (!hoverFilter) {
         clickable.filter(function(add) {
@@ -751,14 +746,14 @@ window.setTimeout(function(){
         clickable.filter(hoverFilter);
       }
     });
-    
+
     clickable.mouseout(function() {
       clickable = this;
       if (clickable.attr("id") == "river_click") clickable = SVG.get("river");
-      
+
       clickable.unfilter();
     });
-    
+
     clickable.click(function(e) {
       playState.actioned();
       var dscr = prefs.landscape[this.attr('id')];
@@ -773,7 +768,7 @@ window.setTimeout(function(){
       popup.appendTo(document.body).offset({top: e.y, left: e.x});
     });
   });
-  
+
   // ## Gauge descriptions on mouseover
   gauges.on("mouseover", "iframe", function(e) {
     // http://stackoverflow.com/questions/16695369/how-to-get-last-folder-name-from-folder-path-in-javascript
@@ -788,7 +783,7 @@ window.setTimeout(function(){
       }
       if (dscr != null) break;
     }
-    
+
     playState.actioned();
     $(".popup").remove();
     var text = dscr.text;
@@ -808,7 +803,7 @@ window.setTimeout(function(){
     popup.mouseleave(function() {
       popup.remove();
     });
-    
+
     var offset = $(this).offset();
     popup.appendTo(document.body).offset({top: offset.top, left: offset.left-popup.width()});
   });
@@ -820,7 +815,7 @@ window.setTimeout(function(){
       }
     }, 0);
   });
-  
+
   // ## Play button interaction
   // Can we move this up to the other play button code?
   $("#play").css('cursor', 'pointer').mouseover(function() {

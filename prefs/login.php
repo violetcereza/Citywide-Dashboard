@@ -2,7 +2,7 @@
 
 require("config.php");
 if (logged_in()) {
-  header("Location: ./prefs.php");
+  header("Location: ./index.php");
 }
 
 ?>
@@ -13,7 +13,7 @@ if (logged_in()) {
     <title>Citywide Dashboard Preferences</title>
     <link rel="stylesheet" href="css/bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="js/vendor/jsoneditor.js" type="text/javascript" charset="utf-8"></script>
-    
+
     <script src="js/vendor/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/vendor/Pikaday-master/pikaday.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/vendor/Pikaday-master/plugins/pikaday.jquery.js" type="text/javascript" charset="utf-8"></script>

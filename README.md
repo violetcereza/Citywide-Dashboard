@@ -38,15 +38,16 @@ Fall 2015:
 - <del>Add credits on prefs page (yay)</del>
 - Finish prefs data serialization in ReactJS (this is basically the "Add inverse data flow" step of "Thinking in React," involves using two-way binding helper valueLink)
   - <del>Message probabilities need row key for state tabs (weird bug)</del>
-  - Convert string data back into ints
+  - <del>Convert string data back into ints</del>
   - <del>Landscape components tab</del>
   - <del>Gauges tab</del>
   - Add and remove rows from tables
-- Prefs data saving and connect to CWD front-end
+- <del>Prefs data saving and connect to CWD front-end</del>
 - Package up and write installation docs
-- W Steve: Connect gauge levels API to front-end dashboard
+- Non-clunky workflow for bridging React and PHP
 
 The future:
+- W Steve: Connect gauge levels API to front-end dashboard
 - Develop extra prefs functionality
   - Max and min for probabilities
   - Rename landscape components to "Landmark Icons"
