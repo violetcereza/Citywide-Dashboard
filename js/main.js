@@ -121,9 +121,15 @@ window.setTimeout(function(){
     pipes.each(function() {
       this.load("img/smokestack/smokestack1.png");
     });
-    // smoke.animate(1000, ">").dmove(0,-300).transform({scale: 2}).attr('opacity', 0).after(function() {
-    //   this.attr('opacity', 1).translate(0,0).scale(1);
-    // });
+    smoke.each(function() {
+      this.animate(1000, ">").scale(2);
+    });
+    smoke.animate(1000, ">").transform({y: -50, x: 50}).attr('opacity', 0).after(function() {
+      this.attr('opacity', 1).transform({x: 0, y: 0});
+      smoke.each(function() {
+        this.scale(1);
+      });
+    });
 
     window.setTimeout(pipesIn, 1000);
   }
