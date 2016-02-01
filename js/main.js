@@ -115,22 +115,22 @@ window.setTimeout(function(){
   SVG.get("ship").animate(40000, '-').dmove(1350, -50).loop();
   SVG.get("blades").transform({cx: 19, cy: 25}).animate(2000, '-').transform({rotation: 360}).loop();
 
-  var pipes = $("#svg-container #pipes > image");
+  var pipes = SVG.select("#svg-container #pipes > image");
   var smoke = SVG.get('smoke');
   var pipesOut = function() {
     pipes.each(function() {
-      this.instance.load("img/smokestack/smokestack1.png");
+      this.load("img/smokestack/smokestack1.png");
     });
-
-    smoke.animate(1000, ">").scale(2,2).dmove(0,-300).attr('opacity', 0).after(function() {
-      this.attr('opacity', 1).translate(0,0).scale(1);
-    });
+    // smoke.animate(1000, ">").dmove(0,-300).transform({scale: 2}).attr('opacity', 0).after(function() {
+    //   this.attr('opacity', 1).translate(0,0).scale(1);
+    // });
 
     window.setTimeout(pipesIn, 1000);
   }
   var pipesIn = function() {
+
     pipes.each(function() {
-      this.instance.load("img/smokestack/smokestack2.png");
+      this.load("img/smokestack/smokestack2.png");
     });
     window.setTimeout(pipesOut, 1000);
   }
@@ -389,7 +389,7 @@ window.setTimeout(function(){
             stop.at(0, "#FDF502")
             stop.at(1, '#FDCC02')
           })).attr("class", "spark");
-          path.instance.parent.after(spark);
+          $(path.parentNode).after(spark);
           var len = path.getTotalLength();
 
           intervalObjs.push(window.setInterval(function() {
@@ -415,7 +415,7 @@ window.setTimeout(function(){
       onleaveelectricity:  function() {
         SVG.get('powerlines_lit').hide();
         SVG.get('powerlines_lit_back').hide();
-        $(".spark").each(function() { this.instance.remove(); });
+        SVG.select(".spark").each(function() { this.remove(); });
       },
       // ### Water
       onwater: function() {
@@ -454,7 +454,7 @@ window.setTimeout(function(){
         SVG.get('freshwater_highlighted').hide()
         SVG.get('wastewater_highlighted').hide()
         SVG.get("waterlines_clip").hide()
-        $(".droplet").each(function() { this.instance.remove(); });
+        SVG.select(".droplet").each(function() { this.remove(); });
       },
       // ### Stream
       onstream: function() {
@@ -489,7 +489,7 @@ window.setTimeout(function(){
       },
       onleavestream: function() {
         SVG.get('flow_marks').hide()
-        $(".flowshine").each(function() { this.instance.remove(); });
+        SVG.select(".flowshine").each(function() { this.remove(); });
       },
       // ### Weather
       onweather: function() {
@@ -594,7 +594,7 @@ window.setTimeout(function(){
       }
 
       // IDK why svg.js creates a tspan child for each text element and adds a "dy" property ¯\_(ツ)_/¯
-      this.node.childNodes[0].instance.attr({dy: "", dx:""});
+      //this.node.childNodes[0].instance.attr({dy: "", dx:""});
       this.style({ "pointer-events": 'none' });
     }
   });
@@ -674,30 +674,30 @@ window.setTimeout(function(){
   // ## State Buttons
   if (getURLParameterByName('context') != "kiosk") {
 
-    $("#buttons > image").each(function() {
+    SVG.select("#buttons > image").each(function() {
       // In the SVG, there are 3 different button images layered over each state button.
       // We hide one and show the other (by id) when the button is hovered or active.
-      var thisState = this.instance.attr("id").split("_")[0]; // electricity, water, etc
-      var thisType = this.instance.attr("id").split("_")[1]; // hover, "", highlight
+      var thisState = this.attr("id").split("_")[0]; // electricity, water, etc
+      var thisType = this.attr("id").split("_")[1]; // hover, "", highlight
 
-      this.instance.mouseover(function() {
+      this.mouseover(function() {
         playState.actioned();
         if (!state.is(thisState) && thisType!="hover") {
           this.hide();
           SVG.get(thisState+"_hover").show();
         }
       });
-      var button = this.instance;
+      var button = this;
       var mouseout = function() {
         if (!state.is(thisState) && thisType=="hover") {
           button.hide();
           SVG.get(thisState).show();
         }
       };
-      this.instance.mouseleave(mouseout);
+      $(button.node).mouseleave(mouseout);
       // This still doesn't completely eliminate hover bugs, if you move the mouse rapidly down crossing the button >:(
       $(document).mouseleave(mouseout);
-      this.instance.click(function() {
+      button.click(function() {
         if (thisState == state.current) { return; }
 
         playState.toAction();
@@ -724,8 +724,8 @@ window.setTimeout(function(){
 
   var hoverFilter;
   if (getURLParameterByName('context') != "kiosk")
-  $("#clickables > *").each(function() {
-    clickable = this.instance;
+  SVG.select("#clickables > *").each(function() {
+    clickable = this;
 
     clickable.node.style.cursor = "pointer";
 
@@ -819,7 +819,7 @@ window.setTimeout(function(){
   // ## Play button interaction
   // Can we move this up to the other play button code?
   $("#play").css('cursor', 'pointer').mouseover(function() {
-    clickable = this.instance;
+    clickable = SVG.get("play");
     if (!hoverFilter) {
       clickable.filter(function(add) {
       add.componentTransfer({
@@ -831,7 +831,7 @@ window.setTimeout(function(){
       clickable.filter(hoverFilter);
     }
   }).mouseout(function() {
-    clickable = this.instance;
+    clickable = SVG.get("play");
     clickable.unfilter();
   }).click(function() {
     playState.toggle();
