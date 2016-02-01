@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Citywide Dashboard</title>
-        <!-- 
+        <!--
         ::::::::::::::::::::::::::::::::::::::,,,:::::::::::::::::::::::::::::::::::::::
         ::::::::::::::::::::::::::::,,,,,,,,,,,,,,,,,,,,,,,:::::::::::::::::::::::::::::
         ::::::::::::::::::::::::,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,::::::::::::::::::::::::
@@ -53,14 +53,12 @@
         ::::::::::::::::::::::::::::,,,,,,,,,,,,,,,,,,,,,,,:::::::::::::::::::::::::::::
         ::::::::::::::::::::::::::::::::::::::::,:::::::::::::::::::::::::::::::::::::::
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-                                                                   Art by GlassGiant.com 
+                                                                   Art by GlassGiant.com
         -->
-        
+
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <script src="js/vendor/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/vendor/svg.parser.js-master/svg.parser.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/vendor/svg.import.js-master/svg.import.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/javascript-state-machine-master/state-machine.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/vendor/svg.filter.js-master/svg.filter.js" type="text/javascript" charset="utf-8"></script>
         <!--script src="js/vendor/jquery.parse-master/jquery.parse.min.js" type="text/javascript" charset="utf-8"></script-->
