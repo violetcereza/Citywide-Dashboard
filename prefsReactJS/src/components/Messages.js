@@ -87,11 +87,14 @@ var MessageTable = React.createClass({
   }
 });
 
+var update = require('react-addons-update');
 var MessageStateSelector = React.createClass({
   render: function() {
     var allMessages = this.props.messages;
     var filterToState = function(state) {
-      return allMessages.filter(function(message) {
+      return allMessages.map(function(currentValue, index) {
+        return update(currentValue, {key: { $set: index}});
+      }).filter(function(message) {
         return message.state === state;
       });
     };
@@ -134,8 +137,17 @@ var MessageRow = React.createClass({
     //   }
     // };
     var updateCommand = {};
+    var probability;
+    if (typeof this.state.probability == 'object') {
+      probability = {};
+      for(var key in this.state.probability) {
+        probability[key] = parseInt(this.state.probability[key]);
+      }
+    } else {
+      probability = parseInt(this.state.probability);
+    }
     updateCommand[this.props.index] = {
-      probability: { $set: this.state.probability },
+      probability: { $set: probability },
       text: { $set: this.state.text }
     };
     this.props.parentHandleStateChange(updateCommand);
@@ -167,7 +179,7 @@ var MessageRow = React.createClass({
 var MessageProbabilityText = React.createClass({
   render: function() {
     var probability = this.props.probability;
-    if (isNaN(probability)) {
+    if (typeof probability === 'object') {
       var string = '';
       for(var key in probability) {
         string += probability[key] + ', ';
@@ -177,7 +189,7 @@ var MessageProbabilityText = React.createClass({
       );
     } else {
       return (
-        <span>{ this.props.probability }</span>
+        <span>{ probability }</span>
       );
     }
   }
@@ -187,21 +199,24 @@ var update = require('react-addons-update');
 var MessageProbabilityField = React.createClass({
   render: function() {
     var probability = this.props.valueLink.value;
-    if (isNaN(probability)) {
+    if (typeof probability === 'object') {
 
       var inputs = [];
       var valueLink = this.props.valueLink;
-      var handleChange = function(event) {
-        var updateCommand = {};
-        updateCommand[this.props.objKey] = {$set: event.target.value};
-        valueLink.requestChange(update(probability, updateCommand));
-      };
-    //  for(var key in probability) {   
-      //  inputs.push(
-          <input bsSize="small" type="text" value={probability} onChange={handleChange} objKey={key} />
-   //     );
-   //   }
-      return (<div>{ probability }</div>);
+      var makeChangeHandler = function(key) {
+        return function(event) {
+          var updateCommand = {};
+          updateCommand[key] = {$set: event.target.value};
+          valueLink.requestChange(update(probability, updateCommand));
+        }
+      }
+      for(var key in probability) {
+        var handleChange = makeChangeHandler(key);
+        inputs.push(
+          <input bsSize="small" type="text" key={key} value={probability[key]} onChange={handleChange} />
+        );
+      }
+      return (<div>{ inputs }</div>);
 
     } else {
 
