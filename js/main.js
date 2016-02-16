@@ -92,7 +92,8 @@ window.setTimeout(function(){
     if (prefs.landscape[clickable].image.length > 1) {
       var el = SVG.get(clickable);
       // Currently, all image urls are relative to dashboard/img
-      el.attr('href', 'img/'+prefs.landscape[clickable].image);
+      el.load('img/'+prefs.landscape[clickable].image);
+        
       if (prefs.landscape[clickable].imageWidth) {
         el.width(prefs.landscape[clickable].imageWidth);
       }
